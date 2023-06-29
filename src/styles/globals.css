@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('./animations.css');
+
+@layer components {
+  .wrapper {
+    @apply max-w-[1170px] w-full mx-auto;
+  }
+
+  .btn {
+    @apply px-3.5 py-1.5 max-h-[32px] flex items-center gap-2.5 rounded-full border border-transparent;
+  }
+
+  .btn.primary{
+    @apply bg-secondary text-white;
+  }
+
+  .btn.secondary{
+    @apply border-white text-secondary;
+  }
+
+  h3.after-bottom {
+    @apply relative after:content-[''] after:absolute after:-bottom-5 after:left-1/2 after:-translate-x-1/2 after:w-28 after:h-[2.5px] after:bg-secondary;
+  }
+
+  h3.after-bottom.text-left {
+    @apply after:left-0 after:-translate-x-0;
+  }
+
+  nav li .after-bottom {
+    @apply relative text-white after:content-[''] after:absolute after:-bottom-6 after:left-0 after:w-0 after:h-[5px] after:bg-secondary after:transition-all after:duration-200 after:ease-linear hover:after:w-full;
+  }
+
+  nav li .is-active {
+    @apply after:w-full;
+  }
+
+  form .input, form textarea{
+    @apply placeholder:text-heading text-[15px] font-light p-3.5 max-h-[42px] border border-freezed rounded w-full outline-none focus:ring-2;
+  }
+
+  .shadow-right {
+    box-shadow: 8px 0 10px -5px rgb(0 0 0 / 0.1);
+  }
+
+  .bg-image-home {
+    background-image: url("/banners/bg-fundo-home.jpg");
+  }
+
+  .bg-image-mosaico-quem-somos {
+    background-image: url("/banners/bg-quem-somos.jpg");
+
+  }
+
+  .bg-image-fundo-vantagens {
+    background-image: url("/banners/bg-fundo-vantagens.jpg");
+  }
+
+  .bg-image-fundo-vantagens-emitir-art {
+    background-image: url("/banners/bg-fundo-vantagens-emitir-art.jpg");
+  }
+
+  .bg-image-pq-escolher-a-coe {
+    background-image: url("/banners/bg-section.jpg");
+  }
+
+  .bg-image-formulario-contato {
+    background-image: url("/banners/bg-formulario.jpg");
+  }
+
+  .bg-image-fundo-servicos {
+    background-image: url("/banners/bg-fundo-servicos.jpg");
+  }
+
+  .bg-image-planos {
+    background-image: url("/banners/bg-fundo-planos.jpg");
+  }
+
+  .bg-image-fundo-como-trabalhamos {
+    background-image: url("/banners/bg-fundo-como-trabalhamos.jpg");
+  }
+}

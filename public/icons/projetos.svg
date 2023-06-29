@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.17 97.33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #f7a833;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.76px;
+      }
+    </style>
+  </defs>
+  <g id="Camada_1" data-name="Camada 1">
+    <g id="design-architecture">
+      <g>
+        <path class="cls-1" d="m77.65,7.48l-9.15,21.35v61.85c0,2.91,2.36,5.26,5.26,5.26h7.78c2.91,0,5.26-2.36,5.26-5.26V28.83l-9.15-21.35Z"/>
+        <line class="cls-1" x1="76.12" y1="30.36" x2="86.8" y2="30.36"/>
+        <line class="cls-1" x1="76.12" y1="12.06" x2="79.17" y2="12.06"/>
+        <line class="cls-1" x1="76.12" y1="83.75" x2="86.8" y2="83.75"/>
+        <line class="cls-1" x1="77.65" y1="30.36" x2="77.65" y2="83.75"/>
+      </g>
+      <g>
+        <line class="cls-1" x1="1.38" y1="27.31" x2="5.95" y2="27.31"/>
+        <g>
+          <polyline class="cls-1" points="1.38 60.87 1.38 1.38 25.78 1.38 25.78 42.56"/>
+          <line class="cls-1" x1="1.38" y1="45.61" x2="9" y2="45.61"/>
+        </g>
+        <circle class="cls-1" cx="13.58" cy="13.58" r="3.05"/>
+      </g>
+      <g>
+        <polyline class="cls-1" points="7.48 95.95 7.48 83.75 1.38 83.75 1.38 73.07 47.14 39.51 59.34 47.14"/>
+        <polyline class="cls-1" points="34.94 95.95 34.94 83.75 56.29 83.75 56.29 95.95"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.07 96.99">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #f7a833;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.76px;
+      }
+    </style>
+  </defs>
+  <g id="Camada_2" data-name="Camada 2">
+    <g>
+      <path class="cls-1" d="m40.04,1.38C32.55,11.21,18.05,17.89,1.38,17.89v10.83c0,28.6,15.57,53.51,38.66,66.89,23.09-13.37,38.66-38.29,38.66-66.89v-10.83c-16.67,0-31.17-6.67-38.66-16.51Z"/>
+      <polyline class="cls-1" points="64.16 33.97 38.25 60.61 22.67 43.15"/>
+    </g>
+  </g>
+</svg>
