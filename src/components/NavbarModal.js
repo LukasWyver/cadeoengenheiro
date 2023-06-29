@@ -5,8 +5,21 @@ import { motion } from "framer-motion";
 
 import LinkList from "./LinkList";
 import { FiX } from "react-icons/fi";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 function NavbarModal({ isVisible, onClose }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const closeOnPathChange = async () => {
+      onClose();
+    };
+
+    closeOnPathChange();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[router.asPath])
+
 
   if (isVisible) {
     return (

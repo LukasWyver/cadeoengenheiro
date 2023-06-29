@@ -24,8 +24,8 @@ function Depoimentos() {
 
                 type: "loop",
 
-                speed: 6000,
-                interval: 6000,
+                speed: 3000,
+                interval: 3000,
 
 
                 width: '100%',

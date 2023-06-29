@@ -34,7 +34,7 @@ export default function CasesPage({ categories }) {
 
       <HeaderBanner />
 
-      <main className="mt-[118px] mb-[104px]">
+      <main className="mt-[43px] sm:mt-[118px] mb-[104px]">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Cases de sucesso
         </h5>

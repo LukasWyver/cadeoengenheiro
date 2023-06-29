@@ -35,7 +35,7 @@ export default function ServicosPage({ services }) {
 
       <HeaderBanner />
 
-      <main className="mt-[118px] mb-[104px]">
+      <main className="mt-[43px] sm:mt-[118px] mb-[104px]">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Serviços
         </h5>

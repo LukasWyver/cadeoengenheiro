@@ -45,7 +45,7 @@ export default function Case({ category }) {
 
       <HeaderBanner />
 
-      <main className="mt-[118px] mb-[112px]">
+      <main className="mt-[43px] sm:mt-[118px] mb-[112px]">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Cases de sucesso
         </h5>

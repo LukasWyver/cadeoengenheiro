@@ -20,7 +20,7 @@ export default function SobrePage() {
       <HeaderBanner />
 
       {/* // Serviços  */}
-      <main className="wrapper my-[86px] mt-[118px] px-3 flex flex-col lg:flex-row justify-center gap-[42px]">
+      <main className="wrapper mb-[86px] mt-[43px] sm:mt-[118px] px-3 flex flex-col lg:flex-row justify-center gap-[42px]">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}

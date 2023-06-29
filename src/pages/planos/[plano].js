@@ -74,7 +74,7 @@ export default function Cadastro({ plano }) {
 
       <HeaderBanner />
 
-      <main className="mt-[118px]">
+      <main className="mt-[43px] sm:mt-[118px]">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Cadastro
         </h5>

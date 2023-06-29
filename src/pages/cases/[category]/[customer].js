@@ -70,7 +70,7 @@ export default function Details({ customer }) {
 
       <HeaderBanner />
 
-      <main className="mt-[118px] mb-[153px] px-3">
+      <main className="mt-[43px] sm:mt-[118px] mb-[153px] px-3">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Cases de sucesso
         </h5>

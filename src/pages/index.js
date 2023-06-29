@@ -20,7 +20,7 @@ export default function HomePage() {
 
       <div className="-mt-[118px] pt-[118px] bg-no-repeat bg-center bg-cover bg-image-home">
         <div className=" flex items-end overflow-hidden">
-          <div className="wrapper flex flex-col max-xl:gap-10 xl:flex-row items-center justify-between max-xl:mt-[136px]">
+          <div className="wrapper flex flex-col max-xl:gap-10 xl:flex-row items-center justify-between max-xl:mt-[68px]">
             <motion.div
               className="max-h-[542px] px-3"
               initial={{ opacity: 0, x: -500 }}
