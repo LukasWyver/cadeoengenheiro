@@ -6,17 +6,17 @@ import Link from "next/link";
 function BannerServicos() {
   return (
     <>
-      <section className="lg:h-[682px] py-[88px] px-3 max-sm:px-3 mb-6 bg-cover bg-bottom bg-no-repeat bg-image-fundo-servicos">
+      <section className="lg:h-[682px] py-[88px] px-3 mb-6 bg-cover bg-bottom bg-no-repeat bg-image-fundo-servicos">
         <h3 className="text-white text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
           Serviços
         </h3>
 
-        <div className="mt-[76px] mb-[90px] grid md:grid-cols-2 wrapper gap-8 md:gap-4">
+        <div className="mt-[76px] mb-[90px] grid xm:grid-cols-2 wrapper gap-8 md:gap-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden max-w-[493px] mx-auto"
+            className="hover:bg-black/10 transition-colors rounded-md p-3 flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center max-w-[493px] mx-auto"
           >
             <Image
               src="/icons/acompanhamento-de-obras.svg"
@@ -26,7 +26,7 @@ function BannerServicos() {
               className="w-[86px] h-[86px]"
             />
             <div className="space-y-2.5">
-              <h5 className="font-bold text-[29px] leading-[30px] ss:text-left break-words">
+              <h5 className="font-bold text-[29px] leading-[30px] ss:text-left break-normal xm:break-all lg:break-normal">
                 Acompanhamento de obras
               </h5>
               <p className="text-base leading-6 font-normal ss:text-left">
@@ -44,7 +44,7 @@ function BannerServicos() {
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden max-w-[493px] mx-auto"
+            className="hover:bg-black/10 transition-colors rounded-md p-3 flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center max-w-[493px] mx-auto"
           >
             <Image
               src="/icons/manutencao-predial.svg"
@@ -72,7 +72,7 @@ function BannerServicos() {
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden max-w-[493px] mx-auto"
+            className="hover:bg-black/10 transition-colors rounded-md p-3 flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center max-w-[493px] mx-auto"
           >
             <Image
               src="/icons/projetos.svg"
@@ -100,7 +100,7 @@ function BannerServicos() {
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden max-w-[493px] mx-auto"
+            className="hover:bg-black/10 transition-colors rounded-md p-3 flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center max-w-[493px] mx-auto"
           >
             <Image
               src="/icons/art.svg"

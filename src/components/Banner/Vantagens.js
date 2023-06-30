@@ -15,7 +15,7 @@ function BannerVantagens() {
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="hover:bg-black/10 transition-colors rounded-md p-3 col-span-1 row-span-2 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden"
+              className="p-3 col-span-1 row-span-2 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden"
             >
               <Image
                 src="/icons/controle-de-todos-processos.svg"
@@ -42,7 +42,7 @@ function BannerVantagens() {
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="hover:bg-black/10 transition-colors rounded-md p-3 col-span-1 row-span-1 flex gap-3 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden "
+              className="p-3 col-span-1 row-span-1 flex gap-3 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden "
             >
               <Image
                 src="/icons/area-exclusiva.svg"
@@ -68,7 +68,7 @@ function BannerVantagens() {
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="hover:bg-black/10 transition-colors rounded-md p-3 col-span-1 row-span-1 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden"
+              className="p-3 col-span-1 row-span-1 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden"
             >
               <Image
                 src="/icons/facilidade-de-comunicacao.svg"
@@ -93,7 +93,7 @@ function BannerVantagens() {
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="hover:bg-black/10 transition-colors rounded-md p-3 col-span-1 row-span-1 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden"
+              className="p-3 col-span-1 row-span-1 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden"
             >
               <Image
                 src="/icons/linguagem-acessivel.svg"
@@ -118,7 +118,7 @@ function BannerVantagens() {
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="hover:bg-black/10 transition-colors rounded-md p-3 col-span-1 row-span-1 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden "
+              className="p-3 col-span-1 row-span-1 flex gap-6 items-start flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center overflow-hidden "
             >
               <Image
                 src="/icons/acompanhamento-online.svg"
