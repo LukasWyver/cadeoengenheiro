@@ -2,7 +2,7 @@ import Carrossel from "@/components/Carrossel/Empresas";
 import Depoimentos from "@/components/Depoimentos";
 import Footer from "@/components/Footer";
 import Formulario from "@/components/Formulario";
-import ServicosCarrossel from "@/components/Carrossel/ServicosProjetos";
+import ServicosProjetos from "@/components/Carrossel/ServicosProjetos";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -110,7 +110,7 @@ export default function ProjetosPage() {
         </motion.div>
       </main>
 
-      <ServicosCarrossel />
+      <ServicosProjetos />
       <BannerVantagens />
       <Cta />
 

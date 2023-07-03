@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Accordion from "@/components/Accordion";
 import Formulario from "@/components/Formulario";
 import Depoimentos from "@/components/Depoimentos";
-import Carrossel from "@/components/Carrossel/Empresas";
+import Empresas from "@/components/Carrossel/Empresas";
 
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
@@ -517,7 +517,7 @@ export default function AcompanhamentoDeObrasPage() {
         </div>
       </section>
 
-      <Carrossel />
+      <Empresas />
       <Depoimentos />
       <Formulario />
       <Footer />

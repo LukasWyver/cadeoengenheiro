@@ -16,13 +16,13 @@ import { motion } from "framer-motion";
 import api from "@/services/api";
 import { limitOfLines } from "@/utils/limitOfLines";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await api.get("/services");
   const services = data;
 
   return {
     props: { services },
-    // revalidate: 60 * 60 * 24, // 24 hours
+    revalidate: 60 * 60 * 24, // 24 hours
   };
 }
 

@@ -1,17 +1,16 @@
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
-
-import { HiCheckCircle, HiXCircle } from "react-icons/hi";
-
-import Cta from "@/components/Cta";
-import Empresas from "@/components/Carrossel/Empresas";
-import Depoimentos from "@/components/Depoimentos";
-import Formulario from "@/components/Formulario";
-import Footer from "@/components/Footer";
-import BannerEmitirART from "@/components/Banner/EmitirART";
 
 import { motion } from "framer-motion";
+import { HiXCircle } from "react-icons/hi";
+
+import Cta from "@/components/Cta";
+import Footer from "@/components/Footer";
+import Formulario from "@/components/Formulario";
+import Depoimentos from "@/components/Depoimentos";
+import Empresas from "@/components/Carrossel/Empresas";
+import BannerEmitirART from "@/components/Banner/EmitirART";
+
 
 export default function ArtPage() {
   return (

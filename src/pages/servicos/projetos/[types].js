@@ -1,14 +1,16 @@
-import Banner from "@/components/Banner";
-import Empresas from "@/components/Carrossel/Empresas";
-import Cta from "@/components/Cta";
-import Depoimentos from "@/components/Depoimentos";
-import Footer from "@/components/Footer";
-import Formulario from "@/components/Formulario";
-import HeaderBanner from "@/components/HeaderBanner";
-import api from "@/services/api";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+
+import api from "@/services/api";
+
+import Cta from "@/components/Cta";
+import Banner from "@/components/Banner";
+import Footer from "@/components/Footer";
+import Formulario from "@/components/Formulario";
+import Depoimentos from "@/components/Depoimentos";
+import HeaderBanner from "@/components/HeaderBanner";
+import Empresas from "@/components/Carrossel/Empresas";
 
 export async function getServerSideProps() {
   const { data } = await api.get("/services");

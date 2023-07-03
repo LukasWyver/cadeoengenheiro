@@ -1,15 +1,16 @@
-import Banner from "@/components/Banner";
-import Blog from "@/components/Blog";
-import Empresas from "@/components/Carrossel/Empresas";
-import Cta from "@/components/Cta";
-import Depoimentos from "@/components/Depoimentos";
-import Footer from "@/components/Footer";
-import Formulario from "@/components/Formulario";
-import HeaderBanner from "@/components/HeaderBanner";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
+
 import { motion } from "framer-motion";
+
+import Cta from "@/components/Cta";
+import Blog from "@/components/Blog";
+import Footer from "@/components/Footer";
+import Banner from "@/components/Banner";
+import Formulario from "@/components/Formulario";
+import Depoimentos from "@/components/Depoimentos";
+import HeaderBanner from "@/components/HeaderBanner";
+import Empresas from "@/components/Carrossel/Empresas";
 
 export default function SobrePage() {
   return (

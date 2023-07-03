@@ -2,14 +2,14 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-import ServicosManutencao from "@/components/Carrossel/ServicosManutencao";
-import Cta from "@/components/Cta";
-
 import { HiCheckCircle, HiXCircle } from "react-icons/hi";
-import Empresas from "@/components/Carrossel/Empresas";
-import Depoimentos from "@/components/Depoimentos";
-import Formulario from "@/components/Formulario";
+
+import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
+import Formulario from "@/components/Formulario";
+import Depoimentos from "@/components/Depoimentos";
+import Empresas from "@/components/Carrossel/Empresas";
+import ServicosManutencao from "@/components/Carrossel/ServicosManutencao";
 import BannerTrabalhamos from "@/components/Banner/Trabalhamos";
 
 import { motion } from "framer-motion";
