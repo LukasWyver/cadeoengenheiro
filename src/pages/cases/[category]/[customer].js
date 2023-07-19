@@ -24,8 +24,6 @@ import Footer from "@/components/Footer";
 import HeaderBanner from "@/components/HeaderBanner";
 
 
-
-
 export async function getServerSideProps({ params }) {
   if (!params.category || typeof params.category !== 'string') {
     return {

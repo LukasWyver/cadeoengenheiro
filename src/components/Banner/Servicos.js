@@ -6,7 +6,7 @@ import Link from "next/link";
 function BannerServicos() {
   return (
     <>
-      <section className="lg:h-[682px] py-[88px] px-3 mb-6 bg-cover bg-bottom bg-no-repeat bg-image-fundo-servicos">
+      <section className="lg:h-[700px] py-[88px] px-3 mb-6 bg-cover bg-bottom bg-no-repeat bg-image-fundo-servicos">
         <h3 className="text-white text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
           Serviços
         </h3>
@@ -16,7 +16,7 @@ function BannerServicos() {
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="hover:bg-black/10 transition-colors rounded-md p-3 flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center max-w-[493px] mx-auto"
+            className=" hover:bg-black/10 transition-colors rounded-md p-3 flex gap-6 items-center flex-col justify-center ss:flex-row ss:justify-start space-y-3.5 text-white text-center max-w-[493px] mx-auto"
           >
             <Image
               src="/icons/acompanhamento-de-obras.svg"

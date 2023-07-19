@@ -21,6 +21,10 @@ export async function getServerSideProps() {
 
   return {
     props: { categories },
+    redirect: {
+      destination: '/cases/obras-realizadas',
+      permanent: false,
+    },
     // revalidate: 60 * 60 * 24, // 24 hours
   };
 }

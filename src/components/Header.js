@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { HiMenu } from "react-icons/hi";
+import { HiUser } from "react-icons/hi2";
 
 import Image from "next/image";
 import Link from "next/link";
 
-import { motion } from 'framer-motion';
-
 import LinkList from "./LinkList";
-
 import NavbarModal from "./NavbarModal";
-import ActiveLink from "./ActiveLink";
 
 function Header() {
-  let [isOpen, setIsOpen] = useState(false);
+  const dropDownRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDropdown, setIsOpenDropdown] = useState(false);
 
+  /* Drawer Navbar Menu */
   function closeModal() {
     setIsOpen(false);
   }
@@ -21,6 +21,23 @@ function Header() {
   function openModal() {
     setIsOpen(true);
   }
+
+  // UseEffect para adicionar o event listener quando o componente é montado
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+        setIsOpenDropdown(false);
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+
+    // Retorne uma função de limpeza para remover o event listener quando o componente é desmontado
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
 
   return (
     <>
@@ -43,39 +60,30 @@ function Header() {
 
           <div className="ml-auto lg:ml-8 flex items-center gap-1.5">
             <button className="btn primary w-fit min-w-[109px] max-lg:hidden">
-              <Image
-                src="/icons/btn-cliente.svg"
-                width={16}
-                height={16}
-                alt="area dos clientes"
-              />
-              <Link href="/" className="!text-sm !leading-['18px'] font-semibold">
-                Cliente
-              </Link>
-            </button>
-            <button className="btn secondary w-fit min-w-[109px] max-lg:hidden">
-              <Image
-                src="/icons/btn-parceiro.svg"
-                width={16}
-                height={16}
-                alt="area dos parceiros"
-              />
-              <Link href="/" className="!text-sm !leading-['18px'] font-semibold">
-                Parceiro
-              </Link>
+              <HiUser size={18} color="#fff" />
+              <Link href="/" className="!text-sm !leading-['18px'] font-semibold">Cliente</Link>
             </button>
 
-            <motion.div
-              whileTap={{ scale: 0.8 }}
-            >
-              <HiMenu
-                size={22}
-                color="#fff"
-                className="lg:hidden"
-                onClick={openModal}
-              />
-            </motion.div>
+            <div className="" ref={dropDownRef}>
+              <button className="btn secondary w-fit min-w-[109px] max-lg:hidden" onClick={() => setIsOpenDropdown(!isOpenDropdown)}>
+                <HiUser size={18} color="#f4af38" />
+                <span className="!text-sm !leading-['18px'] font-semibold">Parceiro</span>
+              </button>
+              {isOpenDropdown && (
+                <nav className={`${isOpenDropdown ? "flex" : "hidden"} absolute top-full right-2.5 z-10 w-64 mt-1 flex list-none flex-col rounded bg-white py-2 shadow-md shadow-black/10`}>
+                  <Link href="http://localhost:3000/servicos/acompanhamento-de-obras/parceiro"
+                    className="text-body p-2 px-5 transition-all duration-300 ease-linear hover:bg-body/10 hover:font-medium hover:text-primary focus:bg-body/10 focus:text-primary focus:outline-none focus:border-noe focus:ring-0 focus-visible:outline-none">
+                    Saiba mais
+                  </Link>
+                  <Link href="/"
+                    className="text-body p-2 px-5 transition-all duration-300 ease-linear hover:bg-body/10 hover:font-medium hover:text-primary focus:bg-body/10 focus:text-primary focus:outline-none focus:border-noe focus:ring-0 focus-visible:outline-none">
+                    Login
+                  </Link>
+                </nav>
+              )}
+            </div>
 
+            <HiMenu size={22} color="#fff" className="lg:hidden" onClick={openModal} />
           </div>
         </nav>
       </header>

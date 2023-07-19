@@ -35,7 +35,7 @@ module.exports = {
 
       listStyleImage: {
         "check": 'url("/img/check.jpg")',
-      }
+      },
     },
   },
   plugins: [],
