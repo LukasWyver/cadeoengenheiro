@@ -89,7 +89,7 @@ function NavbarModal({ isVisible, onClose }) {
 
               {isOpenDropdown && (
                 <nav className={`${isOpenDropdown ? "flex" : "hidden"} flex-col bg-black/20 py-2 rounded-lg mt-4`}>
-                   <Link href="http://localhost:3000/servicos/acompanhamento-de-obras/parceiro"
+                   <Link href="https://cadeoengenheiro.vercel.app/servicos/acompanhamento-de-obras/parceiro"
                     className="text-white p-2 px-5 transition-colors duration-300 ease-linear hover:bg-black/20 hover:text-secondary focus:bg-black/20 focus:text-secondary focus:outline-none focus-visible:outline-none">
                     Saiba mais
                   </Link>
