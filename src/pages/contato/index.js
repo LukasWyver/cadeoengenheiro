@@ -49,7 +49,7 @@ export default function ContatoPage() {
 
       <HeaderBanner />
 
-      <main className="mt-[43px] sm:mt-[118px]">
+      <main className="mt-[43px] sm:mt-[118px] min-h-[calc(100vh-797px)] mb-[197px] px-3">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Contato
         </h5>
@@ -60,7 +60,7 @@ export default function ContatoPage() {
         <div className="max-w-[1086px] mx-auto mt-[58px]">
           <p className="text-base text-center font-normal leading-5 text-body">
             Possui alguma dúvida? Envie uma mensagem e em breve
-            <br /> alguns dos nossos profissionais capacitados, retornarão o
+            <br className="max-sm:hidden"/> alguns dos nossos profissionais capacitados, retornarão o
             contato.
           </p>
         </div>
@@ -68,7 +68,7 @@ export default function ContatoPage() {
         <form
           action="/contact" method="post"
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-[1025px] mx-auto mt-[60px] mb-[197px] px-3 space-y-2.5"
+          className="max-w-[1025px] mx-auto mt-[60px] space-y-2.5"
         >
           <div className="flex flex-col sm:flex-row gap-5">
             <motion.div className="flex flex-1 flex-col gap-1.5 sm:max-h-[265px] mb-3.5"
@@ -153,20 +153,12 @@ export default function ContatoPage() {
             </motion.div>
           </div>
 
-          <input
-            type="submit"
-            value="Enviar"
-            className="bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] w-[112px] text-center border-none focus:ring-2 ring-white outline-none"
-          />
-
+          <input type="submit" value="Enviar" className="bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] w-[112px] text-center border-none focus:ring-2 ring-white outline-none"/>
         </form>
       </main>
 
-      <div className="3xl:absolute bottom-0">
-
-        <Map />
-        <Footer />
-      </div>
+      <Map/>
+      <Footer />
     </>
   );
 }

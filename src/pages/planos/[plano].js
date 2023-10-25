@@ -457,9 +457,7 @@ export default function Cadastro({ plano }) {
         </form>
       </main>
 
-      <div className="3xl:absolute bottom-0">
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 }
