@@ -1,5 +1,5 @@
 export default function services(req, res) {
-  return res.status(200).json([
+  return res.status(200).json(
     {
       "id": 1,
       "slug": "obras-realizadas",
@@ -75,12 +75,7 @@ export default function services(req, res) {
           "service": "Tipo do serviço realizado",
           "thumb": "/img/thumb-placeholder.jpg",
           "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, Lorem ipsum dolor sit amet,consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim",
-          "photos": [
-            {"id":1, "thumb": "/img/thumb-placeholder.jpg"},
-            {"id":2, "thumb": "/img/thumb-placeholder.jpg"},
-            {"id":3, "thumb": "/img/thumb-placeholder.jpg"},
-            {"id":4, "thumb": "/img/thumb-placeholder.jpg"},
-          ]
+          "photos": []
         },
         {
           "id": 6,
@@ -95,37 +90,7 @@ export default function services(req, res) {
           ]
         }
       ]
-    },
-    {
-      "id": 2,
-      "slug": "projetos-executados",
-      "title": "Projetos Executados",
-      "thumb": "/img/projetos-executados.jpg",
-      "description":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-      "customers": [
-
-      ]
-    },
-    {
-      "id": 3,
-      "slug": "manutencoes-facilities",
-      "title": "Manutenções (facilities)",
-      "thumb": "/img/manutencoes-facilities.jpg",
-      "description":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-      "customers": [
-
-      ]
-    },
-    {
-      "id": 4,
-      "slug": "placeholder",
-      "title": "Placeholder",
-      "thumb": "/img/thumb-placeholder.jpg",
-      "description":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-      "customers": [
-
-      ]
-    },
-  ]);
+    }
+ );
 }
 
