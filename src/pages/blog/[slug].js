@@ -12,6 +12,15 @@ import HeaderBanner from "@/components/HeaderBanner";
 import Empresas from "@/components/Carrossel/Empresas";
 
 export async function getServerSideProps({ params }) {
+  if (!params.slug || typeof params.slug !== 'string') {
+    return {
+      redirect: {
+        destination: '/404',
+        permanent: false,
+      },
+    };
+  }
+
   const { data } = await api.get("/posts");
   const post = data.find(post => post.slug === params.slug)
 

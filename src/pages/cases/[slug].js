@@ -25,7 +25,7 @@ import HeaderBanner from "@/components/HeaderBanner";
 
 
 export async function getServerSideProps({ params }) {
-  if (!params.category || typeof params.category !== 'string') {
+  if (!params.slug || typeof params.slug !== 'string') {
     return {
       redirect: {
         destination: '/404',
@@ -35,18 +35,17 @@ export async function getServerSideProps({ params }) {
   }
 
   const { data } = await api.get("/cases");
-  const categories = data.find(customers => customers.slug === params.category)
-  const customers = categories.customers.filter(customer => customer.slug === params.customer)
-  const customer = customers[0]
+  const customer = data.customers.find(customer => customer.slug === params.slug)
 
   return {
     props: { customer },
   };
 }
 
+
 export default function Details({ customer }) {
   const router = useRouter();
-  const slug = router.query.category;
+  const slug = router.query.slug;
 
   const [openLightBox, setOpenLightBox] = useState(false);
   const [SlidesImage, setSlidesImage] = useState([])
@@ -92,7 +91,7 @@ export default function Details({ customer }) {
                   Desculpe, mas não foi encontrado nenhuma foto para este cliente cliente ainda.
                 </p>
 
-                <Link href={`/cases/${slug}`} className="text-base leading-6 font-semibold text-body text-center max-w-sm mx-auto mt-4">voltar</Link>
+                <Link href="/cases" className="text-base leading-6 font-semibold text-body text-center max-w-sm mx-auto mt-4">voltar</Link>
               </div>
             )
             : (
