@@ -2,13 +2,25 @@ import { useState } from "react";
 
 import Head from "next/head";
 import { mask } from "remask";
+
 import Footer from "@/components/Footer";
 import HeaderBanner from "@/components/HeaderBanner";
 import Checkbox from "@/components/Checkbox";
 
+import { useMyContext } from "@/context";
+
+import { z } from 'zod';
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { submitFormSchema } from "@/types/submitFormSchema";
+
 export async function getServerSideProps({ params }) {
-  // Verifica se o plano é válida
-  if (!params.plano || typeof params.plano !== 'string') {
+  // Verifica se o plano recebido é uma string se esta entre os três aceitos.
+  function isPlanoValido(plano) {
+    return typeof plano === 'string' && ['trimestral', 'semestral', 'anual'].includes(plano);
+  }
+
+  if (!isPlanoValido(params.plano)) {
     return {
       redirect: {
         destination: '/404',
@@ -17,20 +29,7 @@ export async function getServerSideProps({ params }) {
     };
   }
 
-  let plano = params.plano
-
-  // Verifica se o plano recebido esta entre os três aceitos.
-  const tiposPlanos = ['trimestral', 'semestral', 'anual'];
-  if (!tiposPlanos.includes(plano)) {
-    return {
-      redirect: {
-        destination: '/404',
-        permanent: false,
-      },
-    };
-  }
-
-  plano = params.plano.charAt(0).toUpperCase() + params.plano.slice(1);
+  const plano = params.plano.charAt(0).toUpperCase() + params.plano.slice(1);
 
   return {
     props: { plano },
@@ -38,6 +37,11 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Cadastro({ plano }) {
+  const { user, setUser } = useMyContext()
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
   const [cpf, setCpf] = useState("");
   const [cnpj, setCnpj] = useState("");
 
@@ -56,7 +60,6 @@ export default function Cadastro({ plano }) {
     setPaymentOption(e.target.value)
   }
 
-
   const patternPaycard = ["9999 9999 9999 9999"];
   const patternCEP = ["99999-999"];
 
@@ -65,6 +68,15 @@ export default function Cadastro({ plano }) {
 
   const patternPhoneCompany = ["(99) 9999-9999"];
   const patternPhoneUser = ["(99) 99999-9999"];
+
+  const { register, formState: { errors }, handleSubmit } = useForm({
+    resolver: zodResolver(submitFormSchema)
+  });
+
+  function onSubmit(data) {
+    setOutput(JSON.stringify(data, null, 2))
+    alert(JSON.stringify(data, null, 2))
+  };
 
   return (
     <>
@@ -90,6 +102,7 @@ export default function Cadastro({ plano }) {
 
         <form
           action="/contato" method="post"
+          onSubmit={handleSubmit(onSubmit)}
           className="max-w-3xl mx-auto mt-[60px] mb-[197px] px-3"
         >
           {/* Dados Pessoas/ Sua Empresa */}
@@ -107,8 +120,11 @@ export default function Cadastro({ plano }) {
               <input
                 required
                 type="text"
+                value={name}
                 id="nameUser"
-                className={`input !max-h-[39px] invalid:focus:ring-red-500 focus:ring-secondary`}
+                {...register("name")}
+                onChange={(e) => setName(e.target.value)}
+                className={`input !max-h-[39px] ${errors.name ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
             </label>
 
@@ -120,10 +136,11 @@ export default function Cadastro({ plano }) {
                 id="cpf"
                 required
                 type="text"
+                {...register("cpf")}
                 placeholder="000.000.000-00"
                 value={mask(cpf, patternCPF)}
                 onChange={(e) => setCpf(e.target.value)}
-                className={`input !max-h-[39px] invalid:focus:ring-red-500 focus:ring-secondary`}
+                className={`input !max-h-[39px] ${errors.name ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
             </label>
 
@@ -135,7 +152,10 @@ export default function Cadastro({ plano }) {
                 required
                 id="email"
                 type="email"
-                className={`input !max-h-[39px] invalid:focus:ring-red-500 focus:ring-secondary`}
+                value={email}
+                {...register("email")}
+                onChange={(e) => setEmail(e.target.value)}
+                className={`input !max-h-[39px] ${errors.name ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
             </label>
 
@@ -146,10 +166,11 @@ export default function Cadastro({ plano }) {
               <input
                 id="phoneUser"
                 type="text"
+                {...register("phoneUser")}
                 placeholder="(00) 90000-0000"
                 value={mask(phoneUser, patternPhoneUser)}
                 onChange={(e) => setPhoneUser(e.target.value)}
-                className={`input !max-h-[39px] invalid:focus:ring-red-500 focus:ring-secondary`}
+                className={`input !max-h-[39px] ${errors.name ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
             </label>
 
@@ -160,7 +181,8 @@ export default function Cadastro({ plano }) {
               <input
                 type="text"
                 id="addressUser"
-                className={`input !max-h-[39px] invalid:focus:ring-red-500 focus:ring-secondary`}
+                {...register("addressUser")}
+                className={`input !max-h-[39px] ${errors.name ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
             </label>
 

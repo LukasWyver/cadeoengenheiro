@@ -56,9 +56,9 @@ function NavbarModal({ isVisible, onClose }) {
                 priority
                 width={215}
                 height={61}
-                className=""
                 src="/icons/logo.svg"
                 alt="logo Cadê o Engenheiro?"
+                className="flex w-[215px] h-[61px]"
               />
 
               <button onClick={onClose} className="hover:bg-white/20 rounded-lg w-7 h-7 flex items-center justify-center p-1">

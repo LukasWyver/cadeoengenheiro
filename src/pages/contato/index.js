@@ -1,45 +1,67 @@
-import { useState } from "react";
-
 import Head from "next/head";
 import { mask } from "remask";
+import api from "@/services/api";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
-import { z } from 'zod';
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import Footer from "@/components/Footer";
+import { useMyContext } from "@/context";
 import HeaderBanner from "@/components/HeaderBanner";
+import { useInputContext } from "@/context/inputContext";
+import { submitFormSchema } from "@/types/submitFormSchema";
+import { normalizePhoneNumber } from "@/utils/normalizePhoneNumber";
 
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
-const submitFormSchema = z.object({
-  name: z.string().nonempty('O nome é obrigatório').min(6, 'O nome precisa de no mínimo 6 caracteres').transform(name => {
-    return name.trim().split(' ').map(word => {
-      return word[0].toLocaleUpperCase().concat(word.substring(1))
-    }).join(' ')
-  }),
-  phone: z.string().nonempty('O celular é obrigatório').min(11, 'O celular precisa de no mínimo 11 digitos'),
-  email: z.string().nonempty('O e-mail é obrigatório').email('Formato de e-mail inválido').toLowerCase(),
-  subject: z.string().nonempty('O assunto é obrigatório'),
-  message: z.string().nonempty('Escreva sua mensagem aqui')
-})
-
 export default function ContatoPage() {
-  const [output, setOutput] = useState("");
-  const [phone, setPhone] = useState("");
+  const { user, saveContact, isAuthenticated } = useMyContext()
+  const { inputValuesForm, setFieldValueForm, setInputValuesForm } = useInputContext()
+  const firstName = isAuthenticated && user.name.split(' ')[0];
 
-  const patternPhone = ["(99) 99999-9999"];
+  const handleInputChange = (e) => {
+    setFieldValueForm(e.target.name, e.target.value);
+  };
 
-  const { register, formState: { errors }, handleSubmit } = useForm({
-    resolver: zodResolver(submitFormSchema)
+  const {
+    reset,
+    register,
+    handleSubmit,
+    watch, setValue,
+    formState: { errors, isSubmitting, isSubmitSuccessful }
+        } = useForm({
+    resolver: zodResolver(submitFormSchema),
   });
 
-  function onSubmit(data) {
-    setOutput(JSON.stringify(data, null, 2))
-    alert(JSON.stringify(data, null, 2))
-  };
+  const phoneValue = watch("phone")
+
+  useEffect(() => {
+    setValue("phone", normalizePhoneNumber(phoneValue))
+  },[phoneValue, setValue])
+
+  const onSubmit = async (data) => {
+    try {
+      await api.post('/contact', data)
+      toast.success('Formulário enviado com sucesso!')
+
+    } catch (error) {
+      console.log(error)
+      toast.error('Ocorreu um erro ao enviar a mensagem. Tente novamente.')
+    }
+
+    saveContact(data)
+  }
+
+  if(isSubmitSuccessful){
+    setTimeout(()=> {
+      reset()
+      setInputValuesForm({})
+    }, 3000)
+  }
 
   return (
     <>
@@ -65,6 +87,13 @@ export default function ContatoPage() {
           </p>
         </div>
 
+        {isSubmitSuccessful ? (
+          <div className="h-full min-h-[280px] flex items-center justify-center">
+            <h2 className="text-primary text-3xl font-semibold text-center leading-[53px] opacity-0 animate-slide-up">
+              Obrigado {firstName},<span className="font-medium"> pelo contato ;)</span>
+              </h2>
+          </div>
+        ) : (
         <form
           action="/contact" method="post"
           onSubmit={handleSubmit(onSubmit)}
@@ -86,6 +115,8 @@ export default function ContatoPage() {
                   id="name"
                   type="text"
                   {...register("name")}
+                  value={inputValuesForm.name}
+                  onChange={handleInputChange}
                   className={`input !max-h-[39px] ${errors.name ? "focus:ring-red-500" : "focus:ring-secondary"}`}
                 />
                 {errors.name && <span className="text-red-500 mt-0.5">{errors.name.message}</span>}
@@ -99,6 +130,8 @@ export default function ContatoPage() {
                   id="email"
                   type="email"
                   {...register("email")}
+                  value={inputValuesForm.email}
+                  onChange={handleInputChange}
                   className={`input !max-h-[39px] ${errors.email ? "focus:ring-red-500" : "focus:ring-secondary"}`}
                 />
                 {errors.email && <span className="text-red-500 mt-0.5">{errors.email.message}</span>}
@@ -112,8 +145,8 @@ export default function ContatoPage() {
                   id="phone"
                   type="text"
                   {...register("phone")}
-                  value={mask(phone, patternPhone)}
-                  onChange={(e) => setPhone(e.target.value)}
+                  // value={mask(phone, patternPhone)}
+                  // onChange={(e) => setPhone(e.target.value)}
                   className={`input !max-h-[39px] ${errors.phone ? "focus:ring-red-500" : "focus:ring-secondary"}`}
                 />
                 {errors.phone && <span className="text-red-500 mt-0.5">{errors.phone.message}</span>}
@@ -127,6 +160,8 @@ export default function ContatoPage() {
                   type="text"
                   id="subject"
                   {...register("subject")}
+                  value={inputValuesForm.subject}
+                  onChange={handleInputChange}
                   className={`input !max-h-[39px] ${errors.subject ? "focus:ring-red-500" : "focus:ring-secondary"}`}
                 />
                 {errors.subject && <span className="text-red-500 mt-0.5">{errors.subject.message}</span>}
@@ -146,6 +181,8 @@ export default function ContatoPage() {
                 <textarea
                   id="message"
                   {...register("message")}
+                  value={inputValuesForm.message}
+                  onChange={handleInputChange}
                   className={`input min-h-[245px] h-full resize-none w-full ${errors.message ? "focus:ring-red-500" : "focus:ring-secondary"}`}
                 ></textarea>
                 {errors.message && <span className="text-red-500 mt-0.5">{errors.message.message}</span>}
@@ -153,8 +190,13 @@ export default function ContatoPage() {
             </motion.div>
           </div>
 
-          <input type="submit" value="Enviar" className="bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] w-[112px] text-center border-none focus:ring-2 ring-white outline-none"/>
+          <input
+            type="submit"
+            disabled={isSubmitting}
+            value={isSubmitting ? "Enviando..." : "Enviar"}
+            className="disabled:bg-zinc-400 bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] min-w-min px-5 text-center border-none focus:ring-2 ring-white outline-none"/>
         </form>
+        )}
       </main>
 
       <Map/>

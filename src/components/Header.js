@@ -43,14 +43,14 @@ function Header() {
     <>
       <header className="h-[118px] pt-5">
         <nav className="max-w-[1170px] h-[61px] mb-9 mx-auto px-2 flex items-center relative ">
-          <Link href="/" className="mr-8 w-auto h-auto">
+          <Link href="/" className="mr-8">
             <Image
               priority
               width={215}
               height={61}
-              className=""
               src="/icons/logo.svg"
               alt="logo Cadê o Engenheiro?"
+              className="flex w-[215px] h-[61px]"
             />
           </Link>
 

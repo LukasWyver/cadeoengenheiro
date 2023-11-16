@@ -28,7 +28,6 @@ export async function getServerSideProps() {
     return dateB - dateA; // Compara as datas em ordem decrescente
   });
 
-
   const posts = response.map((post) => {
     const arr = post.createdAt.split('/'); // Divide a string da data em partes: ano, mês e dia
     const obj = new Date(arr[0], arr[1] - 1, arr[2]); // Cria um objeto de data sublitaindo 1 do mês
@@ -48,9 +47,8 @@ export async function getServerSideProps() {
   return {
     props: { posts },
     // revalidate: 60 * 60 * 24, // 24 hours
-  };
+  }
 }
-
 export default function BlogPage({ posts }) {
 
   return (

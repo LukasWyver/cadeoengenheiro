@@ -1,4 +1,3 @@
-// "use client";
 import Image from "next/image";
 import { Splide, SplideSlide } from "splide-nextjs/react-splide";
 import '@splidejs/react-splide/css';

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Head from "next/head";
+import Image from "next/image";
 
 import api from "@/services/api";
 
@@ -21,12 +21,38 @@ export async function getServerSideProps({ params }) {
     };
   }
 
-  const { data } = await api.get("/posts");
-  const post = data.find(post => post.slug === params.slug)
+  const post = await getPost(params.slug)
 
   return {
-    props: { post },
+    props: {
+      post
+    }
   };
+}
+
+async function getPost(slug) {
+  const { data } = await api.get(`/blog/${slug}`, {
+    next: { revalidate: 60 * 60 } // 1 hour
+  })
+
+  return data
+}
+
+export async function generateMetadata({ params }) {
+  const post = await getPost(params.slug)
+
+  return {
+    title: post.title
+  }
+}
+
+export async function generateStaticParams() {
+  const response = await api('/blog/')
+  const posts = await response.json()
+
+  return posts.map((post) => {
+    return { slug: post.slug }
+  })
 }
 
 export default function PostPage({ post }) {

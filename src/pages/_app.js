@@ -1,7 +1,12 @@
 import Header from "@/components/Header";
+import { MyProvider } from "@/context";
 import "@/styles/globals.css";
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 import { Poppins } from "next/font/google";
+import { InputProvider } from "@/context/inputContext";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -14,9 +19,14 @@ export default function App({ Component, pageProps }) {
 
 
   return (
-    <div className={`${poppins.variable} font-sans`}>
-      <Header />
-      <Component {...pageProps} />
-    </div>
+    <MyProvider>
+      <InputProvider>
+        <div className={`${poppins.variable} font-sans`}>
+          <Header />
+          <Component {...pageProps} />
+          <ToastContainer />
+        </div>
+      </InputProvider>
+    </MyProvider>
   );
 }

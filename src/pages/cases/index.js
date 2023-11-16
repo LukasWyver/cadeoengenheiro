@@ -12,13 +12,23 @@ import Link from "next/link";
 
 import api from "@/services/api";
 
-export async function getStaticProps() {
-  const { data } = await api.get("/cases");
+// export async function getStaticProps() {
+//   const { data } = await api.get("/cases")
+//   const category = data;
+
+//   return {
+//     props: { category },
+//     revalidate: 60 * 60 * 24, // 24 hours
+//   };
+// }
+
+export async function getServerSideProps(){
+  const { data } = await api.get("/cases")
   const category = data;
 
   return {
     props: { category },
-    revalidate: 60 * 60 * 24, // 24 hours
+    // revalidate: 60 * 60 * 24, // 24 hours
   };
 }
 

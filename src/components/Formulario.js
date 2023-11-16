@@ -1,40 +1,63 @@
-import { useState } from "react";
+"use client"
+
+import api from "@/services/api";
+import { useEffect } from 'react';
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-import { mask } from "remask";
-import { motion } from "framer-motion";
-
-import { z } from 'zod';
+import { useMyContext } from "@/context";
 import { zodResolver } from '@hookform/resolvers/zod'
 
-const submitFormSchema = z.object({
-  name: z.string().nonempty('O nome é obrigatório').min(6, 'O nome precisa de no mínimo 6 caracteres').transform(name => {
-    return name.trim().split(' ').map(word => {
-      return word[0].toLocaleUpperCase().concat(word.substring(1))
-    }).join(' ')
-  }),
-  phone: z.string().nonempty('O celular é obrigatório').min(11, 'O celular precisa de no mínimo 11 digitos'),
-  email: z.string().nonempty('O e-mail é obrigatório').email('Formato de e-mail inválido').toLowerCase(),
-  subject: z.string().nonempty('O assunto é obrigatório'),
-  message: z.string().nonempty('Escreva sua mensagem aqui')
-})
+import { useInputContext } from "@/context/inputContext";
+import { submitFormSchema } from '@/types/submitFormSchema';
+import { normalizePhoneNumber } from "@/utils/normalizePhoneNumber";
+
+import { parseCookies, setCookie, destroyCookie } from 'nookies'
 
 function Formulario() {
-  const [output, setOutput] = useState("");
-  const [phone, setPhone] = useState("");
+  const { user, saveContact, isAuthenticated } = useMyContext()
+  const { inputValuesForm, setFieldValueForm } = useInputContext()
+  const firstName = isAuthenticated && user.name.split(' ')[0];
 
-  const patternPhone = ["(99) 99999-9999"];
-
-  const { register, formState: { errors }, handleSubmit } = useForm({
-    resolver: zodResolver(submitFormSchema)
+  const {
+    reset,
+    register,
+    handleSubmit,
+    watch, setValue,
+    formState: { errors, isSubmitting, isSubmitSuccessful }
+        } = useForm({
+    resolver: zodResolver(submitFormSchema),
   });
 
+  const phoneValue = watch("phone")
+  useEffect(() => {
+    setValue("phone", normalizePhoneNumber(phoneValue))
+  },[phoneValue, setValue])
 
-
-  function onSubmit(data) {
-    setOutput(JSON.stringify(data, null, 2))
-    alert(JSON.stringify(data, null, 2))
+  const handleInputChange = (e) => {
+    setFieldValueForm(e.target.name, e.target.value);
   };
+
+  const onSubmit = async (data) => {
+    try {
+      await api.post('/contact', data)
+      toast.success('Formulário enviado com sucesso!')
+
+    } catch (error) {
+      console.log(error)
+      toast.error('Ocorreu um erro ao enviar a mensagem. Tente novamente.')
+    }
+
+    saveContact(data)
+   }
+
+  if(isSubmitSuccessful){
+    setTimeout(()=> {
+      reset()
+      destroyCookie(null, '@coe.form-data')
+    }, 3000)
+  }
 
   return (
     <>
@@ -42,10 +65,20 @@ function Formulario() {
         <h3 className="text-white text-4xl font-bold text-center leading-[53px] opacity-0 animate-slide-up">
           Contato
         </h3>
-        <p className="text-white text-lg font-normal text-center leading-7 mt-4 max-md:px-3">
-          Mande a sua dúvida, que iremos responder em breve
-        </p>
 
+        {isAuthenticated ? (
+          <p className="text-white text-lg font-normal text-center leading-7 mt-4 max-md:px-3">Que bom tê-lo novamente por aqui, <span className="text-secondary font-semibold">{firstName}</span>. Se desejar, envie-nos mais uma mensagem.</p>
+        ) : (
+          <p className="text-white text-lg font-normal text-center leading-7 mt-4 max-md:px-3">Mande a sua dúvida, que iremos responder em breve</p>
+        )}
+
+        {isSubmitSuccessful ? (
+          <div className="h-full flex items-center justify-center">
+            <h2 className="text-white text-3xl font-semibold text-center leading-[53px] opacity-0 animate-slide-up">
+              Obrigado {firstName},<span className="font-medium"> pelo contato ;)</span>
+              </h2>
+          </div>
+        ) : (
         <form
           action="/contact" method="post"
           onSubmit={handleSubmit(onSubmit)}
@@ -63,6 +96,10 @@ function Formulario() {
                 type="text"
                 {...register("name")}
                 placeholder="nome completo*"
+                onChange={handleInputChange}
+                value={inputValuesForm.name}
+                // value={formData.name ? formData.name : ''}
+                // onChange={(e) => updateFormAndCookie(e.target.name,e.target.value)}
                 className={`input ${errors.name ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
               {errors.name && <span className="text-secondary">{errors.name.message}</span>}
@@ -74,8 +111,10 @@ function Formulario() {
                 type="text"
                 {...register("phone")}
                 placeholder="celular*"
-                value={mask(phone, patternPhone)}
-                onChange={(e) => setPhone(e.target.value)}
+                // value={mask(phone, patternPhone)}
+                // onChange={(e) => setPhone(e.target.value)}
+                // value={formData.phone ? mask(formData.phone, patternPhone) : ''}
+                // onChange={(e) => updateFormAndCookie(e.target.name,e.target.value)}
                 className={`input ${errors.phone ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
               {errors.phone && <span className="text-secondary">{errors.phone.message}</span>}
@@ -94,6 +133,10 @@ function Formulario() {
                 type="email"
                 placeholder="e-mail*"
                 {...register("email")}
+                onChange={handleInputChange}
+                value={inputValuesForm.email}
+                // value={formData.email ? formData.email : ''}
+                // onChange={(e) => updateFormAndCookie(e.target.name,e.target.value)}
                 className={`input ${errors.email ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
               {errors.email && <span className="text-secondary">{errors.email.message}</span>}
@@ -105,6 +148,10 @@ function Formulario() {
                 id="subject"
                 placeholder="assunto*"
                 {...register("subject")}
+                onChange={handleInputChange}
+                value={inputValuesForm.subject}
+                // value={formData.subject ? formData.subject : ''}
+                // onChange={(e) => updateFormAndCookie(e.target.name,e.target.value)}
                 className={`input ${errors.subject ? "focus:ring-red-500" : "focus:ring-secondary"}`}
               />
               {errors.subject && <span className="text-secondary">{errors.subject.message}</span>}
@@ -120,6 +167,10 @@ function Formulario() {
               id="message"
               placeholder="mensagem*"
               {...register("message")}
+              onChange={handleInputChange}
+              value={inputValuesForm.message}
+              // value={formData.message ? formData.message : ''}
+              // onChange={(e) => updateFormAndCookie(e.target.name,e.target.value)}
               className={`min-h-[138px] resize-none input ${errors.message ? "focus:ring-red-500" : "focus:ring-secondary"}`}
             ></textarea>
             {errors.message && <span className="text-secondary">{errors.message.message}</span>}
@@ -132,11 +183,13 @@ function Formulario() {
             transition={{ duration: 1, delay: 1 }}>
             <input
               type="submit"
-              value="Enviar"
-              className={`${errors.message ? "-mt-2" : "mt-1"} bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] w-[112px] text-center border-none focus:ring-2 ring-white outline-none`}
+              disabled={isSubmitting}
+              value={isSubmitting ? "Enviando..." : "Enviar"}
+              className={`${errors.message ? "-mt-2" : "mt-1"} disabled:bg-zinc-400 bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] min-w-min px-5 text-center border-none focus:ring-2 ring-white outline-none cursor-pointer`}
             />
           </motion.div>
         </form>
+        )}
       </section >
     </>
   );

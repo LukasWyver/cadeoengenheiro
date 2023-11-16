@@ -70,7 +70,6 @@ function Blog() {
                   alt="Inovação no canteiro de obra: tudo o que você precisa saber"
                   width={361}
                   height={264}
-                  className="min-h-[264px]"
                 />
 
                 <h5 className="font-bold text-[26px] text-primary leading-[30px] mt-8">
