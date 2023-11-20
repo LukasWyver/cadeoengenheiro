@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { HiCheckCircle, HiXCircle } from "react-icons/hi";
 
+import api from "@/services/api";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 import Formulario from "@/components/Formulario";
@@ -15,7 +16,17 @@ import BannerTrabalhamos from "@/components/Banner/Trabalhamos";
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
 
-export default function ManutencaoPredialPage() {
+export async function getStaticProps() {
+  const { data } = await api.get(`/services/manutencao-predial/segments`);
+  const segments = data;
+
+  return {
+    props: { segments },
+    revalidate: 60 * 60 * 24, // 24 hours
+  };
+}
+
+export default function ManutencaoPredialPage({segments}) {
   return (
     <>
       <Head>
@@ -111,7 +122,7 @@ export default function ManutencaoPredialPage() {
         </motion.div>
       </main>
 
-      <ServicosManutencao />
+      <ServicosManutencao segments={segments}/>
       <BannerTrabalhamos />
       <Cta />
 

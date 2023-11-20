@@ -14,16 +14,15 @@ import api from "@/services/api";
 
 export async function getStaticProps() {
   const { data } = await api.get("/cases");
-  const category = data;
+  const customers = data;
 
   return {
-    props: { category },
+    props: { customers },
     revalidate: 60 * 60 * 24, // 24 hours
   };
 }
 
-export default function Case({ category }) {
-
+export default function Case({ customers }) {
   return (
     <>
       <Head>
@@ -37,12 +36,12 @@ export default function Case({ category }) {
           Cases de sucesso
         </h5>
         <h3 className="text-primary text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
-          {category.title}
+        Obras Realizadas
         </h3>
 
         <div className="px-3 mt-[140px]">
           <div className="w-full max-w-[1155px] mx-auto grid sm:grid-cols-2 xm:grid-cols-3 gap-7">
-            {category?.customers?.map((customer) => (
+            {customers.map((customer) => (
               <Link key={customer.id}
                 href={`/cases/${customer.slug}`}
                 className="mx-auto"

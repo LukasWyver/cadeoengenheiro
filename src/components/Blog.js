@@ -11,7 +11,7 @@ function Blog() {
   useEffect(() => {
     const fetchLatestPosts = async () => {
       try {
-        const { data } = await api.get('/posts');
+        const { data } = await api.get('/blog');
 
         const sortedPosts = data.sort((a, b) => {
           const dateA = new Date(a.createdAt);

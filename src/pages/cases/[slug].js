@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -23,30 +22,27 @@ import Formulario from "@/components/Formulario";
 import Footer from "@/components/Footer";
 import HeaderBanner from "@/components/HeaderBanner";
 
-
-export async function getServerSideProps({ params }) {
-  if (!params.slug || typeof params.slug !== 'string') {
-    return {
-      redirect: {
-        destination: '/404',
-        permanent: false,
-      },
-    };
-  }
-
+export async function getStaticPaths() {
   const { data } = await api.get("/cases");
-  const customer = data.customers.find(customer => customer.slug === params.slug)
+
+  const paths = data.map((customer) => ({
+    params: { slug: customer.slug }
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const { data } = await api.get(`/cases`);
+  const customer = data.find(customer => customer.slug === params.slug)
 
   return {
     props: { customer },
+    revalidate: 60 * 60 * 24, // 24 hours
   };
 }
 
-
 export default function Details({ customer }) {
-  const router = useRouter();
-  const slug = router.query.slug;
-
   const [openLightBox, setOpenLightBox] = useState(false);
   const [SlidesImage, setSlidesImage] = useState([])
   const [SlidesIndex, setSlidesIndex] = useState([])
@@ -81,14 +77,12 @@ export default function Details({ customer }) {
           </p>
         </div>
 
-
-
         <div className="mt-[75px]">
           {customer.photos.length === 0 ?
             (
               <div className="flex flex-col">
                 <p className="text-base leading-6 font-normal text-body text-center max-w-sm mx-auto">
-                  Desculpe, mas não foi encontrado nenhuma foto para este cliente cliente ainda.
+                  Desculpe, mas não foi encontrado nenhuma foto para este cliente ainda.
                 </p>
 
                 <Link href="/cases" className="text-base leading-6 font-semibold text-body text-center max-w-sm mx-auto mt-4">voltar</Link>

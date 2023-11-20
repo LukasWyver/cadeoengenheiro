@@ -1,18 +1,32 @@
-import Carrossel from "@/components/Carrossel/Empresas";
-import Depoimentos from "@/components/Depoimentos";
-import Footer from "@/components/Footer";
-import Formulario from "@/components/Formulario";
-import ServicosProjetos from "@/components/Carrossel/ServicosProjetos";
+import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
-import BannerVantagens from "@/components/Banner/Vantagens";
-import Cta from "@/components/Cta";
 
+import Cta from "@/components/Cta";
+import Footer from "@/components/Footer";
+import Formulario from "@/components/Formulario";
+import Depoimentos from "@/components/Depoimentos";
+import Carrossel from "@/components/Carrossel/Empresas";
+import BannerVantagens from "@/components/Banner/Vantagens";
+import ServicosProjetos from "@/components/Carrossel/ServicosProjetos";
+
+import api from "@/services/api";
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
 
-export default function ProjetosPage() {
+export async function getStaticProps() {
+  const { data } = await api.get(`/services/projetos/segments`);
+  const segments = data;
+
+  return {
+    props: { segments },
+    revalidate: 60 * 60 * 24, // 24 hours
+  };
+}
+
+export default function ProjetosPage({segments}) {
+
+
   return (
     <>
       <Head>
@@ -110,7 +124,7 @@ export default function ProjetosPage() {
         </motion.div>
       </main>
 
-      <ServicosProjetos />
+      <ServicosProjetos segments={segments}/>
       <BannerVantagens />
       <Cta />
 

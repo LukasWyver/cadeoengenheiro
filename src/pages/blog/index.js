@@ -17,8 +17,8 @@ import { limitOfLines } from "@/utils/limitOfLines";
 import api from "@/services/api";
 import { motion } from "framer-motion";
 
-export async function getServerSideProps() {
-  const { data } = await api.get("/posts");
+export async function getStaticProps() {
+  const { data } = await api.get("/blog");
   const response = data;
 
   response.sort((a, b) => {
@@ -47,7 +47,7 @@ export async function getServerSideProps() {
 
   return {
     props: { posts },
-    // revalidate: 60 * 60 * 24, // 24 hours
+    revalidate: 60 * 60 * 24, // 24 hours
   };
 }
 

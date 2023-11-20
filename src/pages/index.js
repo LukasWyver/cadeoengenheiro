@@ -1,15 +1,16 @@
-import Blog from "@/components/Blog";
-import Carrossel from "@/components/Carrossel/Empresas";
-import Cta from "@/components/Cta";
-import Depoimentos from "@/components/Depoimentos";
+import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import Formulario from "@/components/Formulario";
+import Cta from "@/components/Cta";
+import Blog from "@/components/Blog";
 import Footer from "@/components/Footer";
-import Link from "next/link";
+import Formulario from "@/components/Formulario";
+import Depoimentos from "@/components/Depoimentos";
 import Servicos from "@/components/Banner/Servicos";
+import Carrossel from "@/components/Carrossel/Empresas";
 
 import { motion } from "framer-motion";
+
 
 export default function HomePage() {
   return (
