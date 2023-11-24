@@ -35,6 +35,7 @@ function Blog() {
         });
 
         setPosts(formattedPosts);
+
       } catch (error) {
         console.error(error);
       }
@@ -42,8 +43,6 @@ function Blog() {
 
     fetchLatestPosts();
   }, []);
-
-
 
   return (
     <>
@@ -83,54 +82,6 @@ function Blog() {
               </Link>
 
             ))}
-
-          {/* <div className="max-w-[361px] mx-auto">
-            <Image
-              src="/img/foto-01-Blog.jpg"
-              alt="Inovação no canteiro de obra: tudo o que você precisa saber"
-              width={361}
-              height={264}
-            />
-            <h5 className="font-bold text-[26px] text-primary leading-[30px] mt-8">
-              Inovação no canteiro de obra: tudo o que você precisa saber
-            </h5>
-            <p className="text-left text-body text-base leading-6 mt-5">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
-            </p>
-          </div>
-
-          <div className="max-w-[361px] mx-auto">
-            <Image
-              src="/img/foto-02-Blog.jpg"
-              alt="Comprar casa para reformar, vale a pena?"
-              width={361}
-              height={264}
-            />
-            <h5 className="font-bold text-[26px] text-primary leading-[30px] mt-8">
-              Comprar casa para reformar, vale a pena?
-            </h5>
-            <p className="text-left text-body text-base leading-6 mt-5">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
-            </p>
-          </div>
-
-          <div className="max-w-[361px] mx-auto">
-            <Image
-              src="/img/foto-03-Blog.jpg"
-              alt="O que é ART e quando ela é necessária?"
-              width={361}
-              height={264}
-            />
-            <h5 className="font-bold text-[26px] text-primary leading-[30px] mt-8">
-              O que é ART e quando ela é necessária?
-            </h5>
-            <p className="text-left text-body text-base leading-6 mt-5">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
-            </p>
-          </div> */}
         </motion.div>
       </section>
     </>

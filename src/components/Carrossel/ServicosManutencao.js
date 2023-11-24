@@ -60,21 +60,26 @@ function ServicosManutencao({ segments }) {
             >
               {segments.map((item) => (
                 <SplideSlide key={item.id}>
-                  <div className="max-w-[326px] bg-white h-full mx-auto">
-                    <Image alt="" width={326} height={217} src={item.thumb}/>
-                    <div className="px-4 ss:px-8 pb-8">
-                      <h5 className="font-bold text-xl ss:text-[26px] text-primary leading-6 ss:leading-[30px] mt-8">
-                        {item.title}
-                      </h5>
-                      <p className="text-left text-body text-base leading-6 my-5 ">
-                        {limitOfLines(item.description,3)}
-                      </p>
+                  <Link href={`/servicos/manutencao-predial/${item.slug}`}>
+                    <div className="max-w-[326px] bg-white h-full mx-auto">
+                      <Image alt="" width={326} height={217} src={item.thumb} />
+                      <div className="px-4 ss:px-8 pb-8">
+                        <h5 className="font-bold text-xl ss:text-[26px] text-primary leading-6 ss:leading-[30px] mt-8">
+                          {item.title}
+                        </h5>
+                        <p className="text-left text-body text-base leading-6 my-5 ">
+                          {limitOfLines(item.description, 3)}
+                        </p>
 
-                      <Link href={`/servicos/manutencao-predial/${item.slug}`} className="text-lg leading-7 text-secondary font-bold cursor-pointer">
-                        + Saiba mais
-                      </Link>
+                        <Link
+                          href={`/servicos/manutencao-predial/${item.slug}`}
+                          className="text-lg leading-7 text-secondary font-bold cursor-pointer"
+                        >
+                          + Saiba mais
+                        </Link>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </SplideSlide>
               ))}
             </Splide>

@@ -1,5 +1,5 @@
-import { messageWhatsapp } from "@/utils/messageWhatsapp";
 import Link from "next/link";
+import { messageWhatsapp } from "@/utils/messageWhatsapp";
 
 function Cta() {
   const seuNumeroAqui = 554330251230;

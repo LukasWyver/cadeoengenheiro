@@ -1,26 +1,36 @@
-import { useState } from "react";
-import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 
 import Lightbox from "yet-another-react-lightbox";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import api from "@/services/api";
 
-import Cta from "@/components/Cta";
-import Banner from "@/components/Banner";
-import Empresas from "@/components/Carrossel/Empresas";
-import Depoimentos from "@/components/Depoimentos";
-import Blog from "@/components/Blog";
-import Formulario from "@/components/Formulario";
-import Footer from "@/components/Footer";
+// import Cta from "@/components/Cta";
+// import Blog from "@/components/Blog";
+// import Footer from "@/components/Footer";
+// import Banner from "@/components/Banner";
+// import Formulario from "@/components/Formulario";
+// import Depoimentos from "@/components/Depoimentos";
 import HeaderBanner from "@/components/HeaderBanner";
+// import Empresas from "@/components/Carrossel/Empresas";
+
+const DynamicCta = dynamic(() => import("@/components/Cta"))
+const DynamicBlog = dynamic(() => import("@/components/Blog"))
+const DynamicFooter = dynamic(() => import("@/components/Footer"))
+const DynamicBanner = dynamic(() => import("@/components/Banner"))
+const DynamicFormulario = dynamic(() => import("@/components/Formulario"))
+const DynamicDepoimentos = dynamic(() => import("@/components/Depoimentos"))
+const DynamicEmpresas = dynamic(() => import("@/components/Carrossel/Empresas"))
 
 export async function getStaticPaths() {
   const { data } = await api.get("/cases");
@@ -120,13 +130,13 @@ export default function Details({ customer }) {
         </div>
       </main >
 
-      <Banner />
-      <Cta />
-      <Empresas />
-      <Depoimentos />
-      <Blog />
-      <Formulario />
-      <Footer />
+      <DynamicBanner />
+      <DynamicCta />
+      <DynamicEmpresas />
+      <DynamicDepoimentos />
+      <DynamicBlog />
+      <DynamicFormulario />
+      <DynamicFooter />
     </>
   );
 }

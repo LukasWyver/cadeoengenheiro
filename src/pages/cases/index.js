@@ -1,16 +1,26 @@
-import Image from "next/image";
-import Cta from "@/components/Cta";
-import Blog from "@/components/Blog";
-import Banner from "@/components/Banner";
-import Formulario from "@/components/Formulario";
-import Depoimentos from "@/components/Depoimentos";
-import HeaderBanner from "@/components/HeaderBanner";
-import Carrossel from "@/components/Carrossel/Empresas";
-import Footer from "@/components/Footer";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+
+// import Cta from "@/components/Cta";
+// import Blog from "@/components/Blog";
+// import Footer from "@/components/Footer";
+// import Banner from "@/components/Banner";
+import HeaderBanner from "@/components/HeaderBanner";
+// import Formulario from "@/components/Formulario";
+// import Depoimentos from "@/components/Depoimentos";
+// import Carrossel from "@/components/Carrossel/Empresas";
 
 import api from "@/services/api";
+
+const DynamicCta = dynamic(() => import("@/components/Cta"))
+const DynamicBlog = dynamic(() => import("@/components/Blog"))
+const DynamicFooter = dynamic(() => import("@/components/Footer"))
+const DynamicBanner = dynamic(() => import("@/components/Banner"))
+const DynamicFormulario = dynamic(() => import("@/components/Formulario"))
+const DynamicDepoimentos = dynamic(() => import("@/components/Depoimentos"))
+const DynamicEmpresas = dynamic(() => import("@/components/Carrossel/Empresas"))
 
 export async function getStaticProps() {
   const { data } = await api.get("/cases");
@@ -66,13 +76,13 @@ export default function Case({ customers }) {
         </div>
       </main>
 
-      <Banner />
-      <Cta />
-      <Carrossel />
-      <Depoimentos />
-      <Blog />
-      <Formulario />
-      <Footer />
+      <DynamicBanner />
+      <DynamicCta />
+      <DynamicEmpresas />
+      <DynamicDepoimentos />
+      <DynamicBlog />
+      <DynamicFormulario />
+      <DynamicFooter />
     </>
   );
 }
