@@ -8,10 +8,17 @@ import Formulario from "@/components/Formulario";
 import Depoimentos from "@/components/Depoimentos";
 import Empresas from "@/components/Carrossel/Empresas";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
 
 export default function AcompanhamentoDeObrasPage() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <>
       <Head>
@@ -44,16 +51,18 @@ export default function AcompanhamentoDeObrasPage() {
       <motion.div
         exit={{ opacity: 0, y: -100 }}
         initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={imageLoaded ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.3 }}
         className="w-full xl:wrapper max-xl:bg-secondary xl:bg-gradient-to-l from-secondary drop-shadow-2xl via-secondary via-90% to-90% xl:rounded-full px-8 pb-8 lg:p-8 relative -mt-12 lg:-mt-32"
       >
         <Image
           alt=""
+          priority
           width={526}
           height={424}
+          onLoad={handleImageLoad}
           src="/img/celulares-acompanhamento-de-obras.png"
-          className="absolute z-10 -mt-48 lg:-mt-32 max-lg:left-1/2 max-lg:-translate-x-1/2 max-xl:-left-16"
+          className={`absolute z-10 -mt-48 lg:-mt-32 max-lg:left-1/2 max-lg:-translate-x-1/2 max-xl:-left-16 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         <h6 className="text-white font-bold italic text-5xl leading-[46px] max-lg:mx-auto sm:max-w-[551px] lg:ml-auto  pt-16 xx:pt-28 xs:pt-44 ss:pt-[240px] sm:pt-64 lg:pt-0">
           Tenha a gestão completa de sua obra na palma da mão

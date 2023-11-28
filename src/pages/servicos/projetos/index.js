@@ -10,6 +10,7 @@ import Carrossel from "@/components/Carrossel/Empresas";
 import BannerVantagens from "@/components/Banner/Vantagens";
 import ServicosProjetos from "@/components/Carrossel/ServicosProjetos";
 
+import { useState } from "react";
 import api from "@/services/api";
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
@@ -25,7 +26,11 @@ export async function getStaticProps() {
 }
 
 export default function ProjetosPage({segments}) {
+  const [imageLoaded, setImageLoaded] = useState(false);
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   return (
     <>
@@ -58,16 +63,18 @@ export default function ProjetosPage({segments}) {
       <motion.div
         exit={{ opacity: 0, y: -100 }}
         initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={imageLoaded ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.3 }}
         className="w-full xl:wrapper min-h-[201px] flex items-center justify-end max-xl:bg-secondary xl:bg-gradient-to-l from-secondary drop-shadow-2xl via-secondary via-90% to-90% xl:rounded-full pl-2 sm:px-8 pb-8 lg:p-8 relative -mt-12 lg:-mt-32"
       >
         <Image
           alt=""
+          priority
           width={676}
           height={494}
+          onLoad={handleImageLoad}
           src="/img/projetos-3d.png"
-          className="absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-16 xl:left-48 -translate-x-1/2"
+          className={`absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-16 xl:left-48 -translate-x-1/2 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         <h6 className="text-white font-bold italic text-5xl leading-[46px] max-lg:mx-auto sm:max-w-[600px] lg:ml-auto  pt-16 xx:pt-28 xs:pt-44 ss:pt-56 sm:pt-64 lg:pt-0">
           Contrate quem é especialista no assunto

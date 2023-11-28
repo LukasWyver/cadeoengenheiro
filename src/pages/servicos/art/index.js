@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { HiXCircle } from "react-icons/hi";
 
@@ -13,6 +14,12 @@ import BannerEmitirART from "@/components/Banner/EmitirART";
 
 
 export default function ArtPage() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <>
       <Head>
@@ -44,16 +51,19 @@ export default function ArtPage() {
       <motion.div
         exit={{ opacity: 0, y: -100 }}
         initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={imageLoaded ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.3 }}
         className="w-full xl:wrapper min-h-[201px] flex items-center justify-end max-xl:bg-secondary xl:bg-gradient-to-l from-secondary drop-shadow-2xl via-secondary via-90% to-90% xl:rounded-full px-8 pb-8 lg:p-8 relative -mt-12 lg:-mt-32"
       >
         <Image
-          src="/img/notebook-art.png"
-          alt="Um notebook ao lado de um celular, ambos com uma ART emitida e exibida em suas respectivas telas"
+          alt=""
+          priority
           width={714}
           height={454}
-          className="absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-64 xl:left-80 -translate-x-1/2"
+          loading='lazy'
+          onLoad={handleImageLoad}
+          src="/img/notebook-art.png"
+          className={`absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-64 xl:left-80 -translate-x-1/2 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         <h6 className="text-white font-bold italic text-5xl leading-[46px] max-lg:mx-auto sm:max-w-[450px]  mr-20 pt-16 xx:pt-28 xs:pt-44 ss:pt-56 sm:pt-64 lg:pt-0">
           Emita sua ART sem sair de casa!

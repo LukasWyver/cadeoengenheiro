@@ -13,6 +13,7 @@ import Empresas from "@/components/Carrossel/Empresas";
 import ServicosManutencao from "@/components/Carrossel/ServicosManutencao";
 import BannerTrabalhamos from "@/components/Banner/Trabalhamos";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
 
@@ -27,6 +28,12 @@ export async function getStaticProps() {
 }
 
 export default function ManutencaoPredialPage({segments}) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <>
       <Head>
@@ -58,16 +65,19 @@ export default function ManutencaoPredialPage({segments}) {
       <motion.div
         exit={{ opacity: 0, y: -100 }}
         initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={imageLoaded ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.3 }}
         className="w-full xl:wrapper min-h-[201px] flex items-center justify-end max-xl:bg-secondary xl:bg-gradient-to-l from-secondary drop-shadow-2xl via-secondary via-90% to-90% xl:rounded-full px-8 pb-8 lg:p-8 relative -mt-12 lg:-mt-32"
       >
         <Image
-          src="/img/manutencao-predial-3d.png"
           alt=""
+          priority
           width={654}
           height={456}
-          className="absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-16 xl:left-44 -translate-x-1/2"
+          loading='lazy'
+          onLoad={handleImageLoad}
+          src="/img/manutencao-predial-3d.png"
+          className={`absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-16 xl:left-44 -translate-x-1/2 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         <h6 className="text-white font-bold italic text-5xl leading-[46px] max-lg:mx-auto sm:max-w-[550px]  mr-8 pt-16 xx:pt-28 xs:pt-44 ss:pt-56 sm:pt-64 lg:pt-0">
           Seu Patrimônio sempre bem cuidado!
