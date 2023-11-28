@@ -37,7 +37,7 @@ export default function HomePage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-white text-[51px] leading-[53px] font-bold max-w-[530px]">
+              <h3 className="text-white text-[47px] sm:text-[51px] leading-[53px] font-bold max-w-[530px]">
                 Excelência em cuidar da sua obra e do seu patrimônio
               </h3>
               <p className="text-white font-normal text-lg leading-6 max-w-[386px] mt-3">
