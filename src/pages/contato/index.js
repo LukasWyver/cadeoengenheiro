@@ -157,7 +157,7 @@ export default function ContatoPage() {
         </form>
       </main>
 
-      <Map/>
+      {/* <Map/> */}
       <Footer />
     </>
   );
