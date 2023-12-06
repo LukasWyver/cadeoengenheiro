@@ -10,6 +10,7 @@ import Empresas from "@/components/Carrossel/Empresas";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function AcompanhamentoDeObrasPageEngenheiro() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -414,7 +415,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
       </section>
 
       {/* // Planos */}
-      <section className="bg-primary lg:h-[879px] pt-[112px] pb-[121px] bg-cover bg-center bg-no-repeat bg-image-planos">
+      <section className="bg-primary lg:h-[960px] pt-[112px] pb-[121px] bg-cover bg-center bg-no-repeat bg-image-planos">
         <div className="max-w-[672px] mx-auto space-y-[59px] px-4">
           <h3 className="text-white text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
             Planos
@@ -522,6 +523,14 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               Contrate já
             </Link>
           </div>
+        </div>
+
+        <div className="flex items-center justify-center mt-4">
+          <Link target="_blank" href={messageWhatsapp(undefined,"Olá, gostaria de um plano de serviço personalizado")}
+          className="bg-transparent hover:bg-white/10 hover:drop-shadow-lg border-2 border-secondary group flex gap-4 items-center rounded-full px-6 sm:px-8 lg:px-10 py-2.5 w-fit min-w-[109px] mx-6 text-base ss:text-lg sm:text-xl lg:text-2xl text-center text-white hover:brightness-105 hover:scale-105 transition-all duration-300">
+            <span>Personalize seu plano conosco!</span>
+            <FaWhatsapp className="group-hover:text-secondary group-hover:scale-105" size={28}  />
+          </Link>
         </div>
       </section>
 

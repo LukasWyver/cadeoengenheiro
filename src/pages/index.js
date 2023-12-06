@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { messageWhatsapp } from "@/utils/messageWhatsapp";
 
 const DynamicCta = dynamic(() => import("@/components/Cta"))
 const DynamicBlog = dynamic(() => import("@/components/Blog"))
@@ -19,21 +20,24 @@ export default function HomePage() {
       </Head>
 
       <div className="-mt-[118px] pt-[118px] bg-no-repeat bg-center bg-cover bg-image-home">
-        <div className=" flex items-end overflow-hidden">
-          <div className="wrapper flex flex-col max-xl:gap-10 xl:flex-row items-center justify-between max-xl:mt-[68px]">
+        <div className="flex items-end overflow-hidden mx-4">
+          <div className="wrapper flex flex-col max-xl:gap-10 xl:flex-row items-center justify-between max-xl:mt-[58px]">
             <motion.div
               className="max-h-[542px] px-3"
               initial={{ opacity: 0, x: -500 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-white text-[47px] sm:text-[51px] leading-[53px] font-bold max-w-[530px]">
-                Excelência em cuidar da sua obra e do seu patrimônio
+              <h3 className="text-white text-4xl ss:text-[47px] sm:text-[51px] ss:leading-[45px] sm:leading-[53px] font-bold max-w-[530px]">
+                Está pensando em construir ou reformar?
               </h3>
               <p className="text-white font-normal text-lg leading-6 max-w-[386px] mt-3">
-                Está pensando em construir ou reformar? Entre em contato agora
-                mesmo e fale com nossos engenheiros!
+                Tenha a gestão completa da sua obra na palma da sua mão.
               </p>
+
+              <Link target="_blank" href={messageWhatsapp()} className="mt-3 btn px-8 py-4 primary group flex rounded-full w-fit text-lg font-medium text-center text-white hover:brightness-105 hover:scale-105 transition-all duration-300">
+                Saiba mais
+              </Link>
             </motion.div>
 
             <div className="max-h-[542px] flex relative px-3">
