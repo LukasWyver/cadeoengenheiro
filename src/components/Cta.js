@@ -7,7 +7,7 @@ function Cta() {
     return (
       <>
         <section className="bg-secondary h-[150px] flex items-center justify-center">
-            <Link target="_blank" href={messageWhatsapp(undefined, message)} className="text-white border border-white font-bold text-[26px] leading-[30px] py-5 px-8 rounded-full">Quero contratar</Link>
+            <Link target="_blank" href={messageWhatsapp(undefined, message)} className="hover:scale-105 transition-all duration-300 text-white border border-white font-bold text-[26px] leading-[30px] py-5 px-8 rounded-full">Quero contratar</Link>
         </section>
       </>
       )
