@@ -60,7 +60,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           width={526}
           height={424}
           onLoad={handleImageLoad}
-          src="/img/celulares-acompanhamento-de-obras.png"
+          src="/img/celulares-acompanhamento-de-obras-pronto.png"
           className={`absolute z-10 -mt-48 lg:-mt-32 max-lg:left-1/2 max-lg:-translate-x-1/2 max-xl:-left-16 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         <h6 className="text-white font-bold italic text-5xl leading-[46px] max-lg:mx-auto sm:max-w-[551px] lg:ml-auto  pt-16 xx:pt-28 xs:pt-44 ss:pt-[240px] sm:pt-64 lg:pt-0">
@@ -314,7 +314,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           e garantindo a qualidade da sua obra.
         </p>
 
-        <Image alt="" width={1212} height={505} src="/img/tela-sistema.jpg" />
+        <Image alt="" width={1212} height={505} src="/img/tela-sistema-pronto.jpg" />
       </section>
 
       {/* // Slogan */}
