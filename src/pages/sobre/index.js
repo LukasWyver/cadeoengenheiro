@@ -109,12 +109,7 @@ export default function SobrePage() {
                 Missão
               </h3>
 
-              <p className="whitespace-pre-line text-base leading-6 text-body">
-                Usamos a tecnologia para oferecer serviços técnicos de alta
-                qualidade, práticos e simples, visando reduzir custos, aprimorar
-                processos e melhorar a qualidade das obras e patrimônio de
-                nossos clientes.
-              </p>
+              <p className="text-base text-body leading-relaxed">Simplificar a construção civil com tecnologia e agilidade, conectando pessoas a profissionais que oferecerem serviços técnicos de alta qualidade na hora de construir ou reformar. Nossa plataforma oferece acompanhamento da obra em tempo real, com objetivo de reduzir custos, aprimorar processos e melhorar a qualidade das obras, valorizando o patrimônio e investimento de nossos clientes.</p>
             </div>
           </motion.div>
         </div>
@@ -139,25 +134,7 @@ export default function SobrePage() {
                 Visão
               </h3>
 
-              <p className="whitespace-pre-line text-base leading-6 text-body">
-                A visão de longo prazo do Cadê o Engenheiro é consolidar sua
-                posição como líder em prestação de serviços de engenharia no
-                Brasil. Acreditamos que esse objetivo será alcançado por meio de
-                um atendimento excepcional, soluções inovadoras e processos
-                otimizados.
-                {`\n\n`}
-                Nosso compromisso é construir um futuro de sucesso para nossos
-                clientes e parceiros. Para tanto, trabalhamos com determinação e
-                foco, sempre inspirando confiança e oferecendo soluções sob
-                medida para cada um de nossos clientes. Queremos ser líderes em
-                nosso setor, mas mais do que isso, queremos ser uma referência
-                em termos de excelência, ética e inovação, agregando valor a
-                cada projeto e auxiliando nossos clientes a atingir suas metas
-                mais ousadas. Acreditamos que, com essa visão, podemos
-                contribuir para o desenvolvimento sustentável de nosso país e
-                para a transformação da construção civil em um setor cada vez
-                mais moderno, seguro e responsável.
-              </p>
+              <p className="text-base text-body leading-relaxed">Ser líderes em inovação no setor de construção civil, ser uma referência agregando valor a cada projeto e auxiliando nossos clientes e parceiros a atingir suas metas mais ousadas.</p>
             </div>
           </motion.div>
         </div>
@@ -183,27 +160,16 @@ export default function SobrePage() {
                 Valores
               </h3>
 
-              <p className="whitespace-pre-line text-base leading-6 text-body">
-                Acreditamos que seguir valores sólidos é a chave para o sucesso.
-                Por isso, apoiamos sete valores que permeiam nossa cultura:
-              </p>
-
-              <ul className="list-disc list-inside whitespace-pre-line text-base leading-6 text-body mt-6">
-                <li>Transparência;</li>
-                <li>Qualidade;</li>
-                <li>Excelência;</li>
-                <li>Inovação;</li>
-                <li>Ética;</li>
-                <li>Eficiência;</li>
-                <li>Melhoria contínua de processos.</li>
+              <ul className="list-disc list-inside text-base text-body leading-relaxed [&_span]:font-medium mt-6">
+                <li><span>Criar a Conectividade</span> - formando conexões através de inclusão e mobilidade;</li>
+                <li><span>Fomentar a Inovação</span> - incentivar a descoberta, renovar e revolucionar o mercado;</li>
+                <li><span>Resguardar a Confiança</span> - trabalhamos com convicção, solidez e firmeza;</li>
+                <li><span>Aumentar a Agilidade</span> - ativar o potencial da construção com velocidade e versatilidade;</li>
+                <li><span>Alcançar o Sucesso</span> - comunicar a qualidade do projeto;</li>
+                <li><span>Repassar a Informação</span> - reduzir o atrito com diálogo, informação e educação;</li>
               </ul>
 
-              <p className="whitespace-pre-line text-base leading-6 text-body mt-6">
-                Ao trabalhar conosco, você pode ter certeza de que estamos
-                comprometidos em fazer a diferença em seus projetos, sempre
-                buscando superar suas expectativas e entregar resultados que
-                fazem a diferença.
-              </p>
+              <p className="text-base text-body leading-relaxed mt-6">Ao trabalhar conosco, você pode ter certeza de que estamos comprometidos em fazer a diferença em seus projetos, sempre buscando superar suas expectativas e entregar resultados que fazem a diferença.</p>
             </div>
           </motion.div>
         </div>
