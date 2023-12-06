@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import WhatsappButton from "@/components/WhatsappButton";
 import "@/styles/globals.css";
 
 import { Poppins } from "next/font/google";
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps }) {
     <div className={`${poppins.variable} font-sans`}>
       <Header />
       <Component {...pageProps} />
+      <WhatsappButton />
     </div>
   );
 }
