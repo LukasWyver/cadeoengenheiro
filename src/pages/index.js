@@ -87,33 +87,17 @@ export default function HomePage() {
           </h5>
 
           <h3 className="text-primary text-4xl font-bold text-left after-bottom mb-[46px]">
-            Nosso propósito
+            Manifesto de Marca
           </h3>
-          <p className="whitespace-pre-line text-base leading-6 text-body">
-            Tudo começou com o nosso desejo de ajudar pessoas e profissionais da
-            construção civil a construir e manter lugares incríveis, onde
-            memórias são criadas e histórias são contadas. Nós acreditamos que
-            uma obra bem executada é muito mais do que apenas paredes e
-            telhados, é um lar seguro, um local de trabalho produtivo e um
-            patrimônio que pode ser passado de geração em geração.
-            {`\n\n`}
-            Para isso, oferecemos serviços de assessoria profissional, emissão
-            de ARTs, projetos e manutenção residencial, predial e industrial,
-            sempre utilizando as melhores práticas e tecnologias disponíveis no
-            mercado. Nosso objetivo é fornecer um serviço ágil e com excelência,
-            para que você possa desfrutar de sua obra com tranquilidade e
-            satisfação.
-            {`\n\n`}
-            Aqui no Cadê o Engenheiro, estamos comprometidos em ajudar você a
-            transformar seus sonhos em realidade, com uma abordagem prática e
-            simples, mas que não deixa de lado a emoção e o significado por trás
-            de cada projeto.
-          </p>
+          <div className="text-base leading-6 text-body space-y-5">
+            <p>Nós acreditamos que uma obra bem executada é muito mais do que apenas paredes e telhados, é um lar seguro, um local de trabalho produtivo e um patrimônio que pode ser passado de geração em geração.</p>
+            <p>A COE – Cadê o Engenheiro é a startup de gestão de controle de obras que torna os processos da construção acessíveis para os clientes com transparência através de uma única plataforma, simplificando a construção civil. </p>
+            <p>Atendemos pessoas modernas que querem construir ou reformar com praticidade, segurança, qualidade e excelência, e que necessitam de profissionais competentes, arquitetos, engenheiros e construtores.</p>
+            <p>Nosso objetivo é fornecer um serviço ágil e com excelência, para que você possa desfrutar de sua obra com tranquilidade e satisfação.</p>
+            <p>Estamos comprometidos em ajudar você a transformar seus sonhos em realidade, com uma abordagem prática e simples, que não deixa de lado a emoção e o significado por trás do projeto.</p>
+          </div>
 
-          <Link
-            href="/sobre"
-            className="btn primary w-fit my-5 max-h-[42px] py-3.5 px-4"
-          >
+          <Link href="/sobre" className="btn primary w-fit my-5 max-h-[42px] py-3.5 px-4">
             Saiba mais
           </Link>
         </motion.div>
