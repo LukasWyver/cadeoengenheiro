@@ -8,7 +8,7 @@ function LinkList() {
     { id: 1, text: "Home", href: "/" },
     { id: 2, text: "Quem somos", href: "/sobre" },
     { id: 3, text: "Serviços", href: "/servicos/acompanhamento-de-obras" },
-    { id: 4, text: "Cases de sucesso", href: "/cases" },
+    // { id: 4, text: "Cases de sucesso", href: "/cases" },
     { id: 5, text: "Blog", href: "/blog" },
     { id: 6, text: "Contato", href: "/contato" },
   ];
