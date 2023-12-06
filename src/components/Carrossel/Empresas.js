@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Splide, SplideSlide } from "splide-nextjs/react-splide";
 import '@splidejs/react-splide/css';
+import Link from "next/link";
 
 function Empresas() {
   return (
@@ -23,9 +24,8 @@ function Empresas() {
             type: "loop",
             autoplay: true,
 
-            speed: 4000,
+            // speed: 4000,
             interval: 4000,
-
 
             width: 968,
             height: 102,
@@ -46,13 +46,15 @@ function Empresas() {
           }}
         >
           <SplideSlide>
-            <Image
-              src="/img/logo-cliente-01.jpg"
-              alt="logo cliente 01"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
-              height={101}
-              width={500}
-            />
+            <Link href="/cases/unimed-londrina">
+              <Image
+                src="/img/logo-cliente-01.jpg"
+                alt="logo cliente 01"
+                className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
+                height={101}
+                width={500}
+              />
+            </Link>
           </SplideSlide>
           <SplideSlide>
             <Image
