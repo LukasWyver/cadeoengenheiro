@@ -47,67 +47,67 @@ function Empresas() {
         >
           <SplideSlide>
             <Image
-              src="/img/logo-cliente-01.png"
+              src="/img/logo-cliente-01.jpg"
               alt="logo cliente 01"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-[71px] h-[101px]"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
-              width={71}
+              width={500}
             />
           </SplideSlide>
           <SplideSlide>
             <Image
-              src="/img/logo-cliente-02.png"
+              src="/img/logo-cliente-02.jpg"
               alt="logo cliente 02"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-[71px] h-[101px]"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
-              width={71}
+              width={500}
             />
           </SplideSlide>
 
           <SplideSlide>
             <Image
-              src="/img/logo-cliente-03.png"
+              src="/img/logo-cliente-03.jpg"
               alt="logo cliente 03"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-[71px] h-[101px]"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
-              width={71}
+              width={500}
             />
           </SplideSlide>
           <SplideSlide>
             <Image
-              src="/img/logo-cliente-04.png"
+              src="/img/logo-cliente-04.jpg"
               alt="logo cliente 04"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-[71px] h-[101px]"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
-              width={71}
+              width={500}
             />
           </SplideSlide>
 
           <SplideSlide>
             <Image
-              src="/img/logo-cliente-01.png"
+              src="/img/logo-cliente-05.jpg"
               alt="logo cliente 01"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-[71px] h-[101px]"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
-              width={71}
+              width={500}
             />
           </SplideSlide>
           <SplideSlide>
             <Image
-              src="/img/logo-cliente-02.png"
+              src="/img/logo-cliente-06.jpg"
               alt="logo cliente 02"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-[71px] h-[101px]"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
-              width={71}
+              width={500}
             />
           </SplideSlide>
           <SplideSlide>
             <Image
-              src="/img/logo-cliente-03.png"
+              src="/img/logo-cliente-07.jpg"
               alt="logo cliente 02"
-              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-[71px] h-[101px]"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
-              width={71}
+              width={500}
             />
           </SplideSlide>
         </Splide>
