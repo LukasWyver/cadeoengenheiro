@@ -5,7 +5,6 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Accordion from "@/components/Accordion";
 import Formulario from "@/components/Formulario";
-import Depoimentos from "@/components/Depoimentos";
 import Empresas from "@/components/Carrossel/Empresas";
 
 import { useState } from "react";
@@ -527,7 +526,6 @@ export default function AcompanhamentoDeObrasPage() {
       </section>
 
       <Empresas />
-      <Depoimentos />
       <Formulario />
       <Footer />
     </>

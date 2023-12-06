@@ -3,23 +3,13 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
-// import Cta from "@/components/Cta";
-// import Blog from "@/components/Blog";
-// import Footer from "@/components/Footer";
-// import Banner from "@/components/Banner";
-// import Formulario from "@/components/Formulario";
-// import Depoimentos from "@/components/Depoimentos";
-import Empresas from "@/components/Carrossel/Empresas";
-
 import HeaderBanner from "@/components/HeaderBanner";
-
 
 const DynamicCta = dynamic(() => import("@/components/Cta"))
 const DynamicBlog = dynamic(() => import("@/components/Blog"))
 const DynamicFooter = dynamic(() => import("@/components/Footer"))
 const DynamicBanner = dynamic(() => import("@/components/Banner"))
 const DynamicFormulario = dynamic(() => import("@/components/Formulario"))
-const DynamicDepoimentos = dynamic(() => import("@/components/Depoimentos"))
 const DynamicEmpresas = dynamic(() => import("@/components/Carrossel/Empresas"))
 
 export default function SobrePage() {
@@ -235,7 +225,6 @@ export default function SobrePage() {
       <DynamicBanner />
       <DynamicCta />
       <DynamicEmpresas />
-      <DynamicDepoimentos />
       <DynamicBlog />
       <DynamicFormulario />
       <DynamicFooter />

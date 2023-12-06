@@ -8,7 +8,6 @@ import { HiXCircle } from "react-icons/hi";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 import Formulario from "@/components/Formulario";
-import Depoimentos from "@/components/Depoimentos";
 import Empresas from "@/components/Carrossel/Empresas";
 import BannerEmitirART from "@/components/Banner/EmitirART";
 
@@ -60,7 +59,6 @@ export default function ArtPage() {
           priority
           width={714}
           height={454}
-          loading='lazy'
           onLoad={handleImageLoad}
           src="/img/notebook-art.png"
           className={`absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-64 xl:left-80 -translate-x-1/2 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -364,7 +362,6 @@ export default function ArtPage() {
       </motion.section>
 
       <Empresas />
-      <Depoimentos />
       <Formulario />
       <Footer />
     </>

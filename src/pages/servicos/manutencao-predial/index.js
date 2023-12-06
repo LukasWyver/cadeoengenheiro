@@ -8,7 +8,6 @@ import api from "@/services/api";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 import Formulario from "@/components/Formulario";
-import Depoimentos from "@/components/Depoimentos";
 import Empresas from "@/components/Carrossel/Empresas";
 import ServicosManutencao from "@/components/Carrossel/ServicosManutencao";
 import BannerTrabalhamos from "@/components/Banner/Trabalhamos";
@@ -74,7 +73,6 @@ export default function ManutencaoPredialPage({segments}) {
           priority
           width={654}
           height={456}
-          loading='lazy'
           onLoad={handleImageLoad}
           src="/img/manutencao-predial-3d.png"
           className={`absolute z-10 -mt-96 lg:-mt-8 left-1/2 lg:left-16 xl:left-44 -translate-x-1/2 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -349,7 +347,6 @@ export default function ManutencaoPredialPage({segments}) {
       </motion.section>
 
       <Empresas />
-      <Depoimentos />
       <Formulario />
       <Footer />
     </>

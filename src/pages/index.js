@@ -2,22 +2,12 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-
-// import Cta from "@/components/Cta";
-// import Blog from "@/components/Blog";
-// import Footer from "@/components/Footer";
-// import Formulario from "@/components/Formulario";
-// import Depoimentos from "@/components/Depoimentos";
-// import Servicos from "@/components/Banner/Servicos";
-// import Carrossel from "@/components/Carrossel/Empresas";
-
 import { motion } from "framer-motion";
 
 const DynamicCta = dynamic(() => import("@/components/Cta"))
 const DynamicBlog = dynamic(() => import("@/components/Blog"))
 const DynamicFooter = dynamic(() => import("@/components/Footer"))
 const DynamicFormulario = dynamic(() => import("@/components/Formulario"))
-const DynamicDepoimentos = dynamic(() => import("@/components/Depoimentos"))
 const DynamicServicos = dynamic(() => import("@/components/Banner/Servicos"))
 const DynamicEmpresas = dynamic(() => import("@/components/Carrossel/Empresas"))
 
@@ -148,7 +138,6 @@ export default function HomePage() {
       <DynamicServicos />
       <DynamicCta />
       <DynamicEmpresas />
-      <DynamicDepoimentos />
       <DynamicBlog />
       <DynamicFormulario />
       <DynamicFooter />

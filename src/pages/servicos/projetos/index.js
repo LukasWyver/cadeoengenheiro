@@ -5,7 +5,6 @@ import Image from "next/image";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 import Formulario from "@/components/Formulario";
-import Depoimentos from "@/components/Depoimentos";
 import Carrossel from "@/components/Carrossel/Empresas";
 import BannerVantagens from "@/components/Banner/Vantagens";
 import ServicosProjetos from "@/components/Carrossel/ServicosProjetos";
@@ -235,7 +234,6 @@ export default function ProjetosPage({segments}) {
       </section>
 
       <Carrossel />
-      <Depoimentos />
       <Formulario />
       <Footer />
     </>

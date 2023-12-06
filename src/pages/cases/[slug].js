@@ -15,21 +15,13 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import api from "@/services/api";
 
-// import Cta from "@/components/Cta";
-// import Blog from "@/components/Blog";
-// import Footer from "@/components/Footer";
-// import Banner from "@/components/Banner";
-// import Formulario from "@/components/Formulario";
-// import Depoimentos from "@/components/Depoimentos";
 import HeaderBanner from "@/components/HeaderBanner";
-// import Empresas from "@/components/Carrossel/Empresas";
 
 const DynamicCta = dynamic(() => import("@/components/Cta"))
 const DynamicBlog = dynamic(() => import("@/components/Blog"))
 const DynamicFooter = dynamic(() => import("@/components/Footer"))
 const DynamicBanner = dynamic(() => import("@/components/Banner"))
 const DynamicFormulario = dynamic(() => import("@/components/Formulario"))
-const DynamicDepoimentos = dynamic(() => import("@/components/Depoimentos"))
 const DynamicEmpresas = dynamic(() => import("@/components/Carrossel/Empresas"))
 
 export async function getStaticPaths() {
@@ -133,7 +125,6 @@ export default function Details({ customer }) {
       <DynamicBanner />
       <DynamicCta />
       <DynamicEmpresas />
-      <DynamicDepoimentos />
       <DynamicBlog />
       <DynamicFormulario />
       <DynamicFooter />

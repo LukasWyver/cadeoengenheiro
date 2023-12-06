@@ -2,15 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-
-// import Cta from "@/components/Cta";
-// import Blog from "@/components/Blog";
-// import Footer from "@/components/Footer";
-// import Banner from "@/components/Banner";
 import HeaderBanner from "@/components/HeaderBanner";
-// import Formulario from "@/components/Formulario";
-// import Depoimentos from "@/components/Depoimentos";
-// import Carrossel from "@/components/Carrossel/Empresas";
 
 import api from "@/services/api";
 
@@ -19,7 +11,6 @@ const DynamicBlog = dynamic(() => import("@/components/Blog"))
 const DynamicFooter = dynamic(() => import("@/components/Footer"))
 const DynamicBanner = dynamic(() => import("@/components/Banner"))
 const DynamicFormulario = dynamic(() => import("@/components/Formulario"))
-const DynamicDepoimentos = dynamic(() => import("@/components/Depoimentos"))
 const DynamicEmpresas = dynamic(() => import("@/components/Carrossel/Empresas"))
 
 export async function getStaticProps() {
@@ -79,7 +70,6 @@ export default function Case({ customers }) {
       <DynamicBanner />
       <DynamicCta />
       <DynamicEmpresas />
-      <DynamicDepoimentos />
       <DynamicBlog />
       <DynamicFormulario />
       <DynamicFooter />

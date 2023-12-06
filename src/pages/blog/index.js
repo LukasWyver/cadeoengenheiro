@@ -8,7 +8,6 @@ import Cta from "@/components/Cta";
 import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import Formulario from "@/components/Formulario";
-import Depoimentos from "@/components/Depoimentos";
 import HeaderBanner from "@/components/HeaderBanner";
 import Empresas from "@/components/Carrossel/Empresas";
 
@@ -127,7 +126,6 @@ export default function BlogPage({ posts }) {
       <Banner />
       <Cta />
       <Empresas />
-      <Depoimentos />
       <Formulario />
       <Footer />
     </>
