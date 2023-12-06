@@ -85,8 +85,6 @@ function NavbarModal({ isVisible, onClose }) {
                 <span className="!text-sm !leading-['18px'] font-semibold">Parceiro</span>
               </button>
 
-              {console.log(isOpenDropdown)}
-
               {isOpenDropdown && (
                 <nav className={`${isOpenDropdown ? "flex" : "hidden"} flex-col bg-black/20 py-2 rounded-lg mt-4`}>
                    <Link href="https://cadeoengenheiro.vercel.app/servicos/acompanhamento-de-obras/parceiro"
