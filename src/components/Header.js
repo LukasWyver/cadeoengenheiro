@@ -71,7 +71,7 @@ function Header() {
               </button>
               {isOpenDropdown && (
                 <nav className={`${isOpenDropdown ? "flex" : "hidden"} absolute top-full right-2.5 z-10 w-64 mt-1 flex list-none flex-col rounded bg-white py-2 shadow-md shadow-black/10`}>
-                  <Link href="https://cadeoengenheiro.vercel.app/servicos/acompanhamento-de-obras/parceiro"
+                  <Link href="/servicos/acompanhamento-de-obras/parceiro"
                     className="text-body p-2 px-5 transition-all duration-300 ease-linear hover:bg-body/10 hover:font-medium hover:text-primary focus:bg-body/10 focus:text-primary focus:outline-none focus:border-noe focus:ring-0 focus-visible:outline-none">
                     Saiba mais
                   </Link>
