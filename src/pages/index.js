@@ -35,7 +35,7 @@ export default function HomePage() {
                 Tenha a gestão completa da sua obra na palma da sua mão.
               </p>
 
-              <Link target="_blank" href={messageWhatsapp()} className="mt-3 btn px-8 py-4 primary group flex rounded-full w-fit text-lg font-medium text-center text-white hover:brightness-105 hover:scale-105 transition-all duration-300">
+              <Link target="_blank" href={messageWhatsapp()} className="mt-6 btn px-8 py-4 primary group flex rounded-full w-fit text-lg font-medium text-center text-white hover:brightness-105 hover:scale-105 transition-all duration-300">
                 Saiba mais
               </Link>
             </motion.div>
