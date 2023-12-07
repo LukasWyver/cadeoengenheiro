@@ -49,7 +49,7 @@ function Empresas() {
             <Link href="/cases/unimed-londrina">
               <Image
                 src="/img/logo-cliente-01.jpg"
-                alt="logo cliente 01"
+                alt="Unimed Londrina"
                 className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
                 height={101}
                 width={500}
@@ -59,7 +59,7 @@ function Empresas() {
           <SplideSlide>
             <Image
               src="/img/logo-cliente-02.jpg"
-              alt="logo cliente 02"
+              alt="Cobasi"
               className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
               width={500}
@@ -69,7 +69,7 @@ function Empresas() {
           <SplideSlide>
             <Image
               src="/img/logo-cliente-03.jpg"
-              alt="logo cliente 03"
+              alt="Lar"
               className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
               width={500}
@@ -78,7 +78,7 @@ function Empresas() {
           <SplideSlide>
             <Image
               src="/img/logo-cliente-04.jpg"
-              alt="logo cliente 04"
+              alt="TV Tarobá"
               className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
               width={500}
@@ -88,7 +88,7 @@ function Empresas() {
           <SplideSlide>
             <Image
               src="/img/logo-cliente-05.jpg"
-              alt="logo cliente 01"
+              alt="C. Vale"
               className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
               width={500}
@@ -97,7 +97,7 @@ function Empresas() {
           <SplideSlide>
             <Image
               src="/img/logo-cliente-06.jpg"
-              alt="logo cliente 02"
+              alt="Club Náutico Toledo"
               className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
               width={500}
@@ -106,7 +106,17 @@ function Empresas() {
           <SplideSlide>
             <Image
               src="/img/logo-cliente-07.jpg"
-              alt="logo cliente 02"
+              alt="Fraport"
+              className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
+              height={101}
+              width={500}
+            />
+          </SplideSlide>
+
+          <SplideSlide>
+            <Image
+              src="/img/logo-cliente-08.jpg"
+              alt="Yose aço industrial"
               className="mx-auto hover:opacity-100 opacity-50 transition-all duration-300 grayscale hover:filter-none w-full"
               height={101}
               width={500}
