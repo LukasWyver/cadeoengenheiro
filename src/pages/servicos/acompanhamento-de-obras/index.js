@@ -36,12 +36,16 @@ export default function AcompanhamentoDeObrasPage() {
         </h3>
       </div>
 
+      {!imageLoaded && (
+        <div className="absolute inset-0 w-full max-h-[550px] bg-primary -z-10"></div>
+      )}
+
       <Image
         fill
         alt=""
         priority
         src="/banners/bg-servicos.jpg"
-        className="absolute inset-0 w-full max-h-[550px] bg-no-repeat object-cover -z-10"
+        className={`absolute inset-0 w-full max-h-[550px] bg-no-repeat object-cover -z-10 ${!imageLoaded && 'hidden'} `}
       />
 
       <div className="w-full mx-auto px-3 rounded-b-full relative mt-[230px] -z-10">
