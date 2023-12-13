@@ -438,7 +438,7 @@ export default function AcompanhamentoDeObrasPage() {
             width={321}
             height={366}
             src="/img/interrogacao-3d.jpg"
-            className="max-h-[366px] max-lg:order-first max-lg:mx-auto lg:ml-auto"
+            className="max-sm:max-w-[160px] max-h-[366px] max-lg:order-first max-lg:mx-auto lg:ml-auto"
           />
         </div>
       </section>
