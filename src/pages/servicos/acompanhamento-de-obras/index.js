@@ -149,7 +149,7 @@ export default function AcompanhamentoDeObrasPage() {
           />
           <div className="flex-1 max-w-[719px] mx-auto">
             <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Relatório da Obra <br />
+              Relatório da Obra <br className="max-ss:hidden"/>
               no Seu Celular
             </h3>
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
@@ -190,7 +190,7 @@ export default function AcompanhamentoDeObrasPage() {
         >
           <div className="flex-1 max-w-[719px] mx-auto max-xl:order-last">
             <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Dashboard Detalhado <br />
+              Dashboard Detalhado <br className="max-ss:hidden"/>
               em Tempo Real
             </h3>
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
@@ -246,7 +246,8 @@ export default function AcompanhamentoDeObrasPage() {
           />
           <div className="flex-1 max-w-[719px] mx-auto">
             <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Central de Documentos <br />e Comunicação Direta
+              Central de Documentos <br className="max-ss:hidden"/>
+              e Comunicação Direta
             </h3>
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
               <li>
@@ -551,13 +552,10 @@ export default function AcompanhamentoDeObrasPage() {
               undefined,
               "Olá, gostaria de um plano de serviço personalizado"
             )}
-            className="bg-transparent hover:bg-white/10 hover:drop-shadow-lg border-2 border-secondary group flex gap-4 items-center rounded-full px-6 sm:px-8 lg:px-10 py-2.5 w-fit min-w-[109px] mx-6 text-base ss:text-lg sm:text-xl lg:text-2xl text-center text-white hover:brightness-105 hover:scale-105 transition-all duration-300"
+            className="bg-transparent hover:bg-white/10 hover:drop-shadow-lg border-2 border-secondary group flex gap-2 ss:gap-4 items-center rounded-full px-4 ss:px-6 sm:px-8 lg:px-10 py-2.5 w-fit min-w-[109px] mx-4 sm:mx-6 text-sm xs:text-base ss:text-lg sm:text-xl lg:text-2xl text-center text-white hover:brightness-105 hover:scale-105 transition-all duration-300"
           >
             <span>Personalize seu plano conosco!</span>
-            <FaWhatsapp
-              className="group-hover:text-secondary group-hover:scale-105"
-              size={28}
-            />
+            <FaWhatsapp className="group-hover:text-secondary group-hover:scale-105 w-5 ss:w-7 h-5 ss:h-7"/>
           </Link>
         </div>
       </section>
