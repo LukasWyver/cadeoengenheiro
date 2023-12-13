@@ -45,7 +45,7 @@ export default function PostPage({ post }) {
             Blog
           </h5>
 
-          <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
+          <h3 className="text-primary text-3xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
             {post.title}
           </h3>
 
@@ -56,7 +56,7 @@ export default function PostPage({ post }) {
 
         <Image
           alt=""
-          src={post.thumb}
+          src={`/img/blog/${post.thumb}`}
           width={561}
           height={375}
           className="mx-auto lg:min-w-[561px] lg:h-[375px]"

@@ -65,18 +65,18 @@ function Blog() {
             posts.map((post) => (
               <Link href={`/blog/${post.slug}`} className="max-w-[361px] mx-auto" key={post.id}>
                 <Image
-                  src={post.thumb}
+                  src={`/img/blog/${post.thumb}`}
                   alt="Inovação no canteiro de obra: tudo o que você precisa saber"
                   width={361}
                   height={264}
                   className="min-h-[264px]"
                 />
 
-                <h5 className="font-bold text-[26px] text-primary leading-[30px] mt-8">
+                <h5 className="font-bold text-xl text-primary mt-8">
                   {post.title}
                 </h5>
-                <p className="text-left text-body text-base leading-6 mt-5">
-                  {post.description.split('\n\n')[0]}
+                <p className="text-left text-body text-base leading-6 mt-5 line-clamp-3">
+                  {post.shortDescription.split('\n\n')[0]}
                 </p>
 
               </Link>

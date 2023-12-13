@@ -83,7 +83,7 @@ export default function BlogPage({ posts }) {
                 >
                   <Link href={`/blog/${post.slug}`}>
                     <Image
-                      src={post.thumb}
+                      src={`/img/blog/${post.thumb}`}
                       width={466}
                       height={311}
                       alt={post.title}
@@ -104,7 +104,7 @@ export default function BlogPage({ posts }) {
                       <h3 className="text-primary text-[27px] leading-8 font-bold mb-3">
                         {post.title}
                       </h3>
-                      <p className="whitespace-pre-line text-base font-normal leading-6 text-body">
+                      <p className="whitespace-pre-line text-base font-normal leading-6 text-body line-clamp-3">
                         {limitOfLines(post.shortDescription, 4)}
                       </p>
                     </div>
