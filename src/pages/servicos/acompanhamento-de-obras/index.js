@@ -78,7 +78,7 @@ export default function AcompanhamentoDeObrasPage() {
       </motion.div>
 
       {/* // Serviços  */}
-      <main className="wrapper mt-32 lg:mt-44 px-3 flex flex-col lg:flex-row justify-center gap-[42px] relative after:absolute after:h-32 after:w-[95%] after:bg-light after:left-0 after:-bottom-32">
+      <main className="wrapper mt-32 lg:mt-44 px-3 flex flex-col lg:flex-row items-center justify-center gap-[42px] relative after:absolute after:h-32 after:w-[95%] after:bg-light after:left-0 after:-bottom-32">
         <motion.div
           exit={{ opacity: 0, y: 100 }}
           initial={{ opacity: 0, y: 100 }}
@@ -94,13 +94,6 @@ export default function AcompanhamentoDeObrasPage() {
             Somos especialistas em administração e gerenciamento de obras e você
             poderá usufruir de inúmeras vantagens que vão muito além da
             qualidade da construção.
-            {`\n\n`}
-            Acompanhar uma obra pode ser estressante e confuso, mas não precisa
-            ser assim. Com a nossa plataforma, você pode ter uma visão clara e
-            detalhada de todo o processo, desde o planejamento até a
-            finalização. Além disso, oferecemos suporte técnico confiável e
-            informações seguras, para que você possa relaxar e confiar em nosso
-            serviço.
             {`\n\n`}
             Saiba como nossa plataforma pode transformar a maneira como você
             gerencia suas obras e reformas.
@@ -162,20 +155,8 @@ export default function AcompanhamentoDeObrasPage() {
                 imediata de qualquer problema e ações tomadas.
               </li>
               <li>
-                <span>Documentação Centralizada:</span> Todos os documentos
-                relevantes ao seu alcance, organizados e acessíveis.
-              </li>
-              <li>
-                <span>Equipe Responsável:</span> Saiba quem está no comando da
-                sua obra e entre em contato diretamente.
-              </li>
-              <li>
                 <span>Acesso Móvel:</span> Acompanhe sua obra de qualquer lugar,
                 a qualquer momento, diretamente do seu celular.
-              </li>
-              <li>
-                <span>Transparência Total:</span> Visualize fotos, atualizações
-                e documentos para uma compreensão completa do andamento.
               </li>
             </ul>
           </div>
@@ -195,16 +176,8 @@ export default function AcompanhamentoDeObrasPage() {
             </h3>
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
               <li>
-                <span>Detalhes do Avanço:</span> Obtenha uma visão mais
-                aprofundada do progresso de todas as atividades em sua obra.
-              </li>
-              <li>
                 <span>Valores Gastos:</span> Acompanhe o orçamento em tempo
                 real, evitando surpresas no final.
-              </li>
-              <li>
-                <span>Cronograma de Obra:</span> Verifique se o projeto está no
-                caminho certo em relação ao cronograma.
               </li>
               <li>
                 <span>Métricas de Desempenho:</span> Analise métricas cruciais
@@ -213,10 +186,6 @@ export default function AcompanhamentoDeObrasPage() {
               <li>
                 <span>Informações Detalhadas:</span> Tomadas de decisões
                 informadas com dados detalhados e atualizados em tempo real.
-              </li>
-              <li>
-                <span>Controle Financeiro:</span> Evite custos inesperados ao
-                monitorar de perto os gastos e a previsão de despesas.
               </li>
             </ul>
           </div>
@@ -251,10 +220,6 @@ export default function AcompanhamentoDeObrasPage() {
             </h3>
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
               <li>
-                <span>Visualização de Projetos:</span> Acesse todos os detalhes
-                dos seus projetos de maneira organizada.
-              </li>
-              <li>
                 <span>Notas Fiscais e Medições:</span> Mantenha-se atualizado
                 sobre todas as transações financeiras e medições.
               </li>
@@ -265,14 +230,6 @@ export default function AcompanhamentoDeObrasPage() {
               <li>
                 <span>Agenda e Próximas Visitas:</span> Saiba quem está cuidando
                 da sua obra e quando a próxima visita está programada.
-              </li>
-              <li>
-                <span>Centralização de Informações:</span> Todas as informações
-                e comunicações relevantes em um único lugar.
-              </li>
-              <li>
-                <span>Agilidade na Comunicação:</span> Resolva dúvidas e
-                problemas de forma rápida e eficiente.
               </li>
             </ul>
           </div>
@@ -316,8 +273,7 @@ export default function AcompanhamentoDeObrasPage() {
                     Visitas semanais de um Engenheiro especialista
                   </span>
                   <p className="text-body text-base font-normal leading-6">
-                    Sua obra no rumo certo. Os profissionais do Cadê o
-                    Engenheiro cuidam dos detalhes técnicos para que sua obra
+                    Cuidamos dos detalhes técnicos para que sua obra
                     mantenha a execução correta de todos os processos.
                   </p>
                 </div>
@@ -374,10 +330,7 @@ export default function AcompanhamentoDeObrasPage() {
           Maior economia em sua obra
         </h3>
         <p className="text-body text-base leading-6 font-normal text-center mt-[50px] max-w-[689px] mx-auto">
-          Acompanhar uma obra pode ser um desafio, mas com a nossa plataforma
-          exclusiva, você tem a segurança de um acompanhamento técnico constante
-          e completo, além de relatórios detalhados à sua disposição. Assim,
-          você economiza tempo e dinheiro, evitando surpresas com gastos extras
+          Economize tempo e dinheiro, evitando surpresas com gastos extras
           e garantindo a qualidade da sua obra.
         </p>
 
@@ -408,9 +361,7 @@ export default function AcompanhamentoDeObrasPage() {
             Planos
           </h3>
           <p className="text-base leading-6 font-normal text-white text-center ">
-            Com ampla experiência no setor, a nossa equipe está preparada para
-            garantir que seu sonho saia do papel de forma segura, com qualidade
-            e sem preocupações!
+            Estamos preparados para garantir que seu sonho saia do papel de forma segura e sem preocupações!
           </p>
         </div>
 
