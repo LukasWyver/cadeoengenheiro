@@ -401,48 +401,6 @@ export default function AcompanhamentoDeObrasPage() {
         </h3>
       </section>
 
-      {/* // Perguntas frequentes */}
-      <section className="wrapper mt-[115px]">
-        <h3 className="text-primary text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
-          Perguntas Frequentes
-        </h3>
-
-        <div className="max-w-[1094px] mx-auto mt-[50px] lg:mt-[97px] mb-[97px] flex gap-6 px-3 flex-col lg:flex-row items-start justify-between">
-          <div className="w-full max-w-[646px] max-lg:mx-auto">
-            <Accordion title="Como faço para contratar?">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui.</p>
-              <p>Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
-            </Accordion>
-            <Accordion title="Como irei visualizar o acompanhamento da obra?">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar.</p>
-              <p>Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
-            </Accordion>
-            <Accordion title="Quem irá realizar o acompanhamento?">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
-            </Accordion>
-            <Accordion title="Precisa instalar algum aplicativo?">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
-            </Accordion>
-            <Accordion title="Qual a forma de pagamento?">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar.</p>
-              <p>Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
-            </Accordion>
-            <Accordion title="Como posso solicitar o cancelamento?">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui.</p>
-              <p>Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
-            </Accordion>
-          </div>
-          <Image
-            alt=""
-            width={321}
-            height={366}
-            src="/img/interrogacao-3d.jpg"
-            className="max-sm:max-w-[160px] max-h-[366px] max-lg:order-first max-lg:mx-auto lg:ml-auto"
-          />
-        </div>
-      </section>
-
       {/* // Planos */}
       <section className="bg-primary lg:min-h-[960px] pt-[112px] pb-[121px] bg-cover bg-center bg-no-repeat bg-image-planos">
         <div className="max-w-[672px] mx-auto space-y-[59px] px-4">
@@ -557,6 +515,48 @@ export default function AcompanhamentoDeObrasPage() {
             <span>Personalize seu plano conosco!</span>
             <FaWhatsapp className="group-hover:text-secondary group-hover:scale-105 w-5 ss:w-7 h-5 ss:h-7"/>
           </Link>
+        </div>
+      </section>
+
+      {/* // Perguntas frequentes */}
+      <section className="wrapper mt-[115px]">
+        <h3 className="text-primary text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
+          Perguntas Frequentes
+        </h3>
+
+        <div className="max-w-[1094px] mx-auto mt-[50px] lg:mt-[97px] mb-[97px] flex gap-6 px-3 flex-col lg:flex-row items-start justify-between">
+          <div className="w-full max-w-[646px] max-lg:mx-auto">
+            <Accordion title="Como faço para contratar?">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui.</p>
+              <p>Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
+            </Accordion>
+            <Accordion title="Como irei visualizar o acompanhamento da obra?">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar.</p>
+              <p>Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
+            </Accordion>
+            <Accordion title="Quem irá realizar o acompanhamento?">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
+            </Accordion>
+            <Accordion title="Precisa instalar algum aplicativo?">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
+            </Accordion>
+            <Accordion title="Qual a forma de pagamento?">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar.</p>
+              <p>Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
+            </Accordion>
+            <Accordion title="Como posso solicitar o cancelamento?">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui.</p>
+              <p>Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
+            </Accordion>
+          </div>
+          <Image
+            alt=""
+            width={321}
+            height={366}
+            src="/img/interrogacao-3d.jpg"
+            className="max-sm:max-w-[160px] max-h-[366px] max-lg:order-first max-lg:mx-auto lg:ml-auto"
+          />
         </div>
       </section>
 
