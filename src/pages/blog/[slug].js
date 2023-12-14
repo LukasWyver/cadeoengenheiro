@@ -56,7 +56,7 @@ export default function PostPage({ post }) {
 
         <Image
           alt=""
-          src={post.thumb}
+          src={`/img/blog/${post.thumb}`}
           width={561}
           height={375}
           className="mx-auto lg:min-w-[561px] lg:h-[375px]"

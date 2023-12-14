@@ -83,7 +83,7 @@ export default function BlogPage({ posts }) {
                 >
                   <Link href={`/blog/${post.slug}`}>
                     <Image
-                      src={post.thumb}
+                      src={`/img/blog/${post.thumb}`}
                       width={466}
                       height={311}
                       alt={post.title}

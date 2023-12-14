@@ -65,7 +65,7 @@ function Blog() {
             posts.map((post) => (
               <Link href={`/blog/${post.slug}`} className="max-w-[361px] mx-auto" key={post.id}>
                 <Image
-                  src={post.thumb}
+                  src={`/img/blog/${post.thumb}`}
                   alt="Inovação no canteiro de obra: tudo o que você precisa saber"
                   width={361}
                   height={264}
