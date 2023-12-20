@@ -371,7 +371,7 @@ export default function AcompanhamentoDeObrasPage() {
                 Supervisor Essencial
             </h3>
 
-            <ul className="text-body text-left w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
               <li>1 visita por semana para uma supervisão dedicada.</li>
               <li>Relatórios semanais para manter você no controle da obra.</li>
               <li>Acesso exclusivo à nossa plataforma digital intuitiva.</li>
@@ -399,7 +399,7 @@ export default function AcompanhamentoDeObrasPage() {
               Solução Completa
             </h3>
 
-            <ul className="text-body text-left w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left max-w-xs w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
               <li>3 visitas semanais para controle total.</li>
               <li>3 relatórios semanais para uma gestão detalhada.</li>
               <li>Acesso total à nossa plataforma digital avançada.</li>
@@ -430,7 +430,7 @@ export default function AcompanhamentoDeObrasPage() {
               Gestor Master
             </h3>
 
-            <ul className="text-body text-left w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
               <li>2 visitas semanais para uma gestão completa.</li>
               <li>2 relatórios semanais para insights constantes.</li>
               <li>Acesso irrestrito à nossa plataforma digital inovadora.</li>

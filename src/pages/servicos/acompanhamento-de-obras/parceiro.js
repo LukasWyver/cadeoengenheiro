@@ -361,7 +361,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               Plano Básico
             </h3>
 
-            <ul className="text-body text-left w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
               <li>Acompanhamento de até 2 obras.</li>
               <li>Acesso para 1 usuário.</li>
               <li>Acompanhamento de tarefas e prazos.</li>
@@ -390,7 +390,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               Plano Premium
             </h3>
 
-            <ul className="text-body text-left w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left max-w-xs w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
               <li>Acompanhamento ilimitado de obras.</li>
               <li>Acesso para múltiplos usuários.</li>
               <li>Integração com outros sistemas.</li>
@@ -419,7 +419,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               Plano Profissional
             </h3>
 
-            <ul className="text-body text-left w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
               <li>Acompanhamento de até 5 obras.</li>
               <li>Acesso para até 3 usuários.</li>
               <li>Gestão financeira detalhada.</li>
