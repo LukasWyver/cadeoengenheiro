@@ -142,9 +142,9 @@ export default function AcompanhamentoDeObrasPage() {
           />
           <div className="flex-1 max-w-[719px] mx-auto">
             <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Relatório da Obra <br className="max-ss:hidden"/>
-              no Seu Celular
+              Relatório da Obra <br className="max-ss:hidden"/> no Seu Celular
             </h3>
+
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
               <li>
                 <span>Resumo do Progresso:</span> Acompanhe o avanço da sua obra
@@ -171,9 +171,9 @@ export default function AcompanhamentoDeObrasPage() {
         >
           <div className="flex-1 max-w-[719px] mx-auto max-xl:order-last">
             <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Dashboard Detalhado <br className="max-ss:hidden"/>
-              em Tempo Real
+              Dashboard Detalhado <br className="max-ss:hidden"/> em Tempo Real
             </h3>
+
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
               <li>
                 <span>Valores Gastos:</span> Acompanhe o orçamento em tempo
@@ -215,9 +215,9 @@ export default function AcompanhamentoDeObrasPage() {
           />
           <div className="flex-1 max-w-[719px] mx-auto">
             <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Central de Documentos <br className="max-ss:hidden"/>
-              e Comunicação Direta
+              Central de Documentos <br className="max-ss:hidden"/> e Comunicação Direta
             </h3>
+
             <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
               <li>
                 <span>Notas Fiscais e Medições:</span> Mantenha-se atualizado
@@ -371,7 +371,7 @@ export default function AcompanhamentoDeObrasPage() {
                 Supervisor Essencial
             </h3>
 
-            <ul className="text-body text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
               <li>1 visita por semana para uma supervisão dedicada.</li>
               <li>Relatórios semanais para manter você no controle da obra.</li>
               <li>Acesso exclusivo à nossa plataforma digital intuitiva.</li>
@@ -399,7 +399,7 @@ export default function AcompanhamentoDeObrasPage() {
               Solução Completa
             </h3>
 
-            <ul className="text-body text-sm font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
               <li>3 visitas semanais para controle total.</li>
               <li>3 relatórios semanais para uma gestão detalhada.</li>
               <li>Acesso total à nossa plataforma digital avançada.</li>
@@ -430,7 +430,7 @@ export default function AcompanhamentoDeObrasPage() {
               Gestor Master
             </h3>
 
-            <ul className="text-body text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
+            <ul className="text-body text-left w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
               <li>2 visitas semanais para uma gestão completa.</li>
               <li>2 relatórios semanais para insights constantes.</li>
               <li>Acesso irrestrito à nossa plataforma digital inovadora.</li>
