@@ -5,8 +5,35 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import api from "@/services/api";
 
+import Pagination from "@/components/Pagination";
+
 function Blog() {
   const [posts, setPosts] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
+
+  // Get Current Posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change Post
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const previousPage = () => {
+    if (currentPage !== 1) {
+       setCurrentPage(currentPage - 1);
+    }
+ };
+
+ const nextPage = () => {
+    if (currentPage !== Math.ceil(posts.length / postsPerPage)) {
+       setCurrentPage(currentPage + 1);
+    }
+ };
 
   useEffect(() => {
     const fetchLatestPosts = async () => {
@@ -19,9 +46,9 @@ function Blog() {
           return dateB - dateA; // Compara as datas em ordem decrescente
         });
 
-        const limitedPosts = sortedPosts.slice(0, 3);
+        // const limitedPosts = sortedPosts.slice(0, 3);
 
-        const formattedPosts = limitedPosts.map((post) => {
+        const formattedPosts = sortedPosts.map((post) => {
           const arr = post.createdAt.split('/'); // Divide a string da data em partes: ano, mês e dia
           const obj = new Date(arr[0], arr[1] - 1, arr[2]); // Cria um objeto de data subtraindo 1 do mês
 
@@ -35,7 +62,6 @@ function Blog() {
         });
 
         setPosts(formattedPosts);
-
       } catch (error) {
         console.error(error);
       }
@@ -61,9 +87,9 @@ function Blog() {
           transition={{ duration: 0.5 }}
           className="grid grid-cols-1 sm:grid-cols-2 xm:grid-cols-3 wrapper gap-8 mt-[55px] mb-[124px]"
         >
-          {posts &&
-            posts.map((post) => (
+          {currentPosts.map((post) => (
               <Link href={`/blog/${post.slug}`} className="max-w-[361px] mx-auto" key={post.id}>
+
                 <Image
                   src={`/img/blog/${post.thumb}`}
                   alt="Inovação no canteiro de obra: tudo o que você precisa saber"
@@ -75,14 +101,22 @@ function Blog() {
                 <h5 className="font-bold text-xl text-primary mt-8">
                   {post.title}
                 </h5>
+
                 <p className="text-left text-body text-base leading-6 mt-5 line-clamp-3">
                   {post.shortDescription.split('\n\n')[0]}
                 </p>
-
               </Link>
-
             ))}
         </motion.div>
+
+        <Pagination
+            totalPosts={posts.length}
+            postsPerPage={postsPerPage}
+            previousPage={previousPage}
+            activePage={currentPage}
+            nextPage={nextPage}
+            paginate={paginate}
+          />
       </section>
     </>
   );
