@@ -57,28 +57,13 @@ export default function BlogPage({ posts }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
 
+  const totalPosts = posts.length
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+
   // Get Current Posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-   // Change Post
-   const paginate = (pageNumber) => {
-      setCurrentPage(pageNumber);
-   };
-
-   const previousPage = () => {
-     if (currentPage !== 1) {
-        setCurrentPage(currentPage - 1);
-     }
-  };
-
-  const nextPage = () => {
-     if (currentPage !== Math.ceil(posts.length / postsPerPage)) {
-        setCurrentPage(currentPage + 1);
-     }
-  };
-
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
   return (
     <>
@@ -97,7 +82,7 @@ export default function BlogPage({ posts }) {
           <br className="hidden md:block" /> últimas notícias do segmento
         </h3>
 
-        <div className="px-3 ss:px-[56px] sm:px-[86px]  mt-24">
+        <div className="px-3 ss:px-[56px] sm:px-[86px] mt-24 flex flex-col items-center">
           <div className="space-y-[74px]">
             {currentPosts.map((post) => (
               <motion.div
@@ -147,14 +132,16 @@ export default function BlogPage({ posts }) {
                 </motion.div>
               ))}
 
-            <Pagination
-              totalPosts={posts.length}
-              postsPerPage={postsPerPage}
-              previousPage={previousPage}
-              activePage={currentPage}
-              nextPage={nextPage}
-              paginate={paginate}
-            />
+            <div className="flex flex-col items-center justify-center">
+              <Pagination
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                totalCountOfRegisters={totalPosts}
+                registersPerPage={postsPerPage}
+              />
+
+              {currentPosts && <div className="my-4 text-body text-sm">{Math.min(indexOfLastPost, totalPosts)} de {totalPosts} resultados.</div>}
+            </div>
           </div>
         </div>
       </main>

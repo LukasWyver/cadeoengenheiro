@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
 import HeaderBanner from "@/components/HeaderBanner";
-
 const DynamicCta = dynamic(() => import("@/components/Cta"))
 const DynamicBlog = dynamic(() => import("@/components/Blog"))
 const DynamicFooter = dynamic(() => import("@/components/Footer"))

@@ -1,46 +1,90 @@
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import PaginationItem from "./PaginationItem"
 
-function Pagination({ postsPerPage, totalPosts, paginate, previousPage, nextPage, activePage, maxPageLimit = 5, minPageLimit = 0}) {
-  const pages = [];
+const siblingsCount = 1
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-      pages.push(i);
-  }
-
-  const pageNumbers = pages.map(number => {
-    if(number ) {
-        return(
-          <li
-            key={number}
-            onClick={() =>  paginate(number)}
-            className={`${activePage === number ? 'bg-primary text-white': 'bg-white text-body hover:text-primary'} p-4 font-medium`}
-          >
-            {number}
-          </li>
-        );
-    } else {
-        return null;
-    }
+function generatePagesArray(from, to) {
+  return [...new Array(to - from)]
+    .map((_, index) => {
+      return from + index + 1
+    })
+    .filter(page => page > 0)
 }
 
-);
+function Pagination({
+  totalCountOfRegisters,
+  registersPerPage = 10,
+  currentPage = 1,
+  onPageChange
+}) {
+  // const lastPage = Math.floor(totalCountOfRegisters / registersPerPage); //  arredondado para baixo
+  const lastPage = Math.ceil(totalCountOfRegisters / registersPerPage) // arredondado para cima
+
+  const previousPages =
+    currentPage > 1
+      ? generatePagesArray(currentPage - 1 - siblingsCount, currentPage - 1)
+      : []
+
+  const nextPages =
+    currentPage < lastPage
+      ? generatePagesArray(
+          currentPage,
+          Math.min(currentPage + siblingsCount, lastPage)
+        )
+      : []
 
   return (
-      <nav className="">
-        <ul className="flex items-center justify-center gap-2 [&>li]:cursor-pointer [&>li]:h-10 [&>li]:w-10 [&>li]:rounded-lg [&>li]:border [&>li:hover]:border-primary [&>li]:border-body/20 [&>li]:flex [&>li]:items-center [&>li]:justify-center [&>li]:transition-colors [&>li]:duration-300">
+    <div className="flex items-center gap-4">
+      {currentPage > 1 + siblingsCount && (
+        <>
+          <PaginationItem onPageChange={onPageChange} number={1} />
+          {currentPage > 2 + siblingsCount && (
+            <span className="bg-white text-body hover:text-primary font-medium w-10 h-10 rounded-lg p-4 flex items-center justify-center">
+              ...
+            </span>
+          )}
+        </>
+      )}
 
-          <li  onClick={previousPage} className="bg-white group">
-            <FiChevronLeft className="stroke-body/60 group-hover:stroke-primary" size={22}/>
-          </li>
+      {previousPages.length > 0 &&
+        previousPages.map(page => {
+          return (
+            <PaginationItem
+              onPageChange={onPageChange}
+              key={page}
+              number={page}
+            />
+          )
+        })}
 
-          {pageNumbers}
+      <PaginationItem
+        onPageChange={onPageChange}
+        number={currentPage}
+        isCurrent
+      />
 
-          <li  onClick={nextPage} className="bg-white group">
-            <FiChevronRight className="stroke-body/60 group-hover:stroke-primary" size={22}/>
-          </li>
-        </ul>
-      </nav>
-    )
-  }
+      {nextPages.length > 0 &&
+        nextPages.map(page => {
+          return (
+            <PaginationItem
+              onPageChange={onPageChange}
+              key={page}
+              number={page}
+            />
+          )
+        })}
+
+      {currentPage + siblingsCount < lastPage && (
+        <>
+          {currentPage + 1 + siblingsCount < lastPage && (
+            <span className="bg-white text-body hover:text-primary font-medium w-10 h-10 rounded-lg p-4 flex items-center justify-center">
+              ...
+            </span>
+          )}
+          <PaginationItem onPageChange={onPageChange} number={lastPage} />
+        </>
+      )}
+    </div>
+  )
+}
 
 export default Pagination;
