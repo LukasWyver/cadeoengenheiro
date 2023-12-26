@@ -15,6 +15,9 @@ import { limitOfLines } from "@/utils/limitOfLines";
 
 import api from "@/services/api";
 import { motion } from "framer-motion";
+import Pagination from "@/components/Pagination";
+import { useState } from "react";
+
 
 export async function getStaticProps() {
   const { data } = await api.get("/blog");
@@ -51,6 +54,16 @@ export async function getStaticProps() {
 }
 
 export default function BlogPage({ posts }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
+
+  const totalPosts = posts.length
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+
+  // Get Current Posts
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
   return (
     <>
@@ -69,26 +82,25 @@ export default function BlogPage({ posts }) {
           <br className="hidden md:block" /> últimas notícias do segmento
         </h3>
 
-        <div className="px-3 ss:px-[56px] sm:px-[86px]  mt-24">
+        <div className="px-3 ss:px-[56px] sm:px-[86px] mt-24 flex flex-col items-center">
           <div className="space-y-[74px]">
-            {posts &&
-              posts.map((post) => (
-                <motion.div
-                  exit={{ opacity: 0, x: -100 }}
-                  initial={{ opacity: 0, x: -100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: post.id * 0.125 }}
-                  key={post.id}
-                  className="max-w-[1027px] mx-auto flex flex-1 gap-10 flex-col lg:flex-row"
-                >
+            {currentPosts.map((post) => (
+              <motion.div
+                exit={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: post.id * 0.0125 }}
+                key={post.id}
+                className="max-w-[1027px] mx-auto flex flex-1 gap-10 flex-col lg:flex-row"
+               >
                   <Link href={`/blog/${post.slug}`}>
-                    <Image
-                      src={`/img/blog/${post.thumb}`}
-                      width={466}
-                      height={311}
-                      alt={post.title}
-                      className="lg:min-w-[466px] lg:h-[311px] mx-auto"
-                    />
+                      <Image
+                        width={466}
+                        height={311}
+                        alt={post.title}
+                        src={`/img/blog/${post.thumb}`}
+                        className="lg:min-w-[466px] lg:h-[311px] mx-auto"
+                      />
                   </Link>
 
                   <div className="flex flex-col justify-between w-full mx-auto max-w-[720px]">
@@ -104,7 +116,7 @@ export default function BlogPage({ posts }) {
                       <h3 className="text-primary text-[27px] leading-8 font-bold mb-3">
                         {post.title}
                       </h3>
-                      <p className="whitespace-pre-line text-base font-normal leading-6 text-body">
+                      <p className="whitespace-pre-line text-base font-normal leading-6 text-body line-clamp-3">
                         {limitOfLines(post.shortDescription, 4)}
                       </p>
                     </div>
@@ -119,6 +131,17 @@ export default function BlogPage({ posts }) {
                   </div>
                 </motion.div>
               ))}
+
+            <div className="flex flex-col items-center justify-center">
+              <Pagination
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                totalCountOfRegisters={totalPosts}
+                registersPerPage={postsPerPage}
+              />
+
+              {currentPosts && <div className="my-4 text-body text-sm">{Math.min(indexOfLastPost, totalPosts)} de {totalPosts} resultados.</div>}
+            </div>
           </div>
         </div>
       </main>

@@ -45,7 +45,7 @@ export default function PostPage({ post }) {
             Blog
           </h5>
 
-          <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
+          <h3 className="text-primary text-3xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
             {post.title}
           </h3>
 

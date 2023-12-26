@@ -14,15 +14,17 @@ function Accordion({ title, children, }) {
           {title}
         </span>
 
-        <HiOutlineChevronDown
-          size={24}
-          color="#006DB7"
-          className={`transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <div className="h-6 w-6">
+          <HiOutlineChevronDown
+            size={24}
+            color="#006DB7"
+            className={`transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </div>
       </button>
-      {isOpen && <div className="p-4">{children}</div>}
+      {isOpen && <div className="p-4 space-y-2.5 text-body/75">{children}</div>}
     </div>
   );
 };

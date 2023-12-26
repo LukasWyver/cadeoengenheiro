@@ -19,8 +19,8 @@ function Footer() {
                 <div className="col-span-1 sm:col-span-2 md:col-span-3">
                   <strong className="text-[21px] leading-[21px] font-bold text-white mb-3">Entre em Contato</strong>
                   <ul>
-                    <li><a href={messageWhatsapp()} target="_blank" className="text-[13px] leading-[17px] text-white mb-1">Whatsapp: (43) 99999-0000</a></li>
-                    <li><a href="mailto:contato@coe.com.br" target="_blank" className="text-[13px] leading-[17px] text-white">contato@coe.com.br</a></li>
+                    <li><a href={messageWhatsapp()} target="_blank" className="text-[13px] leading-[17px] text-white mb-1">Whatsapp: (43) 99116-8074</a></li>
+                    <li><a href="mailto:contato@cadeoengenheiro.com.br" target="_blank" className="text-[13px] leading-[17px] text-white">contato@cadeoengenheiro.com.br</a></li>
                   </ul>
                 </div>
 
@@ -29,7 +29,7 @@ function Footer() {
                   <ul className="">
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/">Home</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/sobre">Quem somos</Link></li>
-                    <li className="text-[13px] leading-[17px] text-white">.: <Link href="/servicos">Serviços</Link></li>
+                    <li className="text-[13px] leading-[17px] text-white">.: <Link href="/servicos/acompanhamento-de-obras">Serviços</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/blog">Blog</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/contato">Contato</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/">Área do Cliente</Link></li>
@@ -39,11 +39,14 @@ function Footer() {
                 <div className="col-span-1 sm:col-span-2">
                   <strong className="text-[21px] leading-[21px] font-bold text-white mb-3">Redes Sociais</strong>
                   <div className="flex gap-[5px]">
-                    <a href="#" target="_blank" className="text-[13px] leading-[17px] text-white mb-1">
+                    <a href="https://www.facebook.com/profile.php?id=100071836304306" target="_blank" className="text-[13px] leading-[17px] text-white mb-1">
                         <Image src="/icons/facebook-footer.svg" alt="icone do facebook" width={19.7} height={19.7} />
                     </a>
-                    <a href="#" target="_blank" className="text-[13px] leading-[17px] text-white">
+                    <a href="https://www.instagram.com/cadeoengenheiro/" target="_blank" className="text-[13px] leading-[17px] text-white">
                         <Image src="/icons/instagram-footer.svg" alt="icone do instagram" width={19.5} height={19.5} />
+                    </a>
+                    <a href="https://www.linkedin.com/company/cadê-o-engenheiro/?viewAsMember=true" target="_blank" className="text-[13px] leading-[17px] text-white">
+                        <Image src="/icons/linkedin-footer.svg" alt="icone do instagram" width={19.5} height={19.5} />
                     </a>
                   </div>
                 </div>
