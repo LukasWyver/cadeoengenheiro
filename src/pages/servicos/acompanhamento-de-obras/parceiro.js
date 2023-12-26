@@ -380,7 +380,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               </div>
             </div>
 
-            <Link href="/planos/trimestral" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="/planos/básico" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
@@ -409,7 +409,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               </div>
             </div>
 
-            <Link href="/planos/semestral" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="/planos/premium" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
@@ -438,7 +438,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               </div>
             </div>
 
-            <Link href="/planos/anual" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="/planos/profissional" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>

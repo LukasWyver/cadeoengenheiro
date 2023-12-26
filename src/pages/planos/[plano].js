@@ -20,7 +20,7 @@ export async function getServerSideProps({ params }) {
   let plano = params.plano
 
   // Verifica se o plano recebido esta entre os três aceitos.
-  const tiposPlanos = ['trimestral', 'semestral', 'anual'];
+  const tiposPlanos = ['supervisor-essencial','gestor-master','solução-completa','básico', 'profissional', 'premium'];
   if (!tiposPlanos.includes(plano)) {
     return {
       redirect: {
@@ -29,6 +29,8 @@ export async function getServerSideProps({ params }) {
       },
     };
   }
+
+
 
   plano = params.plano.charAt(0).toUpperCase() + params.plano.slice(1);
 
@@ -79,7 +81,7 @@ export default function Cadastro({ plano }) {
           Cadastro
         </h5>
         <h3 className="text-primary text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
-          Plano {plano}
+          Plano {plano.replace('-', ' ')}
         </h3>
 
         <div className="max-w-[1086px] mx-auto mt-[58px]">
