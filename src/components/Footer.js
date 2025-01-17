@@ -29,7 +29,8 @@ function Footer() {
                   <ul className="">
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/">Home</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/sobre">Quem somos</Link></li>
-                    <li className="text-[13px] leading-[17px] text-white">.: <Link href="/servicos/acompanhamento-de-obras">Serviços</Link></li>
+                    {/* <li className="text-[13px] leading-[17px] text-white">.: <Link href="/servicos/acompanhamento-de-obras">Serviços</Link></li> */}
+                    <li className="text-[13px] leading-[17px] text-white">.: <Link href="/planos">Planos</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/blog">Blog</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/contato">Contato</Link></li>
                     <li className="text-[13px] leading-[17px] text-white">.: <Link href="/">Área do Cliente</Link></li>

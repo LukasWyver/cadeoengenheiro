@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
 import { FaWhatsapp } from "react-icons/fa";
 
-export default function AcompanhamentoDeObrasPageEngenheiro() {
+export default function AcompanhamentoDeObrasPage() {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
@@ -36,12 +36,18 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
         </h3>
       </div>
 
+      {!imageLoaded && (
+        <div className="absolute inset-0 w-full max-h-[550px] bg-primary -z-10"></div>
+      )}
+
       <Image
         fill
         alt=""
         priority
         src="/banners/bg-servicos.jpg"
-        className="absolute inset-0 w-full max-h-[550px] bg-no-repeat object-cover -z-10"
+        className={`absolute inset-0 w-full max-h-[550px] bg-no-repeat object-cover -z-10 ${
+          !imageLoaded && "hidden"
+        } `}
       />
 
       <div className="w-full mx-auto px-3 rounded-b-full relative mt-[230px] -z-10">
@@ -62,7 +68,9 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           height={424}
           onLoad={handleImageLoad}
           src="/img/celulares-acompanhamento-de-obras-pronto.png"
-          className={`absolute z-10 -mt-48 lg:-mt-32 max-lg:left-1/2 max-lg:-translate-x-1/2 max-xl:-left-16 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute z-10 -mt-48 lg:-mt-32 max-lg:left-1/2 max-lg:-translate-x-1/2 max-xl:-left-16 ${
+            imageLoaded ? "opacity-100" : "opacity-0"
+          }`}
         />
         <h6 className="text-white font-bold italic text-5xl leading-[46px] max-lg:mx-auto sm:max-w-[551px] lg:ml-auto  pt-16 xx:pt-28 xs:pt-44 ss:pt-[240px] sm:pt-64 lg:pt-0">
           Tenha a gestão completa de sua obra na palma da mão
@@ -79,16 +87,22 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           className="max-w-[719px] lg:max-w-[493px] mx-auto flex-1"
         >
           <h3 className="text-primary text-4xl font-bold text-left after-bottom mb-[46px]">
-            Domínio Completo em <br className="hidden lg:block" />
-            suas obras e reformas
+            Excelência no controle <br className="hidden lg:block" />
+            de sua obra
           </h3>
           <p className="whitespace-pre-line text-base leading-6 text-body">
-            Maximize a gestão de suas obras com nossa plataforma: precisão em cada detalhe, relatórios concisos e controle de qualidade superior. Descubra a inovação em gerenciamento de construção.
+            Somos especialistas em administração e gerenciamento de obras e você
+            poderá usufruir de inúmeras vantagens que vão muito além da
+            qualidade da construção.
+            {`\n\n`}
+            Saiba como nossa plataforma pode transformar a maneira como você
+            gerencia suas obras e reformas.
           </p>
 
           <Link
             href={messageWhatsapp()}
-            className="btn primary w-fit my-5 max-h-[42px] py-3.5 px-4" target="_blank"
+            className="btn primary w-fit my-5 max-h-[42px] py-3.5 px-4"
+            target="_blank"
           >
             Quero conhecer
           </Link>
@@ -117,7 +131,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-[1308px] mx-auto px-3 flex flex-col lg:flex-row gap-10"
+          className="max-w-[1308px] mx-auto px-3 flex flex-col xl:flex-row gap-10"
         >
           <Image
             width={719}
@@ -127,27 +141,24 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
             src="/img/funcionalidade-sistema-01.png"
           />
           <div className="flex-1 max-w-[719px] mx-auto">
-            <h3 className="text-primary text-3xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Gestão de Obras <br className="max-ss:hidden"/> na Palma da Sua Mão
+            <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
+              Relatório da Obra <br className="max-ss:hidden"/> no Seu Celular
             </h3>
 
-            <div className="block space-y-2.5">
-              <p className="text-base leading-relaxed font-normal text-body">
-                Maximize a eficiência e controle de seus projetos de construção com nossa plataforma líder de mercado. Oferecemos um painel completo e interativo para acompanhamento em tempo real, garantindo:
-              </p>
-
-              <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
-                <li>
-                  <span>Monitoramento Contínuo:</span> Visibilidade instantânea do progresso da obra com atualizações simplificadas.
-                </li>
-                <li>
-                  <span>Registros e Alertas:</span> Fique a par de incidentes e ações tomadas com um sistema de notificação eficiente.
-                </li>
-                <li>
-                  <span>Flexibilidade Total:</span> Acesse informações críticas de qualquer lugar, a qualquer hora, diretamente no seu dispositivo móvel tablet e PC.
-                </li>
-              </ul>
-            </div>
+            <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
+              <li>
+                <span>Resumo do Progresso:</span> Acompanhe o avanço da sua obra
+                de forma resumida e intuitiva.
+              </li>
+              <li>
+                <span>Registro de Ocorrências:</span> Tenha visibilidade
+                imediata de qualquer problema e ações tomadas.
+              </li>
+              <li>
+                <span>Acesso Móvel:</span> Acompanhe sua obra de qualquer lugar,
+                a qualquer momento, diretamente do seu celular.
+              </li>
+            </ul>
           </div>
         </motion.div>
 
@@ -156,34 +167,27 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="max-w-[1308px] mx-auto px-3 flex flex-col lg:flex-row gap-10"
+          className="max-w-[1308px] mx-auto px-3 flex flex-col xl:flex-row gap-10"
         >
-          <div className="flex-1 max-w-[719px] mx-auto max-lg:order-last">
-            <h3 className="text-primary text-3xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Acompanhamento Financeiro e Performance da Obra em Tempo Real
+          <div className="flex-1 max-w-[719px] mx-auto max-xl:order-last">
+            <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
+              Dashboard Detalhado <br className="max-ss:hidden"/> em Tempo Real
             </h3>
 
-            <div className="block space-y-2.5">
-              <p className="text-base leading-relaxed font-normal text-body">
-                Garanta a precisão orçamentária e o acompanhamento meticuloso do seu projeto com nosso dashboard interativo. Oferecemos:
-              </p>
-
-              <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
-                <li>
-                  <span>Controle Orçamentário Dinâmico:</span> Monitore seus gastos em tempo real para manter o orçamento sob controle.
-                </li>
-                <li>
-                  <span>Análise Estratégica de Performance:</span> Avalie métricas chave para otimizar a execução da obra.
-                </li>
-                <li>
-                  <span>Decisões Baseadas em Dados:</span> Utilize informações precisas e atualizadas para uma gestão eficaz.
-                </li>
-              </ul>
-
-              <p className="text-base leading-relaxed font-normal text-body">
-                Explore uma nova dimensão de gerenciamento de obras com nossa tecnologia avançada.
-              </p>
-            </div>
+            <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
+              <li>
+                <span>Valores Gastos:</span> Acompanhe o orçamento em tempo
+                real, evitando surpresas no final.
+              </li>
+              <li>
+                <span>Métricas de Desempenho:</span> Analise métricas cruciais
+                para garantir o sucesso do seu projeto.
+              </li>
+              <li>
+                <span>Informações Detalhadas:</span> Tomadas de decisões
+                informadas com dados detalhados e atualizados em tempo real.
+              </li>
+            </ul>
           </div>
 
           <Image
@@ -200,9 +204,9 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="max-w-[1308px] mx-auto px-3 flex flex-col lg:flex-row gap-10"
+          className="max-w-[1308px] mx-auto px-3 flex flex-col xl:flex-row gap-10"
         >
-           <Image
+          <Image
             alt=""
             width={719}
             height={375}
@@ -210,35 +214,32 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
             src="/img/funcionalidade-sistema-03.png"
           />
           <div className="flex-1 max-w-[719px] mx-auto">
-            <h3 className="text-primary text-3xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
-              Comunicação e Documentação Organizadas para Projetos de Construção
+            <h3 className="text-primary text-4xl font-bold text-left after-bottom opacity-0 animate-slide-up mb-[46px]">
+              Central de Documentos <br className="max-ss:hidden"/> e Comunicação Direta
             </h3>
 
-            <div className="block space-y-2.5">
-              <p className="text-base leading-relaxed font-normal text-body">
-                Potencialize a colaboração em seus projetos com recursos essenciais:
-              </p>
-
-              <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
-                <li>
-                  <span>Gestão de Documentos:</span> Tenha todas as notas fiscais e medições ao alcance de um clique, proporcionando transparência e controle financeiro.
-                </li>
-                <li>
-                  <span>Interatividade com o Cliente:</span> Ofereça um canal direto para seus clientes interagirem com você, facilitando o entendimento e a satisfação do serviço prestado.
-                </li>
-                <li>
-                  <span>Agenda Organizada:</span> Mantenha-se informado sobre quem está gerenciando cada aspecto da obra e as datas das próximas visitas técnicas.
-                </li>
-              </ul>
-            </div>
+            <ul className="text-base leading-relaxed font-normal text-body [&_span]:text-heading [&_span]:font-medium list-disc">
+              <li>
+                <span>Notas Fiscais e Medições:</span> Mantenha-se atualizado
+                sobre todas as transações financeiras e medições.
+              </li>
+              <li>
+                <span>Comunicação Direta:</span> Abra um canal direto de
+                comunicação com a equipe de engenheiros.
+              </li>
+              <li>
+                <span>Agenda e Próximas Visitas:</span> Saiba quem está cuidando
+                da sua obra e quando a próxima visita está programada.
+              </li>
+            </ul>
           </div>
         </motion.div>
       </section>
 
       {/* // Vantagens */}
       <section className="wrapper mt-[154px]">
-        <h3 className="text-primary text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up max-w-xl mx-auto">
-          Potencialize a Gestão de Obras com Recursos Exclusivos
+        <h3 className="text-primary text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
+          Garantia de compromisso!​
         </h3>
 
         <div className="wrapper flex flex-col lg:flex-row lg:items-end mt-[18px] px-3 gap-[34px] mb-[168px]">
@@ -269,10 +270,11 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
 
                 <div className="space-y-1">
                   <span className="text-primary font-bold text-xl sm:text-2xl leading-[30px]">
-                    Gestão Autônoma
+                    Visitas semanais de um Engenheiro especialista
                   </span>
                   <p className="text-body text-base font-normal leading-6">
-                    Utilize nossa plataforma para organizar visitas e supervisionar suas obras com eficácia, mantendo controle total.
+                    Cuidamos dos detalhes técnicos para que sua obra
+                    mantenha a execução correta de todos os processos.
                   </p>
                 </div>
               </li>
@@ -282,10 +284,11 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
 
                 <div className="space-y-1">
                   <span className="text-primary font-bold text-xl sm:text-2xl leading-[30px]">
-                    Registro Visual Completo
+                    Relatórios semanais com registros fotográficos
                   </span>
                   <p className="text-body text-base font-normal leading-6">
-                    Documente cada fase do projeto com fotografias detalhadas, facilitando o acompanhamento e o reporte de progresso.
+                    Escolha as opções de pagamento, altere preços e interaja com
+                    seu cliente pelo WhatsApp, sem intermediários.
                   </p>
                 </div>
               </li>
@@ -295,10 +298,10 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
 
                 <div className="space-y-1">
                   <span className="text-primary font-bold text-xl sm:text-2xl leading-[30px]">
-                    Controle Total das Fases do Projeto
+                    Controle de todos os processos
                   </span>
                   <p className="text-body text-base font-normal leading-6">
-                   Acesse uma visão integrada do andamento da obra com relatórios abrangentes e atualizados.
+                    Relatórios detalhados de cada etapa da sua obra.
                   </p>
                 </div>
               </li>
@@ -308,10 +311,11 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
 
                 <div className="space-y-1">
                   <span className="text-primary font-bold text-xl sm:text-2xl leading-[30px]">
-                    Acompanhamento Flexível e Preciso
+                    Acompanhe o avanço da sua obra em seu smartphone ou PC
                   </span>
                   <p className="text-body text-base font-normal leading-6">
-                    Monitore o progresso das construções em tempo real, assegurando qualidade e precisão em cada etapa.
+                    Acompanhe todo o avanço de sua obra, através de nosso
+                    dashboard.
                   </p>
                 </div>
               </li>
@@ -326,10 +330,16 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
           Maior economia em sua obra
         </h3>
         <p className="text-body text-base leading-6 font-normal text-center mt-[50px] max-w-[689px] mx-auto">
-          Economize tempo e dinheiro, evitando surpresas com gastos extras e garantindo a qualidade da sua obra.
+          Economize tempo e dinheiro, evitando surpresas com gastos extras
+          e garantindo a qualidade da sua obra.
         </p>
 
-        <Image alt="" width={1212} height={505} src="/img/tela-sistema-pronto.jpg" />
+        <Image
+          alt=""
+          width={1212}
+          height={505}
+          src="/img/tela-sistema-pronto.jpg"
+        />
       </section>
 
       {/* // Slogan */}
@@ -358,21 +368,20 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
         <div className="mx-auto px-3 flex flex-col lg:flex-row flex-wrap items-center justify-center gap-x-4 gap-y-6 py-[29px]">
           <div className="bg-white rounded-[44px] min-h-[443px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
             <h3 className="text-primary text-center font-bold text-xl ss:text-2xl lg:text-xl after-bottom !after:w-[86px]">
-              Plano Básico
+                Supervisor Essencial
             </h3>
 
             <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
-              <li>Acompanhamento de até 2 obras.</li>
-              <li>Acesso para 1 usuário.</li>
-              <li>Acompanhamento de tarefas e prazos.</li>
-              <li>Relatórios simplificados.</li>
-              <li>Suporte técnico básico.</li>
+              <li>1 visita por semana para uma supervisão dedicada.</li>
+              <li>Relatórios semanais para manter você no controle da obra.</li>
+              <li>Acesso exclusivo à nossa plataforma digital intuitiva.</li>
+              <li>Organização completa de documentos para sua comodidade.</li>
             </ul>
 
             <div className="text-secondary flex items-center">
               <div className="flex items-baseline">
                 <span className="text-[29px] leading-9 font-bold">R$</span>
-                <strong className="text-5xl leading-snug font-bold">99,</strong>
+                <strong className="text-5xl leading-snug font-bold">2.100,</strong>
               </div>
               <div className="flex flex-col -space-y-1">
                 <strong className="text-3xl font-bold block">00</strong>
@@ -380,28 +389,30 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               </div>
             </div>
 
-            <Link href="/planos/básico" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="/planos/supervisor-essencial" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
 
           <div className="max-lg:order-last bg-white rounded-[44px] min-h-[481px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
             <h3 className="text-primary text-center font-bold text-xl ss:text-2xl after-bottom !after:w-[93px]">
-              Plano Premium
+              Solução Completa
             </h3>
 
             <ul className="text-body text-left max-w-xs w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
-              <li>Acompanhamento ilimitado de obras.</li>
-              <li>Acesso para múltiplos usuários.</li>
-              <li>Integração com outros sistemas.</li>
-              <li>Análises profundas e insights de dados.</li>
-              <li>Gerente de conta dedicado e suporte personalizado.</li>
+              <li>3 visitas semanais para controle total.</li>
+              <li>3 relatórios semanais para uma gestão detalhada.</li>
+              <li>Acesso total à nossa plataforma digital avançada.</li>
+              <li>Projetos online para uma gestão moderna.</li>
+              <li>Organização completa de documentos.</li>
+              <li>Plano de medições para avaliações precisas.</li>
+              <li>Controle abrangente de notas fiscais para transparência total.</li>
             </ul>
 
             <div className="text-secondary flex items-center">
               <div className="flex items-baseline">
                 <span className="text-[32px] leading-[38px] font-bold">R$</span>
-                <strong className="text-5xl leading-relaxed font-bold">499,</strong>
+                <strong className="text-5xl leading-relaxed font-bold">3.970,</strong>
               </div>
               <div className="flex flex-col -space-y-1">
                 <strong className="text-3xl font-bold block">00</strong>
@@ -409,28 +420,27 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               </div>
             </div>
 
-            <Link href="/planos/premium" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="/planos/solução-completa" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
 
           <div className="bg-white rounded-[44px] min-h-[443px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
             <h3 className="text-primary text-center font-bold text-xl ss:text-2xl lg:text-xl after-bottom !after:w-[86px]">
-              Plano Profissional
+              Gestor Master
             </h3>
 
             <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
-              <li>Acompanhamento de até 5 obras.</li>
-              <li>Acesso para até 3 usuários.</li>
-              <li>Gestão financeira detalhada.</li>
-              <li>Relatórios avançados.</li>
-              <li>Suporte técnico prioritário.</li>
+              <li>2 visitas semanais para uma gestão completa.</li>
+              <li>2 relatórios semanais para insights constantes.</li>
+              <li>Acesso irrestrito à nossa plataforma digital inovadora.</li>
+              <li>Organização eficiente de todas as documentações.</li>
             </ul>
 
             <div className="text-secondary flex items-center">
               <div className="flex items-baseline">
                 <span className="text-[29px] leading-9 font-bold">R$</span>
-                <strong className="text-5xl leading-snug font-bold">249,</strong>
+                <strong className="text-5xl leading-snug font-bold">2.900,</strong>
               </div>
               <div className="flex flex-col -space-y-1">
                 <strong className="text-3xl font-bold block">00</strong>
@@ -438,7 +448,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
               </div>
             </div>
 
-            <Link href="/planos/profissional" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="/planos/gestor-master" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
@@ -468,69 +478,27 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
         <div className="max-w-[1094px] mx-auto mt-[50px] lg:mt-[97px] mb-[97px] flex gap-6 px-3 flex-col lg:flex-row items-start justify-between">
           <div className="w-full max-w-[646px] max-lg:mx-auto">
             <Accordion title="Como faço para contratar?">
-              <p className="text-body/75">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                at orci gravida, suscipit libero sit amet, consequat dui.
-                <br />
-                <br />
-                Mauris suscipit elit ac suscipit faucibus. Praesent ut augue
-                quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur,
-                lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam
-                purus felis a libero.
-              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui.</p>
+              <p>Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
             </Accordion>
             <Accordion title="Como irei visualizar o acompanhamento da obra?">
-              <p className="text-body/75">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                at orci gravida, suscipit libero sit amet, consequat dui. Mauris
-                suscipit elit ac suscipit faucibus. Praesent ut augue quam.
-                Nullam vitae leo ut sem pretium pulvinar.
-                <br />
-                <br />
-                Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus
-                turpis, at aliquam purus felis a libero.
-              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar.</p>
+              <p>Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
             </Accordion>
             <Accordion title="Quem irá realizar o acompanhamento?">
-              <p className="text-body/75">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <br />
-                <br /> Integer at orci gravida, suscipit libero sit amet,
-                consequat dui. Mauris suscipit elit ac suscipit faucibus.
-                Praesent ut augue quam. Nullam vitae leo ut sem pretium
-                pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui
-                dapibus turpis, at aliquam purus felis a libero.
-              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
             </Accordion>
             <Accordion title="Precisa instalar algum aplicativo?">
-              <p className="text-body/75">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                at orci gravida, suscipit libero sit amet, consequat dui. Mauris
-                suscipit elit ac suscipit faucibus. Praesent ut augue quam.
-                Nullam vitae leo ut sem pretium pulvinar. Sed consectetur,
-                lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam
-                purus felis a libero.
-              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
             </Accordion>
             <Accordion title="Qual a forma de pagamento?">
-              <p className="text-body/75">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                at orci gravida, suscipit libero sit amet, consequat dui. Mauris
-                suscipit elit ac suscipit faucibus. Praesent ut augue quam.
-                Nullam vitae leo ut sem pretium pulvinar. Sed consectetur,
-                lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam
-                purus felis a libero.
-              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui. Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar.</p>
+              <p>Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
             </Accordion>
             <Accordion title="Como posso solicitar o cancelamento?">
-              <p className="text-body/75">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                at orci gravida, suscipit libero sit amet, consequat dui. Mauris
-                suscipit elit ac suscipit faucibus. Praesent ut augue quam.
-                Nullam vitae leo ut sem pretium pulvinar. Sed consectetur,
-                lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam
-                purus felis a libero.
-              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci gravida, suscipit libero sit amet, consequat dui.</p>
+              <p>Mauris suscipit elit ac suscipit faucibus. Praesent ut augue quam. Nullam vitae leo ut sem pretium pulvinar. Sed consectetur, lectus nec pulvinar viverra, elit dui dapibus turpis, at aliquam purus felis a libero.</p>
             </Accordion>
           </div>
           <Image
@@ -538,7 +506,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
             width={321}
             height={366}
             src="/img/interrogacao-3d.jpg"
-            className="max-h-[366px] max-lg:order-first max-lg:mx-auto lg:ml-auto"
+            className="max-sm:max-w-[160px] max-h-[366px] max-lg:order-first max-lg:mx-auto lg:ml-auto"
           />
         </div>
       </section>

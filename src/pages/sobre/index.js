@@ -177,7 +177,7 @@ export default function SobrePage() {
       <DynamicBanner />
       <DynamicCta />
       <DynamicEmpresas />
-      <DynamicBlog />
+      {/* <DynamicBlog /> */}
       <DynamicFormulario />
       <DynamicFooter />
     </>

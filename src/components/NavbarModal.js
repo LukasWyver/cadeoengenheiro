@@ -72,14 +72,21 @@ function NavbarModal({ isVisible, onClose }) {
           </div>
 
           <div className="space-y-4 mt-4">
-            <button className="btn primary w-fit min-w-[109px]">
+            {/* <button className="btn primary w-fit min-w-[109px]">
               <HiUser size={18} color="#fff" />
               <Link href="/" className="!text-sm !leading-['18px'] font-semibold">
                 Cliente
               </Link>
+            </button> */}
+
+            <button className="btn primary w-fit min-w-[109px]">
+              <HiUser size={18} color="#fff" />
+              <Link href="/" className="!text-sm !leading-['18px'] font-semibold">
+                Login
+              </Link>
             </button>
 
-            <div className="" ref={dropDownRef}>
+            {/* <div className="" ref={dropDownRef}>
               <button className="btn secondary w-fit min-w-[109px]" onClick={() => setIsOpenDropdown(!isOpenDropdown)}>
                 <HiUser size={18} color="#f4af38" />
                 <span className="!text-sm !leading-['18px'] font-semibold">Parceiro</span>
@@ -97,7 +104,7 @@ function NavbarModal({ isVisible, onClose }) {
                   </Link>
                 </nav>
               )}
-            </div>
+            </div> */}
 
           </div>
         </motion.div>

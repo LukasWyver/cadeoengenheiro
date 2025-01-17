@@ -59,12 +59,17 @@ function Header() {
           </ul>
 
           <div className="ml-auto lg:ml-8 flex items-center gap-1.5">
-            <button className="btn primary w-fit min-w-[109px] max-lg:hidden">
+            {/* <button className="btn primary w-fit min-w-[109px] max-lg:hidden">
               <HiUser size={18} color="#fff" />
               <Link href="/" className="!text-sm !leading-['18px'] font-semibold">Cliente</Link>
+            </button> */}
+
+            <button className="btn primary w-fit min-w-[109px] max-lg:hidden">
+              <HiUser size={18} color="#fff" />
+              <Link href="https://www.cadeoengenheiro.com.br/login" target="_blank" className="!text-sm !leading-['18px'] font-semibold">Login</Link>
             </button>
 
-            <div className="" ref={dropDownRef}>
+            {/* <div className="" ref={dropDownRef}>
               <button className="btn secondary w-fit min-w-[109px] max-lg:hidden" onClick={() => setIsOpenDropdown(!isOpenDropdown)}>
                 <HiUser size={18} color="#f4af38" />
                 <span className="!text-sm !leading-['18px'] font-semibold">Parceiro</span>
@@ -81,7 +86,7 @@ function Header() {
                   </Link>
                 </nav>
               )}
-            </div>
+            </div> */}
 
             <HiMenu size={22} color="#fff" className="lg:hidden" onClick={openModal} />
           </div>

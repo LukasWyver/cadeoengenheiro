@@ -11,8 +11,20 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { messageWhatsapp } from "@/utils/messageWhatsapp";
 import { FaWhatsapp } from "react-icons/fa";
+import api from "@/services/api";
 
-export default function AcompanhamentoDeObrasPageEngenheiro() {
+
+export async function getStaticProps() {
+  const { data } = await api.get("/plans");
+  const plans = data;
+
+  return {
+    props: { plans },
+    revalidate: 60 * 60 * 24, // 24 hours
+  };
+}
+
+export default function PlansPage({ plans }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
@@ -27,7 +39,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
 
       <div className="wrapper mt-[64px] sm:mt-[98px]">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
-          Serviços
+          Conheça nossa plataforma de
         </h5>
         <h3 className="text-white text-3xl sm:text-4xl font-bold text-center after-bottom opacity-0 animate-slide-up">
           Acompanhamento
@@ -358,7 +370,7 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
         <div className="mx-auto px-3 flex flex-col lg:flex-row flex-wrap items-center justify-center gap-x-4 gap-y-6 py-[29px]">
           <div className="bg-white rounded-[44px] min-h-[443px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
             <h3 className="text-primary text-center font-bold text-xl ss:text-2xl lg:text-xl after-bottom !after:w-[86px]">
-              Plano Básico
+              {plans[0].name}
             </h3>
 
             <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
@@ -372,22 +384,22 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
             <div className="text-secondary flex items-center">
               <div className="flex items-baseline">
                 <span className="text-[29px] leading-9 font-bold">R$</span>
-                <strong className="text-5xl leading-snug font-bold">99,</strong>
+                <strong className="text-5xl leading-snug font-bold">{plans[0].price.split(',')[0]},</strong>
               </div>
               <div className="flex flex-col -space-y-1">
-                <strong className="text-3xl font-bold block">00</strong>
+                <strong className="text-3xl font-bold block">{plans[0].price.split(',')[1]}</strong>
                 <span className="text-base leading-[18px] font-bold">/mês</span>
               </div>
             </div>
 
-            <Link href="/planos/básico" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="https://www.cadeoengenheiro.com.br/checkout/plano/1" target="_blank" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
 
           <div className="max-lg:order-last bg-white rounded-[44px] min-h-[481px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
             <h3 className="text-primary text-center font-bold text-xl ss:text-2xl after-bottom !after:w-[93px]">
-              Plano Premium
+              {plans[1].name}
             </h3>
 
             <ul className="text-body text-left max-w-xs w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
@@ -401,22 +413,22 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
             <div className="text-secondary flex items-center">
               <div className="flex items-baseline">
                 <span className="text-[32px] leading-[38px] font-bold">R$</span>
-                <strong className="text-5xl leading-relaxed font-bold">499,</strong>
+                <strong className="text-5xl leading-relaxed font-bold">{plans[1].price.split(',')[0]},</strong>
               </div>
               <div className="flex flex-col -space-y-1">
-                <strong className="text-3xl font-bold block">00</strong>
+                <strong className="text-3xl font-bold block">{plans[1].price.split(',')[1]}</strong>
                 <span className="text-base leading-5 font-bold">/mês</span>
               </div>
             </div>
 
-            <Link href="/planos/premium" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="https://www.cadeoengenheiro.com.br/checkout/plano/2" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
 
           <div className="bg-white rounded-[44px] min-h-[443px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
             <h3 className="text-primary text-center font-bold text-xl ss:text-2xl lg:text-xl after-bottom !after:w-[86px]">
-              Plano Profissional
+              {plans[2].name}
             </h3>
 
             <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
@@ -430,15 +442,15 @@ export default function AcompanhamentoDeObrasPageEngenheiro() {
             <div className="text-secondary flex items-center">
               <div className="flex items-baseline">
                 <span className="text-[29px] leading-9 font-bold">R$</span>
-                <strong className="text-5xl leading-snug font-bold">249,</strong>
+                <strong className="text-5xl leading-snug font-bold">{plans[2].price.split(',')[0]},</strong>
               </div>
               <div className="flex flex-col -space-y-1">
-                <strong className="text-3xl font-bold block">00</strong>
+                <strong className="text-3xl font-bold block">{plans[2].price.split(',')[1]}</strong>
                 <span className="text-base leading-[18px] font-bold">/mês</span>
               </div>
             </div>
 
-            <Link href="/planos/profissional" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="https://www.cadeoengenheiro.com.br/checkout/plano/3" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>

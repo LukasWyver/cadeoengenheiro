@@ -5,7 +5,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'i.ibb.co',
+        hostname: 'i.ibb.co', // Corrigido para string
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.cadeoengenheiro.com.br', // Corrigido para string
       },
     ],
   },

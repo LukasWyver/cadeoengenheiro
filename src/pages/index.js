@@ -126,7 +126,7 @@ export default function HomePage() {
       <DynamicServicos />
       <DynamicCta />
       <DynamicEmpresas />
-      <DynamicBlog />
+      {/* <DynamicBlog /> */}
       <DynamicFormulario />
       <DynamicFooter />
     </>
