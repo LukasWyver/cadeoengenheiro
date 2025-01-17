@@ -26,7 +26,7 @@
     "react-icons": "^4.8.0",
     "react-leaflet": "^4.2.1",
     "remask": "^1.0.1",
-    "sharp": "^0.32.6",
+    "sharp": "^0.33.5",
     "splide-nextjs": "^2.4.23",
     "tailwindcss": "3.3.1",
     "yet-another-react-lightbox": "^3.10.2",
