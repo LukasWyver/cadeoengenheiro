@@ -81,7 +81,7 @@ function NavbarModal({ isVisible, onClose }) {
 
             <button className="btn primary w-fit min-w-[109px]">
               <HiUser size={18} color="#fff" />
-              <Link href="/" className="!text-sm !leading-['18px'] font-semibold">
+              <Link href="https://admin.cadeoengenheiro.com.br/login" className="!text-sm !leading-['18px'] font-semibold">
                 Login
               </Link>
             </button>

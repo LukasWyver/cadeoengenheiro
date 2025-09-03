@@ -392,7 +392,7 @@ export default function PlansPage({ plans }) {
               </div>
             </div>
 
-            <Link href="https://www.cadeoengenheiro.com.br/checkout/plano/1" target="_blank" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="https://admin.cadeoengenheiro.com.br/checkout/plano/1" target="_blank" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
@@ -421,7 +421,7 @@ export default function PlansPage({ plans }) {
               </div>
             </div>
 
-            <Link href="https://www.cadeoengenheiro.com.br/checkout/plano/2" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="https://admin.cadeoengenheiro.com.br/checkout/plano/2" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
@@ -450,7 +450,7 @@ export default function PlansPage({ plans }) {
               </div>
             </div>
 
-            <Link href="https://www.cadeoengenheiro.com.br/checkout/plano/3" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
+            <Link href="https://admin.cadeoengenheiro.com.br/checkout/plano/3" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
               Contrate já
             </Link>
           </div>
