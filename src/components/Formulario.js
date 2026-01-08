@@ -33,7 +33,7 @@ function Formulario() {
 
   function onSubmit(data) {
     setOutput(JSON.stringify(data, null, 2))
-    alert(JSON.stringify(data, null, 2))
+    // alert(JSON.stringify(data, null, 2))
   };
 
   return (
@@ -55,7 +55,7 @@ function Formulario() {
             exit={{ opacity: 0, y: -100 }}
             initial={{ opacity: 0, y: -100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.25, delay: 0.1 }}
           >
             <div className="flex flex-1 flex-col gap-0.5">
               <input
@@ -86,7 +86,7 @@ function Formulario() {
             exit={{ opacity: 0, y: -100 }}
             initial={{ opacity: 0, y: -100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="flex flex-1 flex-col gap-0.5">
               <input

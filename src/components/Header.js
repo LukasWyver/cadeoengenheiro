@@ -54,7 +54,7 @@ function Header() {
             />
           </Link>
 
-          <ul className="items-center ml-auto w-full max-w-[595px] justify-between text-[15px] font-medium leading-5 hidden lg:flex">
+          <ul className="items-center ml-auto w-full max-w-[595px] justify-end mr-16 space-x-16 text-[15px] font-medium leading-5 hidden lg:flex">
             <LinkList />
           </ul>
 
@@ -64,10 +64,10 @@ function Header() {
               <Link href="/" className="!text-sm !leading-['18px'] font-semibold">Cliente</Link>
             </button> */}
 
-            <button className="btn primary w-fit min-w-[109px] max-lg:hidden">
+            <Link href="https://admin.cadeoengenheiro.com.br/login" target="_blank" className="!text-sm !leading-['18px'] font-semibold btn primary w-fit min-w-[109px] max-lg:hidden">
               <HiUser size={18} color="#fff" />
-              <Link href="https://admin.cadeoengenheiro.com.br/login" target="_blank" className="!text-sm !leading-['18px'] font-semibold">Login</Link>
-            </button>
+              <span>Login</span>
+            </Link>
 
             {/* <div className="" ref={dropDownRef}>
               <button className="btn secondary w-fit min-w-[109px] max-lg:hidden" onClick={() => setIsOpenDropdown(!isOpenDropdown)}>

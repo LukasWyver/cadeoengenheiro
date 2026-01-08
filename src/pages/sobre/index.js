@@ -118,7 +118,7 @@ export default function SobrePage() {
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="wrapper flex flex-col sm:flex-row gap-10 py-7 ss:py-14 px-3"
           >
             <Image
@@ -143,7 +143,7 @@ export default function SobrePage() {
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="wrapper flex flex-col sm:flex-row gap-10 py-7 ss:py-14 px-3"
           >
             <Image
