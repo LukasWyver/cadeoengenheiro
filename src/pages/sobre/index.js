@@ -9,7 +9,7 @@ const DynamicBlog = dynamic(() => import("@/components/Blog"))
 const DynamicFooter = dynamic(() => import("@/components/Footer"))
 const DynamicBanner = dynamic(() => import("@/components/Banner"))
 const DynamicFormulario = dynamic(() => import("@/components/Formulario"))
-const DynamicEmpresas = dynamic(() => import("@/components/Carrossel/Empresas"))
+import Empresas from "@/components/Carrossel/Empresas";
 
 export default function SobrePage() {
   return (
@@ -176,7 +176,7 @@ export default function SobrePage() {
 
       <DynamicBanner />
       <DynamicCta />
-      <DynamicEmpresas />
+      <Empresas />
       {/* <DynamicBlog /> */}
       <DynamicFormulario />
       <DynamicFooter />
