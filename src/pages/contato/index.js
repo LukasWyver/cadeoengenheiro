@@ -38,7 +38,7 @@ export default function ContatoPage() {
 
   function onSubmit(data) {
     setOutput(JSON.stringify(data, null, 2))
-    alert(JSON.stringify(data, null, 2))
+    // alert(JSON.stringify(data, null, 2))
   };
 
   return (
