@@ -1,4 +1,6 @@
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
+import toast from "react-hot-toast";
 
 import Head from "next/head";
 import { mask } from "remask";
@@ -32,14 +34,35 @@ export default function ContatoPage() {
 
   const patternPhone = ["(99) 99999-9999"];
 
-  const { register, formState: { errors }, handleSubmit } = useForm({
+  const { register, formState: { errors, isSubmitting }, handleSubmit, reset } = useForm({
     resolver: zodResolver(submitFormSchema)
   });
 
-  function onSubmit(data) {
-    setOutput(JSON.stringify(data, null, 2))
+  async function onSubmit(data) {
+    // setOutput(JSON.stringify(data, null, 2))
     // alert(JSON.stringify(data, null, 2))
-  };
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          subject: data.subject,
+          message: data.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+
+      reset();        // limpa o formulário
+      setPhone("");   // limpa o campo com máscara
+      toast.success("Mensagem enviada com sucesso!");
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast.error("Erro ao enviar mensagem. Tente novamente.");
+    }
+  }
 
   return (
     <>
@@ -153,7 +176,12 @@ export default function ContatoPage() {
             </motion.div>
           </div>
 
-          <input type="submit" value="Enviar" className="bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] w-[112px] text-center border-none focus:ring-2 ring-white outline-none"/>
+          <input
+            type="submit"
+            disabled={isSubmitting}
+            value={isSubmitting ? "Enviando..." : "Enviar"}
+            className={`bg-secondary rounded-full block ml-auto text-xl font-bold leading-5 text-white h-[42px] w-[112px] text-center border-none focus:ring-2 ring-white outline-none ${isSubmitting ? "bg-gray-800 opacity-60 cursor-not-allowed w-[152px]" : ""}`}
+          />
         </form>
       </main>
 
