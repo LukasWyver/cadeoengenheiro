@@ -20,6 +20,7 @@
     "framer-motion": "^10.12.16",
     "leaflet": "^1.9.3",
     "next": "13.3.0",
+    "nodemailer": "^7.0.12",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -17,16 +17,49 @@ import HeaderBanner from "@/components/HeaderBanner";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 const submitFormSchema = z.object({
-  name: z.string().nonempty('O nome é obrigatório').min(6, 'O nome precisa de no mínimo 6 caracteres').transform(name => {
-    return name.trim().split(' ').map(word => {
-      return word[0].toLocaleUpperCase().concat(word.substring(1))
-    }).join(' ')
-  }),
-  phone: z.string().nonempty('O celular é obrigatório').min(11, 'O celular precisa de no mínimo 11 digitos'),
-  email: z.string().nonempty('O e-mail é obrigatório').email('Formato de e-mail inválido').toLowerCase(),
-  subject: z.string().nonempty('O assunto é obrigatório'),
-  message: z.string().nonempty('Escreva sua mensagem aqui')
-})
+  name: z
+    .string()
+    .nonempty("O nome é obrigatório")
+    .min(2, "O nome deve ter pelo menos 2 caracteres")
+    .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Use apenas letras")
+    .transform(name =>
+      name
+        .trim()
+        .split(/\s+/)
+        .map(
+          word =>
+            word.charAt(0).toLocaleUpperCase() +
+            word.slice(1).toLowerCase()
+        )
+        .join(" ")
+    ),
+
+  phone: z
+  .string()
+  .nonempty("O celular é obrigatório")
+  .transform(value => value.replace(/\D/g, "")) // remove tudo que não é número
+  .refine(
+    value => value.length === 11,
+    "Informe um celular válido com DDD"
+  ),
+
+  email: z
+    .string()
+    .nonempty("O e-mail é obrigatório")
+    .email("Formato de e-mail inválido")
+    .toLowerCase(),
+
+  subject: z
+    .string()
+    .nonempty("O assunto é obrigatório")
+    .min(3, "O assunto deve ter pelo menos 3 caracteres"),
+
+  message: z
+    .string()
+    .nonempty("Escreva sua mensagem aqui")
+    .min(10, "A mensagem deve ter pelo menos 10 caracteres")
+});
+
 
 export default function ContatoPage() {
   const [output, setOutput] = useState("");
@@ -42,18 +75,30 @@ export default function ContatoPage() {
     // setOutput(JSON.stringify(data, null, 2))
     // alert(JSON.stringify(data, null, 2))
     try {
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          subject: data.subject,
-          message: data.message,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      );
+      // await emailjs.send(
+      //   process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      //   process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      //   {
+      //     name: data.name,
+      //     email: data.email,
+      //     phone: data.phone,
+      //     subject: data.subject,
+      //     message: data.message,
+      //   },
+      //   process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      // );
+
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      throw new Error('Erro ao enviar')
+    }
 
       reset();        // limpa o formulário
       setPhone("");   // limpa o campo com máscara
