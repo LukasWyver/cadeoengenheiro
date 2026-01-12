@@ -22,6 +22,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Campos obrigatórios ausentes' })
     }
 
+     if (typeof phone !== "string") {
+      return res.status(400).json({ error: "Telefone inválido" });
+    }
+
     // Limpeza e normalização
     const cleanPhone = phone.replace(/\D/g, "");
 
@@ -40,7 +44,7 @@ export default async function handler(req, res) {
     const transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
       port: Number(process.env.MAIL_PORT),
-      secure: false,
+      secure: Number(process.env.MAIL_PORT) === 465,
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,

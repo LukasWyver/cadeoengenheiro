@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 
 import { z } from 'zod';
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
+import { useForm, Controller  } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import Footer from "@/components/Footer";
@@ -37,11 +37,7 @@ const submitFormSchema = z.object({
   phone: z
   .string()
   .nonempty("O celular é obrigatório")
-  .transform(value => value.replace(/\D/g, "")) // remove tudo que não é número
-  .refine(
-    value => value.length === 11,
-    "Informe um celular válido com DDD"
-  ),
+  .length(11, "Informe um celular válido com DDD"),
 
   email: z
     .string()
@@ -62,12 +58,9 @@ const submitFormSchema = z.object({
 
 
 export default function ContatoPage() {
-  const [output, setOutput] = useState("");
-  const [phone, setPhone] = useState("");
-
   const patternPhone = ["(99) 99999-9999"];
 
-  const { register, formState: { errors, isSubmitting }, handleSubmit, reset } = useForm({
+  const { control, register, formState: { errors, isSubmitting }, handleSubmit, reset } = useForm({
     resolver: zodResolver(submitFormSchema)
   });
 
@@ -75,19 +68,6 @@ export default function ContatoPage() {
     // setOutput(JSON.stringify(data, null, 2))
     // alert(JSON.stringify(data, null, 2))
     try {
-      // await emailjs.send(
-      //   process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-      //   process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-      //   {
-      //     name: data.name,
-      //     email: data.email,
-      //     phone: data.phone,
-      //     subject: data.subject,
-      //     message: data.message,
-      //   },
-      //   process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      // );
-
     const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
@@ -100,11 +80,10 @@ export default function ContatoPage() {
       throw new Error('Erro ao enviar')
     }
 
-      reset();        // limpa o formulário
-      setPhone("");   // limpa o campo com máscara
+      reset();
       toast.success("Mensagem enviada com sucesso!");
     } catch (error) {
-      console.error("EmailJS error:", error);
+      console.error("Erro ao enviar mensagem: ", error);
       toast.error("Erro ao enviar mensagem. Tente novamente.");
     }
   }
@@ -172,20 +151,37 @@ export default function ContatoPage() {
                 {errors.email && <span className="text-red-500 mt-0.5">{errors.email.message}</span>}
               </label>
 
-              <label htmlFor="phone" className="flex flex-1 flex-col">
-                <span className="text-base font-normal leading-[23px] text-body ml-1.5">
-                  Celular:
-                </span>
-                <input
-                  id="phone"
-                  type="text"
-                  {...register("phone")}
-                  value={mask(phone, patternPhone)}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className={`input !max-h-[39px] ${errors.phone ? "focus:ring-red-500" : "focus:ring-secondary"}`}
-                />
-                {errors.phone && <span className="text-red-500 mt-0.5">{errors.phone.message}</span>}
-              </label>
+              <Controller
+                name="phone"
+                control={control}
+                render={({ field }) => (
+                  <label htmlFor="phone" className="flex flex-1 flex-col">
+                    <span className="text-base font-normal leading-[23px] text-body ml-1.5">
+                      Celular:
+                    </span>
+
+                    <input
+                      id="phone"
+                      type="text"
+                      value={mask(field.value || "", patternPhone)}
+                      onChange={(e) => {
+                        // remove tudo que não for número ANTES de enviar ao form
+                        const onlyNumbers = e.target.value.replace(/\D/g, "");
+                        field.onChange(onlyNumbers);
+                      }}
+                      className={`input !max-h-[39px] ${
+                        errors.phone ? "focus:ring-red-500" : "focus:ring-secondary"
+                      }`}
+                    />
+
+                    {errors.phone && (
+                      <span className="text-red-500 mt-0.5">
+                        {errors.phone.message}
+                      </span>
+                    )}
+                  </label>
+                )}
+              />
 
               <label htmlFor="subject" className="flex flex-1 flex-col">
                 <span className="text-base font-normal leading-[23px] text-body ml-1.5">
