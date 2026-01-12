@@ -1,7 +1,5 @@
-import { useState } from "react";
 import toast from "react-hot-toast";
-import emailjs from '@emailjs/browser';
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import { mask } from "remask";
 import { motion } from "framer-motion";
@@ -10,51 +8,72 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
 
 const submitFormSchema = z.object({
-  name: z.string().nonempty('O nome é obrigatório').min(6, 'O nome precisa de no mínimo 6 caracteres').transform(name => {
-    return name.trim().split(' ').map(word => {
-      return word[0].toLocaleUpperCase().concat(word.substring(1))
-    }).join(' ')
-  }),
-  phone: z.string().nonempty('O celular é obrigatório').min(11, 'O celular precisa de no mínimo 11 digitos'),
-  email: z.string().nonempty('O e-mail é obrigatório').email('Formato de e-mail inválido').toLowerCase(),
-  subject: z.string().nonempty('O assunto é obrigatório'),
-  message: z.string().nonempty('Escreva sua mensagem aqui')
+   name: z
+    .string()
+    .nonempty("O nome é obrigatório")
+    .min(2, "O nome deve ter pelo menos 2 caracteres")
+    .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Use apenas letras")
+    .transform(name =>
+      name
+        .trim()
+        .split(/\s+/)
+        .map(
+          word =>
+            word.charAt(0).toLocaleUpperCase() +
+            word.slice(1).toLowerCase()
+        )
+        .join(" ")
+    ),
+
+  phone: z
+  .string()
+  .nonempty("O celular é obrigatório")
+  .length(11, "Informe um celular válido com DDD"),
+
+  email: z
+    .string()
+    .nonempty("O e-mail é obrigatório")
+    .email("Formato de e-mail inválido")
+    .toLowerCase(),
+
+  subject: z
+    .string()
+    .nonempty("O assunto é obrigatório")
+    .min(3, "O assunto deve ter pelo menos 3 caracteres"),
+
+  message: z
+    .string()
+    .nonempty("Escreva sua mensagem aqui")
+    .min(10, "A mensagem deve ter pelo menos 10 caracteres")
 })
 
 function Formulario() {
-  const [output, setOutput] = useState("");
-  const [phone, setPhone] = useState("");
-
   const patternPhone = ["(99) 99999-9999"];
 
-  const { register, formState: { errors, isSubmitting }, handleSubmit, reset } = useForm({
+  const { control, register, formState: { errors, isSubmitting }, handleSubmit, reset } = useForm({
     resolver: zodResolver(submitFormSchema)
   });
-
-
 
   async function onSubmit(data) {
     // setOutput(JSON.stringify(data, null, 2))
     // alert(JSON.stringify(data, null, 2))
     try {
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          subject: data.subject,
-          message: data.message,
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      );
+        body: JSON.stringify(data),
+      })
 
-      reset();        // limpa o formulário
-      setPhone("");   // limpa o campo com máscara
+      if (!response.ok) {
+        throw new Error('Erro ao enviar')
+      }
+
+      reset();
       toast.success("Mensagem enviada com sucesso!");
     } catch (error) {
-      console.error("EmailJS error:", error);
+      // console.error("Erro ao enviar mensagem: ", error);
       toast.error("Erro ao enviar mensagem. Tente novamente.");
     }
   };
@@ -91,18 +110,27 @@ function Formulario() {
               {errors.name && <span className="text-secondary">{errors.name.message}</span>}
             </div>
 
-            <div className="flex flex-1 flex-col gap-0.5">
-              <input
-                id="phone"
-                type="text"
-                {...register("phone")}
-                placeholder="celular*"
-                value={mask(phone, patternPhone)}
-                onChange={(e) => setPhone(e.target.value)}
-                className={`input ${errors.phone ? "focus:ring-red-500" : "focus:ring-secondary"}`}
-              />
-              {errors.phone && <span className="text-secondary">{errors.phone.message}</span>}
-            </div>
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <div className="flex flex-1 flex-col gap-0.5">
+                  <input
+                    id="phone"
+                    type="text"
+                    placeholder="celular*"
+                    value={mask(field.value || "", patternPhone)}
+                    onChange={(e) => {
+                      // remove tudo que não for número antes de enviar ao form
+                      const onlyNumbers = e.target.value.replace(/\D/g, "");
+                      field.onChange(onlyNumbers);
+                    }}
+                    className={`input ${errors.phone ? "focus:ring-red-500" : "focus:ring-secondary"}`}
+                  />
+                  {errors.phone && (<span className="text-secondary">{errors.phone.message}</span>)}
+                </div>
+              )}
+            />
           </motion.div>
 
           <motion.div className="flex flex-col sm:flex-row gap-2.5"

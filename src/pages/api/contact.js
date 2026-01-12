@@ -145,7 +145,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ message: 'E-mail enviado com sucesso' })
   } catch (error) {
-    console.error(error)
+    // console.error(error)
     return res.status(500).json({ message: 'Erro ao enviar e-mail' })
   }
 }

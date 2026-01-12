@@ -1,10 +1,7 @@
-import { useState } from "react";
-import emailjs from '@emailjs/browser';
-import toast from "react-hot-toast";
-
 import Head from "next/head";
 import { mask } from "remask";
 import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
 
 import { z } from 'zod';
 import { motion } from "framer-motion";
@@ -68,22 +65,22 @@ export default function ContatoPage() {
     // setOutput(JSON.stringify(data, null, 2))
     // alert(JSON.stringify(data, null, 2))
     try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-    if (!response.ok) {
-      throw new Error('Erro ao enviar')
-    }
+      if (!response.ok) {
+        throw new Error('Erro ao enviar')
+      }
 
       reset();
       toast.success("Mensagem enviada com sucesso!");
     } catch (error) {
-      console.error("Erro ao enviar mensagem: ", error);
+      // console.error("Erro ao enviar mensagem: ", error);
       toast.error("Erro ao enviar mensagem. Tente novamente.");
     }
   }
