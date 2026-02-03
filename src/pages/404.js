@@ -5,6 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 import HeaderBanner from "@/components/HeaderBanner";
+import Footer from "@/components/Footer";
 
 export default function _404() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function _404() {
 
       <HeaderBanner />
 
-      <main className="h-full mt-[118px]">
+      <main className="h-[calc(100vh-400px)] mt-[118px]">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Oops!
         </h5>
@@ -39,6 +40,8 @@ export default function _404() {
           <Link href={ultimaPagina} className="text-base block leading-6 font-semibold text-body text-center max-w-sm mx-auto mt-4">voltar</Link>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

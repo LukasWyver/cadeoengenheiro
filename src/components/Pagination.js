@@ -16,6 +16,12 @@ function Pagination({
   currentPage = 1,
   onPageChange
 }) {
+
+   const handlePageChange = (page) => {
+    if (page === currentPage) return;
+    onPageChange(page);
+  };
+
   // const lastPage = Math.floor(totalCountOfRegisters / registersPerPage); //  arredondado para baixo
   const lastPage = Math.ceil(totalCountOfRegisters / registersPerPage) // arredondado para cima
 
@@ -36,7 +42,7 @@ function Pagination({
     <div className="flex items-center gap-4">
       {currentPage > 1 + siblingsCount && (
         <>
-          <PaginationItem onPageChange={onPageChange} number={1} />
+          <PaginationItem onPageChange={handlePageChange} number={1} />
           {currentPage > 2 + siblingsCount && (
             <span className="bg-white text-body hover:text-primary font-medium w-10 h-10 rounded-lg p-4 flex items-center justify-center">
               ...
@@ -49,7 +55,7 @@ function Pagination({
         previousPages.map(page => {
           return (
             <PaginationItem
-              onPageChange={onPageChange}
+              onPageChange={handlePageChange}
               key={page}
               number={page}
             />
@@ -57,7 +63,7 @@ function Pagination({
         })}
 
       <PaginationItem
-        onPageChange={onPageChange}
+        onPageChange={handlePageChange}
         number={currentPage}
         isCurrent
       />
@@ -66,7 +72,7 @@ function Pagination({
         nextPages.map(page => {
           return (
             <PaginationItem
-              onPageChange={onPageChange}
+              onPageChange={handlePageChange}
               key={page}
               number={page}
             />
@@ -80,7 +86,7 @@ function Pagination({
               ...
             </span>
           )}
-          <PaginationItem onPageChange={onPageChange} number={lastPage} />
+          <PaginationItem onPageChange={handlePageChange} number={lastPage} />
         </>
       )}
     </div>

@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.cadeoengenheiro.com.br', // Corrigido para string
       },
+       {
+        protocol: 'https',
+        hostname: 'admin.cadeoengenheiro.com.br', // Corrigido para string
+      },
     ],
   },
 }

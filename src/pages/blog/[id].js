@@ -9,9 +9,9 @@ import Banner from "@/components/Banner";
 import Formulario from "@/components/Formulario";
 import HeaderBanner from "@/components/HeaderBanner";
 import Empresas from "@/components/Carrossel/Empresas";
+import Link from "next/link";
 
 export async function getStaticPaths() {
-  // const { data } = await api.get("/blog");
   const { data } = await api.get("/posts");
 
   // Verifique se os dados foram retornados corretamente
@@ -26,24 +26,30 @@ export async function getStaticPaths() {
     params: { id: post.id.toString() }
   }))
 
-  return { paths, fallback: false }
+  return { paths, fallback: "blocking" }
 }
 
 export async function getStaticProps({ params }) {
-  const { data } = await api.get(`/posts`)
-  const posts = data.data; // Certifique-se de que isso está correto
-  const post = posts.find(post => post.id.toString() === params.id);
+  try {
+    const { data } = await api.get("/posts");
 
-  if (!post) {
+    const post = data.data.find(
+      (post) => post.id.toString() === params.id
+    );
+
+    if (!post) {
+      return { notFound: true };
+    }
+
     return {
-      notFound: true, // Retorna uma página 404 se o post não for encontrado
+      props: {
+        post,
+      },
+      revalidate: 60 * 60 * 24, // 24h
     };
+  } catch (error) {
+    return { notFound: true };
   }
-
-  return {
-    props: { post },
-    revalidate: 60 * 60 * 24, // 24 hours
-  };
 }
 
 export default function PostPage({ post }) {
@@ -55,7 +61,7 @@ export default function PostPage({ post }) {
 
       <HeaderBanner />
 
-      <main className="wrapper mt-[118px] mb-[143px] flex flex-col lg:flex-row justify-center gap-[42px] px-3">
+      <main className="wrapper mt-[118px] mb-16 flex flex-col lg:flex-row justify-center gap-[42px] px-3">
         <div className="w-full mx-auto lg:max-w-[496px] flex-1 max-lg:order-last">
           <h5 className="text-secondary text-lg leading-6 font-medium text-left">
             Blog
@@ -65,9 +71,10 @@ export default function PostPage({ post }) {
             {post.title}
           </h3>
 
-          <p className="whitespace-pre-line text-base leading-6 text-body">
-            {post.content}
-          </p>
+          <div
+          className="prose prose-neutral max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </div>
 
         <Image
@@ -78,6 +85,10 @@ export default function PostPage({ post }) {
           className="mx-auto lg:min-w-[561px] lg:h-[375px]"
         />
       </main>
+
+      <div className="mb-[143px]">
+         <Link href={`/blog`} className="btn primary font-bold text-[19px] leading-[26px] w-fit my-2.5 mx-auto max-h-[42px] py-3 px-6">Voltar</Link>
+      </div>
 
       <Banner />
       <Cta />
