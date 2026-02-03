@@ -10,7 +10,7 @@ function LinkList() {
     // { id: 3, text: "Serviços", href: "/servicos/acompanhamento-de-obras" },
     // { id: 4, text: "Cases de sucesso", href: "/cases" },
     // { id: 3, text: "Planos", href: "/planos" },
-    // { id: 5, text: "Blog", href: "/blog" },
+    { id: 5, text: "Blog", href: "/blog" },
     { id: 6, text: "Contato", href: "/contato" },
   ];
 

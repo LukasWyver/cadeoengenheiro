@@ -26,7 +26,7 @@ export async function getStaticProps() {
       initialPosts: data.data,
       initialPagination: data.pagination
     },
-    revalidate: 60 * 60 * 24, // 24 hours
+    revalidate: 60 * 60 * 4, // 4 hours
   };
 }
 
@@ -61,7 +61,7 @@ export default function BlogPage({ initialPosts, initialPagination }) {
 
       <HeaderBanner />
 
-      <main className="wrapper mt-[118px] mb-[104px]">
+      <main className="wrapper mt-[43px] sm:mt-[118px] mb-[104px]">
         <h5 className="text-secondary text-lg leading-6 font-medium text-center">
           Blog
         </h5>
@@ -82,7 +82,7 @@ export default function BlogPage({ initialPosts, initialPagination }) {
                 key={post.id}
                 className="max-w-[1027px] mx-auto flex flex-1 gap-10 flex-col lg:flex-row"
                >
-                  <Link href={`/blog/${post.id}`}>
+                  <Link href={`/blog/${post.slug}`}>
                       <Image
                         width={466}
                         height={311}
@@ -111,7 +111,7 @@ export default function BlogPage({ initialPosts, initialPagination }) {
                     </div>
 
                     <Link
-                      href={`/blog/${post.id}`}
+                      href={`/blog/${post.slug}`}
                       className="btn primary font-bold text-[19px] leading-[26px] w-fit my-2.5 max-h-[42px] py-3 px-6"
                     >
                       Leia mais

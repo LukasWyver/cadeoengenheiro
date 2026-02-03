@@ -13,15 +13,31 @@ import { messageWhatsapp } from "@/utils/messageWhatsapp";
 import { FaWhatsapp } from "react-icons/fa";
 import api from "@/services/api";
 
-
 export async function getStaticProps() {
-  const { data } = await api.get("/plans");
-  const plans = data;
+  try {
+    const { data } = await api.get("/plans");
 
-  return {
-    props: { plans },
-    revalidate: 60 * 60 * 24, // 24 hours
-  };
+    if (!Array.isArray(data) || data.length === 0) {
+      return { notFound: true };
+    }
+
+    const plans = data.map(plan => {
+      const [priceInt, priceDecimal] = plan.price.split(',');
+
+      return {
+        ...plan,
+        priceInt,
+        priceDecimal,
+      };
+    });
+
+    return {
+      props: { plans },
+      revalidate: 60 * 60 * 4, // 4h
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 }
 
 export default function PlansPage({ plans }) {
@@ -31,10 +47,41 @@ export default function PlansPage({ plans }) {
     setImageLoaded(true);
   };
 
+  const DETALHES_PLANOS_PADRAO = [
+    "Acompanhamento profissional de obras",
+    "Gestão centralizada de informações",
+    "Relatórios e controle completo",
+    "Suporte especializado",
+  ];
+
+  const DETALHES_PLANOS = {
+    "Plano Básico": [
+      "Acompanhamento de até 2 obras",
+      "Acesso para 1 usuário(s)",
+      "Acompanhamento de tarefas e prazos",
+      "Relatórios simplificados",
+      "Suporte técnico básico",
+    ],
+    "Plano Profissional": [
+      "Acompanhamento de até 5 obras",
+      "Acesso para até 3 usuário(s)",
+      "Gestão financeira detalhada",
+      "Relatórios avançados",
+      "Suporte técnico prioritário",
+    ],
+    "Plano Premium": [
+      "Acompanhamento ilimitado de obras",
+      "Acesso para múltiplos usuários",
+      "Integração com outros sistemas",
+      "Análises profundas e insights de dados",
+      "Gerente de conta dedicado e suporte personalizado",
+    ],
+  };
+
   return (
     <>
       <Head>
-        <title>Acopanhamento de Obras | Serviços | COE</title>
+        <title>Home | Cadê o Engenheiro?</title>
       </Head>
 
       <div className="wrapper mt-[64px] sm:mt-[98px]">
@@ -368,92 +415,55 @@ export default function PlansPage({ plans }) {
         </div>
 
         <div className="mx-auto px-3 flex flex-col lg:flex-row flex-wrap items-center justify-center gap-x-4 gap-y-6 py-[29px]">
-          <div className="bg-white rounded-[44px] min-h-[443px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
-            <h3 className="text-primary text-center font-bold text-xl ss:text-2xl lg:text-xl after-bottom !after:w-[86px]">
-              {plans[0].name}
-            </h3>
+          {plans.map((plan) => (
+            <div
+              key={plan.id}
+              className={`${plan.name === 'Plano Premium' ? 'max-lg:order-last min-h-[481px]': 'min-h-[443px]'
+              } bg-white rounded-[44px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl`}
+            >
+              <h3 className={`text-primary text-center font-bold text-xl ss:text-2xl lg:text-xl after-bottom !after:w-[86px]`}>
+                {plan.name}
+              </h3>
 
-            <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
-              <li>Acompanhamento de até 2 obras.</li>
-              <li>Acesso para 1 usuário.</li>
-              <li>Acompanhamento de tarefas e prazos.</li>
-              <li>Relatórios simplificados.</li>
-              <li>Suporte técnico básico.</li>
-            </ul>
+              <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
 
-            <div className="text-secondary flex items-center">
-              <div className="flex items-baseline">
-                <span className="text-[29px] leading-9 font-bold">R$</span>
-                <strong className="text-5xl leading-snug font-bold">{plans[0].price.split(',')[0]},</strong>
+                {/* {(DETALHES_PLANOS[plan.name] ?? DETALHES_PLANOS_PADRAO).map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))} */}
+
+                <li>Cadastro {plan.works === 1 ? (
+                    <><strong>ilimitado</strong> de</>
+                  ) : `de até ${plan.works}`} obra(s).
+                </li>
+                <li>
+                  Acesso {plan.members === 1 ? (
+                    <><strong>ilimitado</strong> de</>
+                  ) : `para até ${plan.members}`} usuário(s).
+                </li>
+                <li>Relatórios e controle completo.</li>
+                <li>Suporte especializado.</li>
+              </ul>
+
+              <div className={`text-secondary flex items-center`}>
+                <div className="flex items-baseline">
+                  <span className="text-[29px] leading-9 font-bold">R$</span>
+                  <strong className="text-5xl leading-snug font-bold">{plan.priceInt},</strong>
+                </div>
+                <div className="flex flex-col -space-y-1">
+                  <strong className="text-3xl font-bold block">{plan.priceDecimal}</strong>
+                  <span className="text-base leading-[18px] font-bold">/mês</span>
+                </div>
               </div>
-              <div className="flex flex-col -space-y-1">
-                <strong className="text-3xl font-bold block">{plans[0].price.split(',')[1]}</strong>
-                <span className="text-base leading-[18px] font-bold">/mês</span>
-              </div>
+
+              <Link
+                href={`https://admin.cadeoengenheiro.com.br/checkout/plano/${plan.id}`}
+                target="_blank"
+                className={`mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full`}
+              >
+                Contrate já
+              </Link>
             </div>
-
-            <Link href="https://admin.cadeoengenheiro.com.br/checkout/plano/1" target="_blank" className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
-              Contrate já
-            </Link>
-          </div>
-
-          <div className="max-lg:order-last bg-white rounded-[44px] min-h-[481px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
-            <h3 className="text-primary text-center font-bold text-xl ss:text-2xl after-bottom !after:w-[93px]">
-              {plans[1].name}
-            </h3>
-
-            <ul className="text-body text-left max-w-xs w-full text-sm font-normal mt-8 list-disc list-outside pl-2.5">
-              <li>Acompanhamento ilimitado de obras.</li>
-              <li>Acesso para múltiplos usuários.</li>
-              <li>Integração com outros sistemas.</li>
-              <li>Análises profundas e insights de dados.</li>
-              <li>Gerente de conta dedicado e suporte personalizado.</li>
-            </ul>
-
-            <div className="text-secondary flex items-center">
-              <div className="flex items-baseline">
-                <span className="text-[32px] leading-[38px] font-bold">R$</span>
-                <strong className="text-5xl leading-relaxed font-bold">{plans[1].price.split(',')[0]},</strong>
-              </div>
-              <div className="flex flex-col -space-y-1">
-                <strong className="text-3xl font-bold block">{plans[1].price.split(',')[1]}</strong>
-                <span className="text-base leading-5 font-bold">/mês</span>
-              </div>
-            </div>
-
-            <Link href="https://admin.cadeoengenheiro.com.br/checkout/plano/2" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
-              Contrate já
-            </Link>
-          </div>
-
-          <div className="bg-white rounded-[44px] min-h-[443px] h-full max-w-[510px] lg:max-w-[314px] w-full lg:w-fit flex flex-col items-center justify-between p-8 lg:hover:translate-y-2.5 transition-all duration-200 hover:drop-shadow-xl">
-            <h3 className="text-primary text-center font-bold text-xl ss:text-2xl lg:text-xl after-bottom !after:w-[86px]">
-              {plans[2].name}
-            </h3>
-
-            <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
-              <li>Acompanhamento de até 5 obras.</li>
-              <li>Acesso para até 3 usuários.</li>
-              <li>Gestão financeira detalhada.</li>
-              <li>Relatórios avançados.</li>
-              <li>Suporte técnico prioritário.</li>
-            </ul>
-
-            <div className="text-secondary flex items-center">
-              <div className="flex items-baseline">
-                <span className="text-[29px] leading-9 font-bold">R$</span>
-                <strong className="text-5xl leading-snug font-bold">{plans[2].price.split(',')[0]},</strong>
-              </div>
-              <div className="flex flex-col -space-y-1">
-                <strong className="text-3xl font-bold block">{plans[2].price.split(',')[1]}</strong>
-                <span className="text-base leading-[18px] font-bold">/mês</span>
-              </div>
-            </div>
-
-            <Link href="https://admin.cadeoengenheiro.com.br/checkout/plano/3" target="_blank"  className="mt-2 bg-primary hover:brightness-105 transition-colors duration-300 text-white px-[18px] py-2.5 text-xl leading-[26px] font-bold text-center rounded-full">
-              Contrate já
-            </Link>
-          </div>
+          ))}
         </div>
 
         <div className="flex items-center justify-center mt-4">

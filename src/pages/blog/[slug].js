@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   }
 
   const paths = data.data.map((post) => ({
-    params: { id: post.id.toString() }
+    params: { slug: post.slug.toString() }
   }))
 
   return { paths, fallback: "blocking" }
@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) {
     const { data } = await api.get("/posts");
 
     const post = data.data.find(
-      (post) => post.id.toString() === params.id
+      (post) => post.slug.toString() === params.slug
     );
 
     if (!post) {
@@ -45,7 +45,7 @@ export async function getStaticProps({ params }) {
       props: {
         post,
       },
-      revalidate: 60 * 60 * 24, // 24h
+      revalidate: 60 * 60 * 4, // 4h
     };
   } catch (error) {
     return { notFound: true };
@@ -61,7 +61,7 @@ export default function PostPage({ post }) {
 
       <HeaderBanner />
 
-      <main className="wrapper mt-[118px] mb-16 flex flex-col lg:flex-row justify-center gap-[42px] px-3">
+      <main className="wrapper mt-[43px] sm:mt-[118px] mb-16 flex flex-col lg:flex-row justify-center gap-[42px] px-3">
         <div className="w-full mx-auto lg:max-w-[496px] flex-1 max-lg:order-last">
           <h5 className="text-secondary text-lg leading-6 font-medium text-left">
             Blog
@@ -82,7 +82,7 @@ export default function PostPage({ post }) {
           width={561}
           height={375}
           src={post.images.post_thumb}
-          className="mx-auto lg:min-w-[561px] lg:h-[375px]"
+          className="mx-auto lg:min-w-[561px] lg:h-[375px] lg:sticky lg:top-36"
         />
       </main>
 

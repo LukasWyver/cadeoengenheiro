@@ -12,7 +12,7 @@ function generatePagesArray(from, to) {
 
 function Pagination({
   totalCountOfRegisters,
-  registersPerPage = 10,
+  registersPerPage = 4,
   currentPage = 1,
   onPageChange
 }) {
