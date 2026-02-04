@@ -66,7 +66,7 @@ function NavbarModal({ isVisible, onClose }) {
               </button>
             </div>
 
-            <ul className="flex flex-col rounded text-white space-y-2.5">
+            <ul className="flex flex-col rounded text-white space-y-4">
               <LinkList />
             </ul>
           </div>

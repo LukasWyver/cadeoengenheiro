@@ -1,57 +1,102 @@
-import { useState } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import { FiCalendar } from "react-icons/fi";
 
-import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 
 import api from "@/services/api";
-import Cta from "@/components/Cta";
-import Banner from "@/components/Banner";
-import Footer from "@/components/Footer";
 import Pagination from "@/components/Pagination";
-import Formulario from "@/components/Formulario";
 import HeaderBanner from "@/components/HeaderBanner";
 import Empresas from "@/components/Carrossel/Empresas";
+
+const Cta = dynamic(() => import("@/components/Cta"));
+const Banner = dynamic(() => import("@/components/Banner"));
+const Footer = dynamic(() => import("@/components/Footer"));
+const Formulario = dynamic(() => import("@/components/Formulario"));
 
 import { limitOfLines } from "@/utils/limitOfLines";
 import { htmlToText } from "@/utils/htmlToText";
 
-export async function getStaticProps() {
-  const { data } = await api.get("/posts");
+export async function getStaticProps({ params, preview, locale }) {
+  const page = 1; // build sempre gera página 1
+
+  const { data } = await api.get(`/posts?page=${page}`);
+
+  const postsWithExcerpt = data.data.map(post => ({
+    ...post,
+    excerpt: limitOfLines(htmlToText(post.content), 4),
+  }));
 
   return {
     props: {
-      initialPosts: data.data,
+      initialPosts: postsWithExcerpt,
       initialPagination: data.pagination
     },
-    revalidate: 60 * 60 * 4, // 4 hours
+    revalidate: 60 * 5, // 5 minutos
   };
 }
 
 export default function BlogPage({ initialPosts, initialPagination }) {
+  const router = useRouter();
+  const pageFromUrl = Number(router.query.page) || 1;
+
   const [posts, setPosts] = useState(initialPosts);
   const [pagination, setPagination] = useState(initialPagination);
-  const [currentPage, setCurrentPage] = useState(
-    initialPagination.current_page
-  );
+  const [currentPage, setCurrentPage] = useState(pageFromUrl);
 
-  const {
-    per_page: postsPerPage,
-    total: totalPosts
-  } = pagination;
+  const { per_page: postsPerPage, total: totalPosts } = pagination;
 
-  async function handlePageChange(page) {
+  // async function handlePageChange(page) {
+  //   if (page === currentPage) return;
+
+  //   const { data } = await api.get(`/posts?page=${page}`);
+
+  //   const postsWithExcerpt = data.data.map(post => ({
+  //     ...post,
+  //     excerpt: limitOfLines(htmlToText(post.content), 4),
+  //   }));
+
+  //   setPosts(postsWithExcerpt);
+  //   setPagination(data.pagination);
+  //   setCurrentPage(page);
+  // }
+
+  useEffect(() => {
+    if (pageFromUrl === currentPage) return;
+
+    async function loadPosts() {
+      const { data } = await api.get(`/posts?page=${pageFromUrl}`);
+
+      const postsWithExcerpt = data.data.map(post => ({
+        ...post,
+        excerpt: limitOfLines(htmlToText(post.content), 4),
+      }));
+
+      setPosts(postsWithExcerpt);
+      setPagination(data.pagination);
+      setCurrentPage(pageFromUrl);
+    }
+
+    loadPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageFromUrl]);
+
+  function handlePageChange(page) {
     if (page === currentPage) return;
 
-    const { data } = await api.get(`/posts?page=${page}`);
-
-    setPosts(data.data);
-    setPagination(data.pagination);
-    setCurrentPage(page);
+    router.push(
+      {
+        pathname: "/blog",
+        query: { page },
+      },
+      undefined,
+      { shallow: true }
+    );
   }
-
 
   return (
     <>
@@ -71,55 +116,54 @@ export default function BlogPage({ initialPosts, initialPagination }) {
           <br className="hidden md:block" /> últimas notícias do segmento
         </h3>
 
-        <div className="px-3 ss:px-[56px] sm:px-[86px] mt-24 flex flex-col items-center">
+        <motion.div
+          exit={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 1 * 0.0125 }}
+          className="px-3 ss:px-[56px] sm:px-[86px] mt-24 flex flex-col items-center"
+        >
           <div className="space-y-[74px]">
             {posts.map((post) => (
-              <motion.div
-                exit={{ opacity: 0, x: -20 }}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: post.id * 0.0125 }}
-                key={post.id}
-                className="max-w-[1027px] mx-auto flex flex-1 gap-10 flex-col lg:flex-row"
-               >
-                  <Link href={`/blog/${post.slug}`}>
-                      <Image
-                        width={466}
-                        height={311}
-                        alt={post.title}
-                        src={post.images.post_thumb}
-                        className="lg:min-w-[466px] lg:h-[311px] mx-auto"
-                      />
-                  </Link>
+              <div key={post.id} className="max-w-[1027px] mx-auto flex flex-1 gap-10 flex-col lg:flex-row">
+                <Link href={`/blog/${post.slug}`}>
+                    <Image
+                      width={466}
+                      height={311}
+                      alt={post.title}
+                      src={post.images.post_thumb}
+                      className="lg:min-w-[466px] lg:h-[311px] mx-auto"
+                    />
+                </Link>
 
-                  <div className="flex flex-col justify-between w-full mx-auto max-w-[720px]">
-                    <div>
-                      <div className="flex items-center gap-2 mb-8">
-                        <FiCalendar color="#f4af38" size={22} />
+                <div className="flex flex-col justify-between w-full mx-auto max-w-[720px]">
+                  <div>
+                    <div className="flex items-center gap-2 mb-8">
+                      <FiCalendar color="#f4af38" size={22} />
 
-                        <span className="text-base font-medium leading-5 text-secondary">
-                          {post.created_at}
-                        </span>
-                      </div>
-
-                      <h3 className="text-primary text-[27px] leading-8 font-bold mb-3">
-                        {post.title}
-                      </h3>
-                      <p className="text-base font-normal leading-6 text-body line-clamp-3">
-                        {limitOfLines(htmlToText(post.content), 4)}
-                      </p>
+                      <span className="text-base font-medium leading-5 text-secondary">
+                        {post.created_at}
+                      </span>
                     </div>
 
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="btn primary font-bold text-[19px] leading-[26px] w-fit my-2.5 max-h-[42px] py-3 px-6"
-                    >
-                      Leia mais
-                    </Link>
-
+                    <h3 className="text-primary text-[27px] leading-8 font-bold mb-3">
+                      {post.title}
+                    </h3>
+                    <p className="text-base font-normal leading-6 text-body line-clamp-3">
+                      {post.excerpt}
+                    </p>
                   </div>
-                </motion.div>
-              ))}
+
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="btn primary font-bold text-[19px] leading-[26px] w-fit my-2.5 max-h-[42px] py-3 px-6"
+                  >
+                    Leia mais
+                  </Link>
+
+                </div>
+              </div>
+            ))}
 
             <div className="flex flex-col items-center justify-center">
               <Pagination
@@ -134,7 +178,7 @@ export default function BlogPage({ initialPosts, initialPagination }) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </main>
 
       <Banner />

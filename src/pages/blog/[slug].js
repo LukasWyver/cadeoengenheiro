@@ -1,54 +1,63 @@
-import Image from "next/image";
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 
 import api from "@/services/api";
-
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 import Formulario from "@/components/Formulario";
 import HeaderBanner from "@/components/HeaderBanner";
 import Empresas from "@/components/Carrossel/Empresas";
-import Link from "next/link";
 
 export async function getStaticPaths() {
-  const { data } = await api.get("/posts");
+  try {
+    const { data } = await api.get("/posts?page=1");
 
-  // Verifique se os dados foram retornados corretamente
-  if (!data || !Array.isArray(data.data)) {
+    return {
+      paths: data?.data?.map(post => ({
+        params: { slug: post.slug.toString() },
+      })) || [],
+      fallback: "blocking",
+    };
+  } catch (error) {
     return {
       paths: [],
-      fallback: false,
+      fallback: "blocking",
     };
   }
-
-  const paths = data.data.map((post) => ({
-    params: { slug: post.slug.toString() }
-  }))
-
-  return { paths, fallback: "blocking" }
 }
 
 export async function getStaticProps({ params }) {
+  const slug = params?.slug;
+
+  if (!slug) {
+    return { notFound: true };
+  }
+
   try {
-    const { data } = await api.get("/posts");
+    const { data: post } = await api.get(`/posts/${slug}`);
 
-    const post = data.data.find(
-      (post) => post.slug.toString() === params.slug
-    );
-
-    if (!post) {
+    // Validação mínima do conteúdo
+    if (!post?.id || !post?.slug || !post?.title) {
       return { notFound: true };
     }
 
     return {
-      props: {
-        post,
-      },
-      revalidate: 60 * 60 * 4, // 4h
+      props: { post },
+      revalidate: 60 * 15, // 15 minutos
     };
   } catch (error) {
-    return { notFound: true };
+    // Se a API responder 404, devolve 404 real
+    if (error.response?.status === 404) {
+      return { notFound: true };
+    }
+
+    // Qualquer outro erro
+    return {
+      notFound: true,
+      revalidate: 60, // tenta novamente em 1 min
+    };
   }
 }
 
