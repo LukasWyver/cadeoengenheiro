@@ -36,7 +36,7 @@ export async function getStaticProps({ params, preview, locale }) {
       initialPosts: postsWithExcerpt,
       initialPagination: data.pagination
     },
-    revalidate: 60 * 5, // 5 minutos
+    revalidate: 60, // 1 minutos
   };
 }
 

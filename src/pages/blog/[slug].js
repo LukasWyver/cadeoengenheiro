@@ -45,7 +45,7 @@ export async function getStaticProps({ params }) {
 
     return {
       props: { post },
-      revalidate: 60 * 15, // 15 minutos
+      revalidate: 60, // 1 minutos
     };
   } catch (error) {
     // Se a API responder 404, devolve 404 real

@@ -7,11 +7,12 @@ import Accordion from "@/components/Accordion";
 import Formulario from "@/components/Formulario";
 import Empresas from "@/components/Carrossel/Empresas";
 
+import api from "@/services/api";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { messageWhatsapp } from "@/utils/messageWhatsapp";
 import { FaWhatsapp } from "react-icons/fa";
-import api from "@/services/api";
+import { messageWhatsapp } from "@/utils/messageWhatsapp";
+import { formatPriceIntAndDecimal } from "@/utils/formatPriceIntAndDecimal";
 
 export async function getStaticProps() {
   try {
@@ -22,7 +23,8 @@ export async function getStaticProps() {
     }
 
     const plans = data.map(plan => {
-      const [priceInt, priceDecimal] = plan.price.split(',');
+      const { priceInt, priceDecimal } = formatPriceIntAndDecimal(plan.price);
+
 
       return {
         ...plan,
@@ -33,7 +35,7 @@ export async function getStaticProps() {
 
     return {
       props: { plans },
-      revalidate: 60 * 60 * 4, // 4h
+      revalidate: 60, // 1 min
     };
   } catch (error) {
     return { notFound: true };
@@ -56,22 +58,22 @@ export default function PlansPage({ plans }) {
 
   const DETALHES_PLANOS = {
     "Plano Básico": [
-      "Acompanhamento de até 2 obras",
-      "Acesso para 1 usuário(s)",
+      //"Acompanhamento de até 2 obras",
+      //"Acesso para 1 usuário(s)",
       "Acompanhamento de tarefas e prazos",
       "Relatórios simplificados",
       "Suporte técnico básico",
     ],
     "Plano Profissional": [
-      "Acompanhamento de até 5 obras",
-      "Acesso para até 3 usuário(s)",
+      //"Acompanhamento de até 5 obras",
+      //"Acesso para até 3 usuário(s)",
       "Gestão financeira detalhada",
       "Relatórios avançados",
       "Suporte técnico prioritário",
     ],
     "Plano Premium": [
-      "Acompanhamento ilimitado de obras",
-      "Acesso para múltiplos usuários",
+      //"Acompanhamento ilimitado de obras",
+      //"Acesso para múltiplos usuários",
       "Integração com outros sistemas",
       "Análises profundas e insights de dados",
       "Gerente de conta dedicado e suporte personalizado",
@@ -426,22 +428,18 @@ export default function PlansPage({ plans }) {
               </h3>
 
               <ul className="text-body text-left max-w-xs w-full text-sm leading-relaxed font-normal mt-8 list-disc list-outside pl-2.5">
-
-                {/* {(DETALHES_PLANOS[plan.name] ?? DETALHES_PLANOS_PADRAO).map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))} */}
-
                 <li>Cadastro {plan.works === 1 ? (
                     <><strong>ilimitado</strong> de</>
                   ) : `de até ${plan.works}`} obra(s).
                 </li>
-                <li>
-                  Acesso {plan.members === 1 ? (
+                <li>Acesso {plan.members === 1 ? (
                     <><strong>ilimitado</strong> de</>
                   ) : `para até ${plan.members}`} usuário(s).
                 </li>
-                <li>Relatórios e controle completo.</li>
-                <li>Suporte especializado.</li>
+
+                {(DETALHES_PLANOS[plan.name] ?? DETALHES_PLANOS_PADRAO).map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
               </ul>
 
               <div className={`text-secondary flex items-center`}>
