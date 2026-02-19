@@ -21,7 +21,7 @@ const Formulario = dynamic(() => import("@/components/Formulario"));
 import { limitOfLines } from "@/utils/limitOfLines";
 import { htmlToText } from "@/utils/htmlToText";
 
-export async function getStaticProps({ params, preview, locale }) {
+export async function getStaticProps() {
   const page = 1; // build sempre gera página 1
 
   const { data } = await api.get(`/posts?page=${page}`);
@@ -41,61 +41,24 @@ export async function getStaticProps({ params, preview, locale }) {
 }
 
 export default function BlogPage({ initialPosts, initialPagination }) {
-  const router = useRouter();
-  const pageFromUrl = Number(router.query.page) || 1;
-
   const [posts, setPosts] = useState(initialPosts);
   const [pagination, setPagination] = useState(initialPagination);
-  const [currentPage, setCurrentPage] = useState(pageFromUrl);
 
+  const currentPage = pagination?.current_page || 1;
   const { per_page: postsPerPage, total: totalPosts } = pagination;
 
-  // async function handlePageChange(page) {
-  //   if (page === currentPage) return;
-
-  //   const { data } = await api.get(`/posts?page=${page}`);
-
-  //   const postsWithExcerpt = data.data.map(post => ({
-  //     ...post,
-  //     excerpt: limitOfLines(htmlToText(post.content), 4),
-  //   }));
-
-  //   setPosts(postsWithExcerpt);
-  //   setPagination(data.pagination);
-  //   setCurrentPage(page);
-  // }
-
-  useEffect(() => {
-    if (pageFromUrl === currentPage) return;
-
-    async function loadPosts() {
-      const { data } = await api.get(`/posts?page=${pageFromUrl}`);
-
-      const postsWithExcerpt = data.data.map(post => ({
-        ...post,
-        excerpt: limitOfLines(htmlToText(post.content), 4),
-      }));
-
-      setPosts(postsWithExcerpt);
-      setPagination(data.pagination);
-      setCurrentPage(pageFromUrl);
-    }
-
-    loadPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageFromUrl]);
-
-  function handlePageChange(page) {
+  async function handlePageChange(page) {
     if (page === currentPage) return;
 
-    router.push(
-      {
-        pathname: "/blog",
-        query: { page },
-      },
-      undefined,
-      { shallow: true }
-    );
+    const { data } = await api.get(`/posts?page=${page}`);
+
+    const postsWithExcerpt = data.data.map(post => ({
+      ...post,
+      excerpt: limitOfLines(htmlToText(post.content), 4),
+    }));
+
+    setPosts(postsWithExcerpt);
+    setPagination(data.pagination);
   }
 
   return (
