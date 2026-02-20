@@ -24,7 +24,13 @@ import { htmlToText } from "@/utils/htmlToText";
 export async function getStaticProps() {
   const page = 1; // build sempre gera página 1
 
-  const { data } = await api.get(`/posts?page=${page}`);
+  // const { data } = await api.get(`/posts?page=${page}`);
+
+ const response = await fetch(
+    `https://admin.cadeoengenheiro.com.br/api/posts?page=${page}`
+  );
+
+  const data = await response.json();
 
   const postsWithExcerpt = data.data.map(post => ({
     ...post,
@@ -47,18 +53,37 @@ export default function BlogPage({ initialPosts, initialPagination }) {
   const currentPage = pagination?.current_page || 1;
   const { per_page: postsPerPage, total: totalPosts } = pagination;
 
+  // async function handlePageChange(page) {
+  //   if (page === currentPage) return;
+
+  //   const { data } = await api.get(`/posts?page=${page}`);
+
+  //   const postsWithExcerpt = data.data.map(post => ({
+  //     ...post,
+  //     excerpt: limitOfLines(htmlToText(post.content), 4),
+  //   }));
+
+  //   setPosts(postsWithExcerpt);
+  //   setPagination(data.pagination);
+  // }
+
   async function handlePageChange(page) {
     if (page === currentPage) return;
 
-    const { data } = await api.get(`/posts?page=${page}`);
+    try {
+      const response = await fetch(`/api/posts?page=${page}`);
+      const data = await response.json();
 
-    const postsWithExcerpt = data.data.map(post => ({
-      ...post,
-      excerpt: limitOfLines(htmlToText(post.content), 4),
-    }));
+      const postsWithExcerpt = data.data.map(post => ({
+        ...post,
+        excerpt: limitOfLines(htmlToText(post.content), 4),
+      }));
 
-    setPosts(postsWithExcerpt);
-    setPagination(data.pagination);
+      setPosts(postsWithExcerpt);
+      setPagination(data.pagination);
+    } catch (error) {
+      console.error("Erro ao trocar página:", error);
+    }
   }
 
   return (
